@@ -6,17 +6,17 @@ struct CountdownView: View {
     @State  var daysTilPeriod: Int = 15
     
     var body: some View {
-        
-        Spacer()
-            .frame(height: 10)
+        //Greeting
+        Text("Hey, you 👋")
+            .font(.title)
+            .frame(width: 320, alignment: .topLeading)
+            .padding(.top, 10)
+            .offset(y: 20)
         
         HStack{
             
-            Spacer()
-                .frame(width: 15)
-            
             Text("Your period starts in")
-                .font(.headline)
+                .font(.body)
                 .frame(alignment: .leading)
             
             ZStack{
@@ -39,7 +39,7 @@ struct CountdownView: View {
             }
             
             Text("days.")
-                .font(.headline)
+                .font(.body)
             
         }.frame(width: 320, alignment: .leading)
         

@@ -12,33 +12,32 @@ struct ContentView: View {
         
         NavigationView {
             
-            ScrollView {
-                
-                LazyVStack(alignment: .leading, spacing: 20) {
-                    // Your period starts in ... stack
-                    CountdownView()
+            List {
+                ScrollView {
                     
-                    //Rectangle and content
-                    HStack{
+                    LazyVStack(alignment: .leading, spacing: 20) {
+                        // Your period starts in ... stack
+                        CountdownView()
+                        
+                        //Rectangle and content
+                        HStack{
                             Spacer()
                             RectangleWrapperView()
                             Spacer()
+                        }
+                        Spacer()
+                            .frame(height: 20)
                     }
                 }
-              
-            }
-            .navigationTitle("Hey, you \u{1f44b}")
-            
-            List {
-            NavigationLink(destination: Text("Insights")){
-                Text("Insights")
-            }
-            
-            NavigationLink(destination: Text("Settings")){
-                Text("Settings")
-            }
-            }
-            
+                
+                NavigationLink(destination: Text("Insights")){
+                    Text("Insights")
+                }
+                
+                NavigationLink(destination: Text("Settings")){
+                    Text("Settings")
+                }
+            } .navigationTitle("PeriodABC")
         }
     }
 }
