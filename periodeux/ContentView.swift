@@ -25,9 +25,19 @@ struct ContentView: View {
                             Spacer()
                     }
                 }
-                
+              
             }
             .navigationTitle("Hey, you \u{1f44b}")
+            
+            List {
+            NavigationLink(destination: Text("Insights")){
+                Text("Insights")
+            }
+            
+            NavigationLink(destination: Text("Settings")){
+                Text("Settings")
+            }
+            }
             
         }
     }

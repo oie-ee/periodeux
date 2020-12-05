@@ -19,6 +19,8 @@
 		F31BCAF4257BBDBB005343D6 /* RectangleWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */; };
 		F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAF8257BC562005343D6 /* InfoInputView.swift */; };
 		F31BCB06257BC866005343D6 /* MoodRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB05257BC866005343D6 /* MoodRowView.swift */; };
+		F31BCB0B257BCDEC005343D6 /* SymptomRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB0A257BCDEC005343D6 /* SymptomRowView.swift */; };
+		F31BCB13257BD075005343D6 /* BleedingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB12257BD075005343D6 /* BleedingRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleWrapperView.swift; sourceTree = "<group>"; };
 		F31BCAF8257BC562005343D6 /* InfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoInputView.swift; sourceTree = "<group>"; };
 		F31BCB05257BC866005343D6 /* MoodRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodRowView.swift; sourceTree = "<group>"; };
+		F31BCB0A257BCDEC005343D6 /* SymptomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomRowView.swift; sourceTree = "<group>"; };
+		F31BCB12257BD075005343D6 /* BleedingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleedingRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */,
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
 				F31BCB05257BC866005343D6 /* MoodRowView.swift */,
+				F31BCB0A257BCDEC005343D6 /* SymptomRowView.swift */,
+				F31BCB12257BD075005343D6 /* BleedingRowView.swift */,
 				F31BCAD9257BB6FD005343D6 /* Colors.xcassets */,
 				F31BCAAF257BB57F005343D6 /* Assets.xcassets */,
 				F31BCAB4257BB57F005343D6 /* Info.plist */,
@@ -281,6 +287,8 @@
 				F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */,
 				F31BCAAE257BB57D005343D6 /* ContentView.swift in Sources */,
 				F31BCAEF257BBCA3005343D6 /* CalendarView.swift in Sources */,
+				F31BCB0B257BCDEC005343D6 /* SymptomRowView.swift in Sources */,
+				F31BCB13257BD075005343D6 /* BleedingRowView.swift in Sources */,
 				F31BCAF4257BBDBB005343D6 /* RectangleWrapperView.swift in Sources */,
 				F31BCB06257BC866005343D6 /* MoodRowView.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
