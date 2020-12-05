@@ -1,9 +1,3 @@
-//
-//  periodeuxApp.swift
-//  periodeux
-//
-//  Created by Sophie Kremer on 05.12.20.
-//
 
 import SwiftUI
 

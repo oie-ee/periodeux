@@ -15,7 +15,8 @@ struct ContentView: View {
             ScrollView {
                 
                 LazyVStack(alignment: .leading, spacing: 20) {
-             
+                    
+                    // Your period starts in ... stack
                     CountdownView()
                     
                 }
