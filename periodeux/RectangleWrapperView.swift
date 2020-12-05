@@ -22,6 +22,8 @@ struct RectangleWrapperView: View {
                     .padding(.top, 200)
                     .frame(width: 325)
                 
+                InfoInputView()
+                
                 Spacer()
             }
         }

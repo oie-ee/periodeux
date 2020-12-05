@@ -20,11 +20,9 @@ struct ContentView: View {
                     
                     //Rectangle and content
                     HStack{
-                        Group{
                             Spacer()
                             RectangleWrapperView()
                             Spacer()
-                        }
                     }
                 }
                 
