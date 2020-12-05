@@ -13,6 +13,8 @@
 		F31BCAB3257BB57F005343D6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31BCAB2257BB57F005343D6 /* Preview Assets.xcassets */; };
 		F31BCABE257BB57F005343D6 /* periodeuxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCABD257BB57F005343D6 /* periodeuxTests.swift */; };
 		F31BCAC9257BB57F005343D6 /* periodeuxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAC8257BB57F005343D6 /* periodeuxUITests.swift */; };
+		F31BCADA257BB6FD005343D6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31BCAD9257BB6FD005343D6 /* Colors.xcassets */; };
+		F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAE1257BB92D005343D6 /* CountdownView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		F31BCAC4257BB57F005343D6 /* periodeuxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = periodeuxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31BCAC8257BB57F005343D6 /* periodeuxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = periodeuxUITests.swift; sourceTree = "<group>"; };
 		F31BCACA257BB57F005343D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F31BCAD9257BB6FD005343D6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		F31BCAE1257BB92D005343D6 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 			children = (
 				F31BCAAB257BB57D005343D6 /* periodeuxApp.swift */,
 				F31BCAAD257BB57D005343D6 /* ContentView.swift */,
+				F31BCAE1257BB92D005343D6 /* CountdownView.swift */,
+				F31BCAD9257BB6FD005343D6 /* Colors.xcassets */,
 				F31BCAAF257BB57F005343D6 /* Assets.xcassets */,
 				F31BCAB4257BB57F005343D6 /* Info.plist */,
 				F31BCAB1257BB57F005343D6 /* Preview Content */,
@@ -233,6 +239,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31BCADA257BB6FD005343D6 /* Colors.xcassets in Resources */,
 				F31BCAB3257BB57F005343D6 /* Preview Assets.xcassets in Resources */,
 				F31BCAB0257BB57F005343D6 /* Assets.xcassets in Resources */,
 			);
@@ -259,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */,
 				F31BCAAE257BB57D005343D6 /* ContentView.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
 			);

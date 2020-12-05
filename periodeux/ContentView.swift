@@ -1,16 +1,29 @@
-//
-//  ContentView.swift
-//  periodeux
-//
-//  Created by Sophie Kremer on 05.12.20.
-//
 
 import SwiftUI
 
+struct ColorManager {
+    static let highlightOrange = Color("highlightOrange")
+    static let backgroundOrange = Color("backgroundOrange")
+}
+
 struct ContentView: View {
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        NavigationView {
+            
+            ScrollView {
+                
+                LazyVStack(alignment: .leading, spacing: 20) {
+             
+                    CountdownView()
+                    
+                }
+                
+            }
+            .navigationTitle("Hey, you \u{1f44b}")
+            
+        }
     }
 }
 
