@@ -16,6 +16,13 @@ struct RectangleWrapperView: View {
             //What is in the rectangle
             VStack{
                 CalendarView()
+                
+                //Divider
+                Divider()
+                    .padding(.top, 200)
+                    .frame(width: 325)
+                
+                Spacer()
             }
         }
         
