@@ -3,7 +3,17 @@ import SwiftUI
 
 struct ModalInfoView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            Picker("InfoPicker", selection: .constant(0)){
+                Text("Mood").tag(0)
+                Text("Symptoms").tag(1)
+                Text("Bleeding").tag(2)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            
+            Spacer()
+        }
     }
 }
 
