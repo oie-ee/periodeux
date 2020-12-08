@@ -37,6 +37,7 @@ struct ContentView: View {
                 NavigationLink(destination: Text("Settings")){
                     Text("Settings")
                 }
+                
             } .navigationTitle("PeriodABC")
         }
     }

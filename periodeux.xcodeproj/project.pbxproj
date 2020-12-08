@@ -21,6 +21,7 @@
 		F31BCB06257BC866005343D6 /* MoodRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB05257BC866005343D6 /* MoodRowView.swift */; };
 		F31BCB0B257BCDEC005343D6 /* SymptomRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB0A257BCDEC005343D6 /* SymptomRowView.swift */; };
 		F31BCB13257BD075005343D6 /* BleedingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB12257BD075005343D6 /* BleedingRowView.swift */; };
+		F34556A72580106E00523956 /* ModalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34556A62580106E00523956 /* ModalInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		F31BCB05257BC866005343D6 /* MoodRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodRowView.swift; sourceTree = "<group>"; };
 		F31BCB0A257BCDEC005343D6 /* SymptomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomRowView.swift; sourceTree = "<group>"; };
 		F31BCB12257BD075005343D6 /* BleedingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleedingRowView.swift; sourceTree = "<group>"; };
+		F34556A62580106E00523956 /* ModalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
 				F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */,
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
+				F34556A62580106E00523956 /* ModalInfoView.swift */,
 				F31BCB05257BC866005343D6 /* MoodRowView.swift */,
 				F31BCB0A257BCDEC005343D6 /* SymptomRowView.swift */,
 				F31BCB12257BD075005343D6 /* BleedingRowView.swift */,
@@ -292,6 +295,7 @@
 				F31BCAF4257BBDBB005343D6 /* RectangleWrapperView.swift in Sources */,
 				F31BCB06257BC866005343D6 /* MoodRowView.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
+				F34556A72580106E00523956 /* ModalInfoView.swift in Sources */,
 				F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

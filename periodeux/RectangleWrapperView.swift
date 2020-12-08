@@ -15,6 +15,7 @@ struct RectangleWrapperView: View {
             
             //What is in the rectangle
             VStack{
+                
                 CalendarView()
                 
                 //Divider
