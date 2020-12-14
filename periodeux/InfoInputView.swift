@@ -114,7 +114,7 @@ struct InfoInputView: View {
 }
 
 
-//MARK –  MoodModel
+// MARK: MoodModel
 struct MoodModel: Identifiable {
     var id = UUID()
     var name: String
