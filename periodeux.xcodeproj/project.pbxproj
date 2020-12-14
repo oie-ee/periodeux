@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3150C0B258783A7003129DE /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C0A258783A7003129DE /* MoodModel.swift */; };
+		F3150C1325878419003129DE /* SymptomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C1225878419003129DE /* SymptomModel.swift */; };
+		F3150C1825878441003129DE /* BleedingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C1725878441003129DE /* BleedingModel.swift */; };
 		F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAAB257BB57D005343D6 /* periodeuxApp.swift */; };
 		F31BCAAE257BB57D005343D6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAAD257BB57D005343D6 /* ContentView.swift */; };
 		F31BCAB0257BB57F005343D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31BCAAF257BB57F005343D6 /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F3150C0A258783A7003129DE /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
+		F3150C1225878419003129DE /* SymptomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomModel.swift; sourceTree = "<group>"; };
+		F3150C1725878441003129DE /* BleedingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleedingModel.swift; sourceTree = "<group>"; };
 		F31BCAA8257BB57D005343D6 /* periodeux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = periodeux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31BCAAB257BB57D005343D6 /* periodeuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = periodeuxApp.swift; sourceTree = "<group>"; };
 		F31BCAAD257BB57D005343D6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +96,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3150C0925878389003129DE /* models */ = {
+			isa = PBXGroup;
+			children = (
+				F3150C0A258783A7003129DE /* MoodModel.swift */,
+				F3150C1225878419003129DE /* SymptomModel.swift */,
+				F3150C1725878441003129DE /* BleedingModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		F31BCA9F257BB57D005343D6 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +129,7 @@
 		F31BCAAA257BB57D005343D6 /* periodeux */ = {
 			isa = PBXGroup;
 			children = (
+				F3150C0925878389003129DE /* models */,
 				F31BCAAB257BB57D005343D6 /* periodeuxApp.swift */,
 				F31BCAAD257BB57D005343D6 /* ContentView.swift */,
 				F31BCAE1257BB92D005343D6 /* CountdownView.swift */,
@@ -296,7 +313,10 @@
 				F31BCB06257BC866005343D6 /* MoodRowView.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
 				F34556A72580106E00523956 /* ModalInfoView.swift in Sources */,
+				F3150C0B258783A7003129DE /* MoodModel.swift in Sources */,
+				F3150C1825878441003129DE /* BleedingModel.swift in Sources */,
 				F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */,
+				F3150C1325878419003129DE /* SymptomModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@ struct SymptomRowView: View {
             
             VStack{
             Button(action: {
-       self.showingModalView.toggle()
+                print("\(symptom.name) was selected")
            }, label: {
       
             VStack{
@@ -25,7 +25,7 @@ struct SymptomRowView: View {
                 
                 Text(symptom.name)
                     .font(.caption2)
-                    .foregroundColor(Color(UIColor(named: "highlightOrange")!))
+                    .foregroundColor(.black)
                               }
                           })
                       }

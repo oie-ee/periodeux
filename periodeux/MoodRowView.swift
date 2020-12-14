@@ -14,7 +14,7 @@ struct MoodRowView: View {
             
             VStack{
                 Button(action: {
-                    self.showingModalView.toggle()
+                    print("\(mood.name) was selected")
                 }, label: {
                     VStack{
                 Image(systemName: mood.imageIcon)
@@ -24,7 +24,7 @@ struct MoodRowView: View {
                 
                 Text(mood.name)
                     .font(.caption2)
-                    .foregroundColor(Color(UIColor(named: "highlightOrange")!))
+                    .foregroundColor(.black)
                     }
                 })
             }

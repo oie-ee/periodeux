@@ -14,7 +14,7 @@ struct BleedingRowView: View {
 
             VStack{
             Button(action: {
-                self.showingModalView.toggle()
+                print("\(bleeding.name) was selected")
            }, label: {
 
             VStack{
@@ -25,7 +25,7 @@ struct BleedingRowView: View {
 
                 Text(bleeding.name)
                     .font(.caption2)
-                    .foregroundColor(Color(UIColor(named: "highlightOrange")!))
+                    .foregroundColor(.black)
                               }
                           })
                       }
