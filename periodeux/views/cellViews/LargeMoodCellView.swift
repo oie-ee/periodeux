@@ -24,6 +24,8 @@ struct LargeMoodCellView: View {
                 Text(mood.name)
                     .font(.callout)
                     .foregroundColor(.black)
+                    .frame(width: 80, height: 48)
+                    .multilineTextAlignment(.center)
             }
         })
     }
@@ -31,6 +33,6 @@ struct LargeMoodCellView: View {
 
 struct LargeMoodCellView_Previews: PreviewProvider {
     static var previews: some View {
-        LargeMoodCellView(mood: MoodModel.mood1)
+        LargeMoodCellView(mood: MoodModel.mood11)
     }
 }

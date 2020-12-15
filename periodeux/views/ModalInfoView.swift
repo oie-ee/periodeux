@@ -71,24 +71,27 @@ struct ModalInfoView_Previews: PreviewProvider {
 }
 
 
-
-
-
-
-
 struct Mood : View {
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     @State var moods: [MoodModel] = dummyMoodData
     
     var body : some View{
-        
-        HStack(spacing: 24) {
+        LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
+            
             ForEach(moods){
                 mood in
                 LargeMoodCellView(mood: mood)
             }
         }
         
+        Spacer()
     }
 }
 
@@ -96,7 +99,6 @@ struct Mood : View {
 struct Symptom : View {
     
     var body : some View{
-        
         
         Text("symptoms")
         
@@ -107,7 +109,6 @@ struct Symptom : View {
 struct Bleeding : View {
     
     var body : some View{
-        
         
         Text("bleeding")
         
