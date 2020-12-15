@@ -11,7 +11,7 @@ extension BleedingModel {
     
     static var bleeding1 = BleedingModel(name: "No Bleeding", imageIcon: "app.fill")
     static var bleeding2 = BleedingModel(name: "Light", imageIcon: "app.fill")
-    static var bleeding3 = BleedingModel(name: "Normal", imageIcon: "app.fill")
+    static var bleeding3 = BleedingModel(name: "Regular", imageIcon: "app.fill")
     static var bleeding4 = BleedingModel(name: "Heavy", imageIcon: "app.fill")
 }
 
