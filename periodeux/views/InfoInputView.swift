@@ -36,10 +36,7 @@ struct InfoInputView: View {
             
             //MoodModel
             HStack {
-                ForEach(moods){
-                    mood in
-                    SmallMoodCellView(mood: mood)
-                }
+               Text("Test")
             }
             
             Spacer()
@@ -71,10 +68,7 @@ struct InfoInputView: View {
             //SymptomsIcons
             
             HStack {
-                ForEach(symptoms){
-                    symptom in
-                    SmallSymptomCellView(symptom: symptom)
-                }
+                Text("Test")
             }
             
             Spacer()
@@ -104,10 +98,7 @@ struct InfoInputView: View {
             
             //BleedingIcons
             HStack {
-                ForEach(bleedings){
-                    bleeding in
-                    SmallBleedingCellView(bleeding: bleeding)
-                }
+                Text("Test")
             }
         }
     }

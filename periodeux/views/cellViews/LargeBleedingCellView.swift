@@ -15,7 +15,7 @@ struct LargeBleedingCellView: View {
                 
                 Image(systemName: bleeding.imageIcon)
                     .resizable()
-                    .frame(width: 72, height: 72)
+                    .frame(width: 68, height: 68)
                     .foregroundColor(.gray)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -25,6 +25,8 @@ struct LargeBleedingCellView: View {
                 Text(bleeding.name)
                     .font(.body)
                     .foregroundColor(.black)
+                    .frame(width: 80, height: 48)
+                    .multilineTextAlignment(.center)
             }
         })
     }

@@ -98,20 +98,50 @@ struct Mood : View {
 
 struct Symptom : View {
     
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    @State var symptoms: [SymptomModel] = dummySymptomData
+    
     var body : some View{
+        LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
+            
+            ForEach(symptoms){
+                symptom in
+                LargeSymptomCellView(symptom: symptom)
+            }
+        }
         
-        Text("symptoms")
-        
+        Spacer()
     }
 }
 
 
 struct Bleeding : View {
     
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    @State var bleedings: [BleedingModel] = dummyBleedingData
+    
     var body : some View{
+        LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
+            
+            ForEach(bleedings){
+                bleeding in
+                LargeBleedingCellView(bleeding: bleeding)
+            }
+        }
         
-        Text("bleeding")
-        
+        Spacer()
     }
 }
 
