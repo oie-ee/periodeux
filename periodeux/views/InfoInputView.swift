@@ -35,9 +35,7 @@ struct InfoInputView: View {
             }.frame(width: 325)
             
             //MoodModel
-            HStack {
-               Text("Test")
-            }
+            AddIconView()
             
             Spacer()
                 .frame(height: 15)
@@ -66,10 +64,7 @@ struct InfoInputView: View {
             }.frame(width: 325)
             
             //SymptomsIcons
-            
-            HStack {
-                Text("Test")
-            }
+            AddIconView()
             
             Spacer()
                 .frame(height: 15)
@@ -97,9 +92,7 @@ struct InfoInputView: View {
             }.frame(width: 325)
             
             //BleedingIcons
-            HStack {
-                Text("Test")
-            }
+            AddIconView()
         }
     }
 }
@@ -107,5 +100,31 @@ struct InfoInputView: View {
 struct InfoInputView_Previews: PreviewProvider {
     static var previews: some View {
         InfoInputView()
+    }
+}
+
+struct AddIconView: View {
+    
+    var body: some View {
+        
+        VStack{
+            
+            ZStack {
+                Image(systemName: "app.fill")
+                    .resizable()
+                    .frame(width: 44, height: 44)
+                    .foregroundColor(ColorManager.backgroundOrange)
+                
+                Image(systemName: "plus")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .foregroundColor(ColorManager.highlightOrange)
+            }
+            
+            Text("Add")
+                .font(.caption2)
+                .foregroundColor(.black)
+        }
+        
     }
 }
