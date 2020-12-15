@@ -38,7 +38,7 @@ struct InfoInputView: View {
             HStack {
                 ForEach(moods){
                     mood in
-                    MoodRowView(mood: mood)
+                    SmallMoodCellView(mood: mood)
                 }
             }
             
@@ -73,7 +73,7 @@ struct InfoInputView: View {
             HStack {
                 ForEach(symptoms){
                     symptom in
-                    SymptomRowView(symptom: symptom)
+                    SmallSymptomCellView(symptom: symptom)
                 }
             }
             
@@ -106,7 +106,7 @@ struct InfoInputView: View {
             HStack {
                 ForEach(bleedings){
                     bleeding in
-                    BleedingRowView(bleeding: bleeding)
+                    SmallBleedingCellView(bleeding: bleeding)
                 }
             }
         }

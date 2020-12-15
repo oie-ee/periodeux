@@ -37,19 +37,19 @@ struct ModalInfoView: View {
                 }
                 Spacer()
                     if selectedDiaryTag == 0{
-                        mood()
+                        Mood()
                     }
     
                     if selectedDiaryTag == 1 {
-                        symptom()
+                        Symptom()
                     }
     
                     if selectedDiaryTag == 2 {
-                        bleeding()
+                        Bleeding()
                     }
                 
             }
-            .navigationBarTitle(Text("Tasty Modal"))
+            .navigationBarTitle(Text("16.12.2020"))
             .navigationBarItems(trailing:
                     Button(action: {
                         //showingModalView.toggle()
@@ -76,18 +76,24 @@ struct ModalInfoView_Previews: PreviewProvider {
 
 
 
-struct mood : View {
+struct Mood : View {
+    
+    @State var moods: [MoodModel] = dummyMoodData
     
     var body : some View{
-        VStack{
-            Text("moods")
+        
+        HStack(spacing: 20) {
+            ForEach(moods){
+                mood in
+                LargeMoodCellView(mood: mood)
+            }
         }
         
     }
 }
 
 
-struct symptom : View {
+struct Symptom : View {
     
     var body : some View{
         
@@ -98,7 +104,7 @@ struct symptom : View {
 }
 
 
-struct bleeding : View {
+struct Bleeding : View {
     
     var body : some View{
         
