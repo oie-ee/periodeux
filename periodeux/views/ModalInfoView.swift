@@ -13,9 +13,9 @@ struct ModalInfoView: View {
             VStack {
                 VStack {
                     Picker("Diary Picker", selection: $selectedDiaryTag) {
-                        Text("mood").tag(0)
-                        Text("symptom").tag(1)
-                        Text("bleeding").tag(2)
+                        Text("Mood").tag(0)
+                        Text("Symptom").tag(1)
+                        Text("Bleeding").tag(2)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
@@ -23,15 +23,15 @@ struct ModalInfoView: View {
                         changedValue in
                         
                         if changedValue == 0 {
-                            selectedDiary = "mood"
+                            selectedDiary = "Mood"
                         }
                         
                         if changedValue == 1 {
-                            selectedDiary = "symptom"
+                            selectedDiary = "Symptom"
                         }
                         
                         if changedValue == 2 {
-                            selectedDiary = "bleeding"
+                            selectedDiary = "Bleeding"
                         }
                     })
                 }
@@ -55,7 +55,7 @@ struct ModalInfoView: View {
                         //showingModalView.toggle()
                         self.mode.wrappedValue.dismiss()
                     }, label: {
-                        Text("done")
+                        Text("Done")
                             .foregroundColor(Color(UIColor(named: "highlightOrange")!))
                     })
             )
@@ -82,7 +82,7 @@ struct Mood : View {
     
     var body : some View{
         
-        HStack(spacing: 20) {
+        HStack(spacing: 24) {
             ForEach(moods){
                 mood in
                 LargeMoodCellView(mood: mood)

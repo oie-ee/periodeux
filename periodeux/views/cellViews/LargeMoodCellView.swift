@@ -14,7 +14,7 @@ struct LargeMoodCellView: View {
                 
                 Image(systemName: mood.imageIcon)
                     .resizable()
-                    .frame(width: 72, height: 72)
+                    .frame(width: 68, height: 68)
                     .foregroundColor(.gray)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -22,7 +22,7 @@ struct LargeMoodCellView: View {
                     )
                 
                 Text(mood.name)
-                    .font(.body)
+                    .font(.callout)
                     .foregroundColor(.black)
             }
         })
