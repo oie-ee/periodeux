@@ -4,26 +4,39 @@ import SwiftUI
 struct LargeBleedingCellView: View {
     
     var bleeding: BleedingModel
+    @State var isSelected = false
     
     var body: some View {
         
         Button(action: {
             print("\(bleeding.name) was selected")
+            isSelected.toggle()
         }, label: {
             
             VStack {
                 
-                Image(systemName: bleeding.imageIcon)
-                    .resizable()
-                    .frame(width: 68, height: 68)
-                    .foregroundColor(.gray)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(ColorManager.highlightOrange, lineWidth: 4)
-                    )
+                if(isSelected){
+                    Image(systemName: bleeding.imageIcon)
+                        .resizable()
+                        .frame(width: 68, height: 68)
+                        .foregroundColor(.gray)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(ColorManager.highlightOrange, lineWidth: 4)
+                        )
+                }else {
+                    Image(systemName: bleeding.imageIcon)
+                        .resizable()
+                        .frame(width: 68, height: 68)
+                        .foregroundColor(.gray)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.clear, lineWidth: 4)
+                        )
+                }
                 
                 Text(bleeding.name)
-                    .font(.body)
+                    .font(.callout)
                     .foregroundColor(.black)
                     .frame(width: 80, height: 48)
                     .multilineTextAlignment(.center)

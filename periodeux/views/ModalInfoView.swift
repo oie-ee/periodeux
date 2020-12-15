@@ -142,6 +142,8 @@ struct Bleeding : View {
         }
         
         Spacer()
+            .frame(height: 455)
+        
     }
 }
 

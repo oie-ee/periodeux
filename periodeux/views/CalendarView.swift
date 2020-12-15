@@ -5,7 +5,7 @@ struct CalendarView: View {
     var body: some View {
         HStack{
             
-            Text("November 2020")
+            Text("December 2020")
                 .font(.system(size: 24.0))
                 .fontWeight(.semibold)
                 .padding(.top, 17)
