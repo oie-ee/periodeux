@@ -11,10 +11,12 @@ struct SmallMoodCellView: View {
     var body: some View {
         
         VStack{
+            
             Button(action: {
                 print("\(mood.name) was selected")
                 isSelected.toggle()
             }, label: {
+                
                 VStack{
                     
                     if(isSelected) {
@@ -22,13 +24,12 @@ struct SmallMoodCellView: View {
                             .resizable()
                             .frame(width: 44, height: 44)
                             .foregroundColor(.gray)
-                        // Border Klimmbimm
+                        
                     } else {
                         Image(systemName: mood.imageIcon)
                             .resizable()
                             .frame(width: 44, height: 44)
                             .foregroundColor(.gray)
-                        // Border Klimmbimm
                     }
                     
                     

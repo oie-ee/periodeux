@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct ModalInfoView: View {
-    //@State var showingModalView = false
+
     @State var selectedDiaryTag: Int = 0
     @State var selectedDiary: String = "mood"
     
@@ -36,28 +36,27 @@ struct ModalInfoView: View {
                     })
                 }
                 Spacer()
-                    if selectedDiaryTag == 0{
-                        Mood()
-                    }
-    
-                    if selectedDiaryTag == 1 {
-                        Symptom()
-                    }
-    
-                    if selectedDiaryTag == 2 {
-                        Bleeding()
-                    }
+                if selectedDiaryTag == 0{
+                    Mood()
+                }
+                
+                if selectedDiaryTag == 1 {
+                    Symptom()
+                }
+                
+                if selectedDiaryTag == 2 {
+                    Bleeding()
+                }
                 
             }
             .navigationBarTitle(Text("16.12.2020"))
             .navigationBarItems(trailing:
-                    Button(action: {
-                        //showingModalView.toggle()
-                        self.mode.wrappedValue.dismiss()
-                    }, label: {
-                        Text("Done")
-                            .foregroundColor(Color(UIColor(named: "highlightOrange")!))
-                    })
+                                    Button(action: {
+                                        self.mode.wrappedValue.dismiss()
+                                    }, label: {
+                                        Text("Done")
+                                            .foregroundColor(ColorManager.highlightOrange)
+                                    })
             )
         }
         
@@ -133,6 +132,7 @@ struct Bleeding : View {
     @State var bleedings: [BleedingModel] = dummyBleedingData
     
     var body : some View{
+        
         LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
             
             ForEach(bleedings){
@@ -143,7 +143,5 @@ struct Bleeding : View {
         
         Spacer()
             .frame(height: 455)
-        
     }
 }
-

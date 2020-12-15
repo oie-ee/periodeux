@@ -49,35 +49,3 @@ struct LargeMoodCellView_Previews: PreviewProvider {
         LargeMoodCellView(mood: MoodModel.mood11)
     }
 }
-
-
-//VStack{
-//    Button(action: {
-//        print("\(mood.name) was selected")
-//        isSelected.toggle()
-//    }, label: {
-//        VStack{
-//
-//            if(isSelected) {
-//                Image(systemName: mood.imageIcon)
-//                    .resizable()
-//                    .frame(width: 44, height: 44)
-//                    .foregroundColor(.gray)
-//                // Border Klimmbimm
-//            } else {
-//                Image(systemName: mood.imageIcon)
-//                    .resizable()
-//                    .frame(width: 44, height: 44)
-//                    .foregroundColor(.gray)
-//                // Border Klimmbimm
-//            }
-//
-//
-//            Text(mood.name)
-//                .font(.caption2)
-//                .foregroundColor(.black)
-//        }
-//    })
-//}
-//}
-//}

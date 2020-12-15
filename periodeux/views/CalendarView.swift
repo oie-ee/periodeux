@@ -54,6 +54,6 @@ struct WeekDays: View {
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-            CalendarView()
+        CalendarView()
     }
 }
