@@ -105,26 +105,35 @@ struct InfoInputView_Previews: PreviewProvider {
 
 struct AddIconView: View {
     
+    @State var showingModalView = false
+    
     var body: some View {
         
-        VStack{
-            
-            ZStack {
-                Image(systemName: "app.fill")
-                    .resizable()
-                    .frame(width: 44, height: 44)
-                    .foregroundColor(ColorManager.backgroundOrange)
+        Button(action: {
+            self.showingModalView.toggle()
+        }) {
+            VStack{
                 
-                Image(systemName: "plus")
-                    .resizable()
-                    .frame(width: 22, height: 22)
-                    .foregroundColor(ColorManager.highlightOrange)
+                ZStack {
+                    
+                    Image(systemName: "app.fill")
+                        .resizable()
+                        .frame(width: 44, height: 44)
+                        .foregroundColor(ColorManager.backgroundOrange)
+                    
+                    Image(systemName: "plus")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .foregroundColor(ColorManager.highlightOrange)
+                }
+                
+                Text("Add")
+                    .font(.caption2)
+                    .foregroundColor(.black)
             }
             
-            Text("Add")
-                .font(.caption2)
-                .foregroundColor(.black)
+        }.sheet(isPresented: $showingModalView) {
+            ModalInfoView()
         }
-        
     }
 }
