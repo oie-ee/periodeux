@@ -46,6 +46,6 @@ struct LargeMoodCellView: View {
 
 struct LargeMoodCellView_Previews: PreviewProvider {
     static var previews: some View {
-        LargeMoodCellView(mood: MoodModel.mood11)
+        LargeMoodCellView(mood: MoodModel.mood1)
     }
 }

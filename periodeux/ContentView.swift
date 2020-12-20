@@ -10,36 +10,49 @@ struct ContentView: View {
     
     var body: some View {
         
-        NavigationView {
+        TabView {
             
-            List {
-                ScrollView {
-                    
-                    LazyVStack(alignment: .leading, spacing: 20) {
-                        // Your period starts in ... stack
-                        CountdownView()
+            // Mark: – First Tab
+            NavigationView {
+                
+                List {
+                    ScrollView {
                         
-                        //Rectangle and content
-                        HStack{
+                        LazyVStack(alignment: .leading, spacing: 20) {
+                            // Your period starts in ... stack
+                            CountdownView()
+                            
+                            //Rectangle and content
+                            HStack{
+                                Spacer()
+                                RectangleWrapperView()
+                                Spacer()
+                            }
                             Spacer()
-                            RectangleWrapperView()
-                            Spacer()
+                                .frame(height: 20)
                         }
-                        Spacer()
-                            .frame(height: 20)
                     }
+                    
+                } .navigationTitle("PeriodABC")
+            }
+            .tabItem {
+                Image(systemName: "house.fill")
+                Text("Home")
+            }
+            
+            // MARK: – Second Tab
+            Text("Insights")
+                .tabItem {
+                    Label("Insights", systemImage: "rectangle.and.text.magnifyingglass")
                 }
-                
-                NavigationLink(destination: Text("Insights")){
-                    Text("Insights")
+            
+            // MARK: – Third Tab
+            Text("Setting")
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
                 }
-                
-                NavigationLink(destination: Text("Settings")){
-                    Text("Settings")
-                }
-                
-            } .navigationTitle("PeriodABC")
-        }
+            
+        }.accentColor(ColorManager.highlightOrange)
     }
 }
 
