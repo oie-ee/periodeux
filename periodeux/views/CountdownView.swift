@@ -6,6 +6,7 @@ struct CountdownView: View {
     @State  var daysTilPeriod: Int = 15
     
     var body: some View {
+        
         //Greeting
         Text("Hey, you 👋")
             .font(.largeTitle)
@@ -13,6 +14,7 @@ struct CountdownView: View {
             .frame(width: 320, alignment: .topLeading)
             .padding(.top, 10)
         
+        //Your period starts in ... days.
         HStack{
             
             Text("Your period starts in")

@@ -2,7 +2,10 @@
 import SwiftUI
 
 struct CalendarView: View {
+    
     var body: some View {
+        
+        //Headlinge (Month) and Chevrons
         HStack{
             
             Text("December 2020")

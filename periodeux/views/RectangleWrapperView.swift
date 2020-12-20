@@ -3,8 +3,6 @@ import SwiftUI
 
 struct RectangleWrapperView: View {
     
-    @State var selectedDiaryTag = 0
-    
     var body: some View {
         
         //RectangleView

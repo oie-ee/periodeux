@@ -1,4 +1,4 @@
-
+//this is a small Icon and Title display for the InfoInputView
 import SwiftUI
 
 struct SmallBleedingCellView: View {

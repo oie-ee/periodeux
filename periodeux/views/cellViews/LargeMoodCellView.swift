@@ -1,3 +1,5 @@
+//this is a larger Icon and Title display for the detailed ModalInfoView
+
 import SwiftUI
 
 struct LargeMoodCellView: View {

@@ -37,8 +37,8 @@ struct InfoInputView: View {
                 
             }
             
-            //MoodModel
-            AddIconView(selectedDiaryTag: 0)
+            //MoodAddIconCell
+            AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
             
             Spacer()
                 .frame(height: 15)
@@ -67,8 +67,8 @@ struct InfoInputView: View {
                 
             }
             
-            //SymptomsIcons
-            AddIconView(selectedDiaryTag: 1)
+            //SymptomsAddIconCell
+            AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
             
             Spacer()
                 .frame(height: 15)
@@ -96,8 +96,8 @@ struct InfoInputView: View {
                 
             }
             
-            //BleedingIcons
-            AddIconView(selectedDiaryTag: 2)
+            //BleedingAddIconCell
+            AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
         }
     }
 }
@@ -111,15 +111,17 @@ struct InfoInputView_Previews: PreviewProvider {
     }
 }
 
-struct AddIconView: View {
+struct AddIconCellView: View {
     
     @State var showingModalView = false
     @State var selectedDiaryTag: Int
+    @Binding var parentState: Int
     
     var body: some View {
         
         Button(action: {
             self.showingModalView.toggle()
+            parentState = selectedDiaryTag
         }) {
             VStack{
                 
@@ -142,7 +144,7 @@ struct AddIconView: View {
             }
             
         }.sheet(isPresented: $showingModalView) {
-            ModalInfoView(selectedDiaryTag: $selectedDiaryTag)//change this part so that changed segmented cotrol always jumps back when reopened
+            ModalInfoView(selectedDiaryTag: $parentState)
         }
     }
 }

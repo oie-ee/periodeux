@@ -20,9 +20,6 @@ struct ModalInfoView: View {
                         ForEach(0..<diaryTags.count) { index in
                             Text(self.diaryTags[index]).tag(index)
                         }
-//                        Text("Mood").tag(0)
-//                        Text("Symptom").tag(1)
-//                        Text("Bleeding").tag(2)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
@@ -70,14 +67,14 @@ struct ModalInfoView: View {
     }
 }
 
-//struct ModalInfoView_Previews: PreviewProvider {
-//
-//    @Binding var selectedDiaryTag: Int
-//
-//    static var previews: some View {
-//        ModalInfoView(selectedDiaryTag: 0)
-//    }
-//}
+struct ModalInfoView_Previews: PreviewProvider {
+
+    @Binding var selectedDiaryTag: Int
+
+    static var previews: some View {
+        ModalInfoView(selectedDiaryTag: .constant(2))//constant disables picker
+    }
+}
 
 
 struct Mood : View {

@@ -1,4 +1,6 @@
 
+//this is a small Icon and Title display for InfoInputView
+
 import SwiftUI
 
 struct SmallMoodCellView: View {
