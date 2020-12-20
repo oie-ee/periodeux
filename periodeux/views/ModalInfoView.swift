@@ -3,8 +3,8 @@ import SwiftUI
 
 struct ModalInfoView: View {
 
-    @State var selectedDiaryTag: Int = 0
-    @State var selectedDiary: String = "mood"
+    @State var diaryTags = ["Mood", "Symptom", "Bleeding"]
+    @Binding var selectedDiaryTag: Int
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -17,9 +17,12 @@ struct ModalInfoView: View {
                 VStack {
                     
                     Picker("Diary Picker", selection: $selectedDiaryTag) {
-                        Text("Mood").tag(0)
-                        Text("Symptom").tag(1)
-                        Text("Bleeding").tag(2)
+                        ForEach(0..<diaryTags.count) { index in
+                            Text(self.diaryTags[index]).tag(index)
+                        }
+//                        Text("Mood").tag(0)
+//                        Text("Symptom").tag(1)
+//                        Text("Bleeding").tag(2)
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
@@ -27,20 +30,18 @@ struct ModalInfoView: View {
                         changedValue in
                         
                         if changedValue == 0 {
-                            selectedDiary = "Mood"
+                            selectedDiaryTag = 0
                         }
                         
                         if changedValue == 1 {
-                            selectedDiary = "Symptom"
+                            selectedDiaryTag = 1
                         }
                         
                         if changedValue == 2 {
-                            selectedDiary = "Bleeding"
+                            selectedDiaryTag = 2
                         }
                     })
                 }
-                
-                Spacer()
                 
                 if selectedDiaryTag == 0{
                     Mood()
@@ -69,11 +70,14 @@ struct ModalInfoView: View {
     }
 }
 
-struct ModalInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ModalInfoView()
-    }
-}
+//struct ModalInfoView_Previews: PreviewProvider {
+//
+//    @Binding var selectedDiaryTag: Int
+//
+//    static var previews: some View {
+//        ModalInfoView(selectedDiaryTag: 0)
+//    }
+//}
 
 
 struct Mood : View {
@@ -148,6 +152,5 @@ struct Bleeding : View {
         }
         
         Spacer()
-            .frame(height: 455)
     }
 }

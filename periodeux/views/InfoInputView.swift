@@ -8,6 +8,8 @@ struct InfoInputView: View {
     @State var bleedings: [BleedingModel] = dummyBleedingData
     @State var showingModalView = false
     
+    @State var selectedDiaryTag = 0
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -21,13 +23,14 @@ struct InfoInputView: View {
                 
                 Button(action: {
                     self.showingModalView.toggle()
+                    selectedDiaryTag = 0
                 }) {
                     Text("Edit")
                         .font(.caption2)
                         .foregroundColor(ColorManager.highlightOrange)
                         .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
-                    ModalInfoView()
+                    ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
                 
                 Spacer()
@@ -35,7 +38,7 @@ struct InfoInputView: View {
             }
             
             //MoodModel
-            AddIconView()
+            AddIconView(selectedDiaryTag: 0)
             
             Spacer()
                 .frame(height: 15)
@@ -50,13 +53,14 @@ struct InfoInputView: View {
                 
                 Button(action: {
                     self.showingModalView.toggle()
+                    selectedDiaryTag = 1
                 }) {
                     Text("Edit")
                         .font(.caption2)
                         .foregroundColor(ColorManager.highlightOrange)
                         .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
-                    ModalInfoView()
+                    ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
                 
                 Spacer()
@@ -64,7 +68,7 @@ struct InfoInputView: View {
             }
             
             //SymptomsIcons
-            AddIconView()
+            AddIconView(selectedDiaryTag: 1)
             
             Spacer()
                 .frame(height: 15)
@@ -78,13 +82,14 @@ struct InfoInputView: View {
                 
                 Button(action: {
                     self.showingModalView.toggle()
+                    selectedDiaryTag = 2
                 }) {
                     Text("Edit")
                         .font(.caption2)
                         .foregroundColor(ColorManager.highlightOrange)
                         .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
-                    ModalInfoView()
+                    ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
                 
                 Spacer()
@@ -92,20 +97,24 @@ struct InfoInputView: View {
             }
             
             //BleedingIcons
-            AddIconView()
+            AddIconView(selectedDiaryTag: 2)
         }
     }
 }
 
 struct InfoInputView_Previews: PreviewProvider {
+
+    @State var selectedDiaryTag: Int
+
     static var previews: some View {
-        InfoInputView()
+        InfoInputView(selectedDiaryTag: 0)
     }
 }
 
 struct AddIconView: View {
     
     @State var showingModalView = false
+    @State var selectedDiaryTag: Int
     
     var body: some View {
         
@@ -133,7 +142,7 @@ struct AddIconView: View {
             }
             
         }.sheet(isPresented: $showingModalView) {
-            ModalInfoView()
+            ModalInfoView(selectedDiaryTag: $selectedDiaryTag)//change this part so that changed segmented cotrol always jumps back when reopened
         }
     }
 }

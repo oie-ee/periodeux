@@ -43,7 +43,7 @@ struct ContentView: View {
                 }
             
             // MARK: – Third Tab
-            Text("Setting")
+            Text("Settings")
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
