@@ -28,8 +28,6 @@ struct ContentView: View {
                                 RectangleWrapperView()
                                 Spacer()
                             }
-                            Spacer()
-                                .frame(height: 20)
                         }
                     }
             }

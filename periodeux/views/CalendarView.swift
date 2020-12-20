@@ -24,7 +24,7 @@ struct CalendarView: View {
                 .font(Font.title.weight(.semibold))
                 .frame(width: 10.0, height: 17.0)
                 .padding(.top, 17)
-        }.frame(width: 325)
+        }
         
         //Weekdays in calendar
         WeekDays()
@@ -37,7 +37,7 @@ struct WeekDays: View {
     
     var body: some View {
         
-        HStack(spacing: 22){
+        HStack(spacing: 24){
             
             ForEach(weekdays, id: \.self) { weekdays in
                 Text("\(weekdays)")
@@ -46,7 +46,7 @@ struct WeekDays: View {
                     .foregroundColor(.gray)
             }
             
-        }.frame(width: 325)
+        }
         
     }
 }

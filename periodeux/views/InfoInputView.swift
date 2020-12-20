@@ -32,7 +32,7 @@ struct InfoInputView: View {
                 
                 Spacer()
                 
-            }.frame(width: 325)
+            }
             
             //MoodModel
             AddIconView()
@@ -61,7 +61,7 @@ struct InfoInputView: View {
                 
                 Spacer()
                 
-            }.frame(width: 325)
+            }
             
             //SymptomsIcons
             AddIconView()
@@ -89,7 +89,7 @@ struct InfoInputView: View {
                 
                 Spacer()
                 
-            }.frame(width: 325)
+            }
             
             //BleedingIcons
             AddIconView()

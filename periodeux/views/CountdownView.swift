@@ -41,8 +41,7 @@ struct CountdownView: View {
             Text("days.")
                 .font(.body)
             
-        }.frame(width: 320, alignment: .leading)
-        
+        }
     }
 }
 
