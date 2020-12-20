@@ -8,10 +8,10 @@ struct CountdownView: View {
     var body: some View {
         //Greeting
         Text("Hey, you 👋")
-            .font(.body)
+            .font(.largeTitle)
+            .fontWeight(.semibold)
             .frame(width: 320, alignment: .topLeading)
             .padding(.top, 10)
-            .offset(y: 30)
         
         HStack{
             

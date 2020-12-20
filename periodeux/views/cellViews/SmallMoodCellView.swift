@@ -3,7 +3,7 @@ import SwiftUI
 
 struct SmallMoodCellView: View {
     
-    @State var showingModalView = false
+   // @State var showingModalView = false
     @State var isSelected = false
     
     var mood: MoodModel

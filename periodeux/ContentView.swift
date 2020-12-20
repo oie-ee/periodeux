@@ -15,12 +15,12 @@ struct ContentView: View {
             // Mark: – First Tab
             NavigationView {
                 
-                List {
                     ScrollView {
                         
                         LazyVStack(alignment: .leading, spacing: 20) {
                             // Your period starts in ... stack
                             CountdownView()
+                                .offset(x: 30)
                             
                             //Rectangle and content
                             HStack{
@@ -32,8 +32,6 @@ struct ContentView: View {
                                 .frame(height: 20)
                         }
                     }
-                    
-                } .navigationTitle("PeriodABC")
             }
             .tabItem {
                 Image(systemName: "house.fill")

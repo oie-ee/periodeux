@@ -9,9 +9,13 @@ struct ModalInfoView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
+        
         NavigationView {
+            
             VStack {
+                
                 VStack {
+                    
                     Picker("Diary Picker", selection: $selectedDiaryTag) {
                         Text("Mood").tag(0)
                         Text("Symptom").tag(1)
@@ -35,7 +39,9 @@ struct ModalInfoView: View {
                         }
                     })
                 }
+                
                 Spacer()
+                
                 if selectedDiaryTag == 0{
                     Mood()
                 }
