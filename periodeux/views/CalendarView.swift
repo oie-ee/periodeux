@@ -18,7 +18,7 @@ struct CalendarView: View {
         VStack {
             
             // Data: Month with selection
-            HStack(alignment: .center) {
+            HStack {
                 
                 Text("\(self.nameOfMonth)")
                     .font(Font.title2.weight(.semibold))
@@ -79,7 +79,7 @@ struct CalendarView: View {
             .padding()
             
         }
-        .frame(width: 400, height: 400)
+        .frame(height: 400)
         .onAppear {
             self.update()
         }

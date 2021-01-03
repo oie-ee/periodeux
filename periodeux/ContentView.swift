@@ -32,7 +32,7 @@ struct ContentView: View {
                     }
             }
             .tabItem {
-                Image(systemName: "house.fill")
+                Image(systemName: "calendar")
                 Text("Overview")
             }
             
