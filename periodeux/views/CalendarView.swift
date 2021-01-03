@@ -97,7 +97,7 @@ struct CalendarView: View {
         self.numbersOfDays = range.count
         
         // First Weekday
-        self.firstWeekday = calendar.component(.weekday, from: selectedDate) // 1 == sunday
+        self.firstWeekday = calendar.component(.weekday, from: selectedDate) - 2 // 0 == monday
         
         // Name of Month
         dateFormatter.dateStyle = .full
@@ -121,9 +121,7 @@ struct WeekDays: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.gray)
             }
-            
         }
-        
     }
 }
 
