@@ -6,8 +6,8 @@ struct CalendarView: View {
     private let calendar = Calendar.current
     private let dateFormatter = DateFormatter()
     
-    @State private var selectedYear: Int = 2021
-    @State private var selectedMonth: Int = 0
+    @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
+    @State private var selectedMonth: Int = Calendar.current.component(.month, from: Date()) - 1
     
     @State private var numbersOfDays: Int = 0
     @State private var firstWeekday: Int = 0
@@ -83,6 +83,18 @@ struct CalendarView: View {
         .onAppear {
             self.update()
         }
+        .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
+            .onEnded({ value in
+                    if value.translation.width < 0 {
+                        // left
+                        self.selectedMonth = selectedMonth + 1
+                    }
+
+                    if value.translation.width > 0 {
+                        // right
+                        self.selectedMonth = selectedMonth - 1
+                    }
+                }))
         
     }
     
