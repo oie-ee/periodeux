@@ -1,8 +1,11 @@
 
 import SwiftUI
+import Foundation
 
 struct ModalInfoView: View {
-
+    
+    @State var date = Date()
+    
     @State var diaryTags = ["Mood", "Symptom", "Bleeding"]
     @Binding var selectedDiaryTag: Int
     
@@ -53,7 +56,7 @@ struct ModalInfoView: View {
                 }
                 
             }
-            .navigationBarTitle(Text("16.12.2020"))
+            .navigationBarTitle(Text("\(currentDateString(date: date))"))
             .navigationBarItems(trailing:
                                     Button(action: {
                                         self.mode.wrappedValue.dismiss()
@@ -65,12 +68,23 @@ struct ModalInfoView: View {
         }
         
     }
+    
+    var dateFormat: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM y"
+        return formatter
+    }
+    
+    func currentDateString(date: Date) -> String {
+        let currentDate = dateFormat.string(from: date)
+        return currentDate
+    }
 }
 
 struct ModalInfoView_Previews: PreviewProvider {
-
+    
     @Binding var selectedDiaryTag: Int
-
+    
     static var previews: some View {
         ModalInfoView(selectedDiaryTag: .constant(2))//constant disables picker
     }

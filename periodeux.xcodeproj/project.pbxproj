@@ -117,8 +117,8 @@
 			children = (
 				F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */,
 				F31BCAE1257BB92D005343D6 /* CountdownView.swift */,
-				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
+				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
 				F34556A62580106E00523956 /* ModalInfoView.swift */,
 				F3150C2325878703003129DE /* cellViews */,
 			);
