@@ -13,7 +13,7 @@ struct SmallBleedingCellView: View {
             }, label: {
                 
                 VStack{
-                    Image(systemName: bleeding.imageIcon)
+                    Image("\(bleeding.imageIcon):44x44")
                         .resizable()
                         .frame(width: 44, height: 44)
                         .foregroundColor(.gray)

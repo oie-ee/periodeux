@@ -17,22 +17,22 @@ struct LargeSymptomCellView: View {
             VStack {
                 
                 if(isSelected){
-                    Image(systemName: symptom.imageIcon)
+                    Image("\(symptom.imageIcon):68x68")
                         .resizable()
                         .frame(width: 68, height: 68)
                         .foregroundColor(.gray)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(ColorManager.highlightOrange, lineWidth: 4)
+                                .stroke(ColorManager.highlightOrange, lineWidth: 3)
                         )
                 }else {
-                    Image(systemName: symptom.imageIcon)
+                    Image("\(symptom.imageIcon):68x68")
                         .resizable()
                         .frame(width: 68, height: 68)
                         .foregroundColor(.gray)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.clear, lineWidth: 4)
+                                .stroke(Color.clear, lineWidth: 3)
                         )
                 }
                 

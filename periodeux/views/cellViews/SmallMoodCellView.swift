@@ -21,13 +21,13 @@ struct SmallMoodCellView: View {
                 VStack{
                     
                     if(isSelected) {
-                        Image(systemName: mood.imageIcon)
+                        Image("\(mood.imageIcon):44x44")
                             .resizable()
                             .frame(width: 44, height: 44)
                             .foregroundColor(.gray)
                         
                     } else {
-                        Image(systemName: mood.imageIcon)
+                        Image("\(mood.imageIcon):44x44")
                             .resizable()
                             .frame(width: 44, height: 44)
                             .foregroundColor(.gray)
