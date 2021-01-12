@@ -26,6 +26,7 @@ struct CalendarView: View {
                 
                 Spacer()
                 
+                //Left Chevron
                 Button(action: {
                     self.selectedMonth = selectedMonth - 1
                 }) {
@@ -36,8 +37,10 @@ struct CalendarView: View {
                 }.onChange(of: selectedMonth, perform: {
                     value in
                     self.update()
-                })
+                }).padding(.trailing, 6)
                 
+                
+                //Right Chevron
                 Button(action: {
                     self.selectedMonth = selectedMonth + 1
                 }) {
@@ -48,14 +51,16 @@ struct CalendarView: View {
                 }.onChange(of: selectedMonth, perform: {
                     value in
                     self.update()
-                })
-            }.padding([.leading, .trailing, .bottom])
+                }).padding(.trailing, 10)
+                
+            }.padding([.leading, .trailing])
+            .padding(.bottom, 8)
             
             //Days of the Week
             WeekDays()
             
             
-            // Grid
+            // Day-Grid
             VStack {
                 ForEach(1..<7) {
                     row in
@@ -65,20 +70,20 @@ struct CalendarView: View {
                             
                             let previousDaysElapsed = 7 * (row - 1)
                             let currentDay = (column + previousDaysElapsed)
-                        
+                            
                             
                             let dayIsInRange = (currentDay > self.firstWeekday)  && currentDay <= (self.numbersOfDays + self.firstWeekday)
                             
                             ZStack {
-                                Circle().foregroundColor(dayIsInRange ? .white : .gray)
+                                Circle().foregroundColor(dayIsInRange ? .white : .white)
                                 Text(dayIsInRange ? "\(currentDay - self.firstWeekday)" : "")
+                                    .font(.title3)
                             }
                             
                         }
                     }
                 }
-            }
-            .padding()
+            }.padding([.leading, .trailing])
             
         }
         .frame(height: 400)
@@ -86,19 +91,17 @@ struct CalendarView: View {
             self.update()
         }
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
-            .onEnded({ value in
-                    if value.translation.width < 0 {
-                        // left
-                        self.selectedMonth = selectedMonth + 1
+                    .onEnded({ value in
+                        if value.translation.width < 0 {
+                            // left
+                            self.selectedMonth = selectedMonth + 1
+                        }
                         
-                    }
-
-                    if value.translation.width > 0 {
-                        // right
-                        self.selectedMonth = selectedMonth - 1
-                    }
-                }))
-       
+                        if value.translation.width > 0 {
+                            // right
+                            self.selectedMonth = selectedMonth - 1
+                        }
+                    }))
     }
     
     
@@ -113,8 +116,8 @@ struct CalendarView: View {
         
         // First Weekday
         self.firstWeekday = calendar.component(.weekday, from: selectedDate) - 2 // 1 == sunday
-            if self.firstWeekday == -1 {
-                self.firstWeekday = 6
+        if self.firstWeekday == -1 {
+            self.firstWeekday = 6
         }
         
         // Name of Month
@@ -131,17 +134,23 @@ struct WeekDays: View {
     
     var body: some View {
         
-        HStack(spacing: 24){
+        HStack{
             
             ForEach(weekdays, id: \.self) { weekdays in
+                
+                Spacer()
+                
                 Text("\(weekdays)")
-                    .font(.footnote)
+                    .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(.systemGray2))
+                
+                Spacer()
             }
-        }
+        }.padding([.leading, .trailing], 8)
     }
 }
+
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {

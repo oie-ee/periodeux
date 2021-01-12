@@ -103,9 +103,9 @@ struct InfoInputView: View {
 }
 
 struct InfoInputView_Previews: PreviewProvider {
-
+    
     @State var selectedDiaryTag: Int
-
+    
     static var previews: some View {
         InfoInputView(selectedDiaryTag: 0)
     }
