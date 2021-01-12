@@ -27,4 +27,4 @@ extension MoodModel {
     
 }
 
-let dummyMoodData = [MoodModel.mood1, MoodModel.mood2, MoodModel.mood3, MoodModel.mood4, MoodModel.mood5, MoodModel.mood6, MoodModel.mood7, MoodModel.mood8, MoodModel.mood9, MoodModel.mood10, MoodModel.mood11, MoodModel.mood12, MoodModel.mood13, MoodModel.mood14]
+let dummyMoodData = [MoodModel.mood1, MoodModel.mood2, MoodModel.mood3, MoodModel.mood4, MoodModel.mood5, MoodModel.mood6, MoodModel.mood7, MoodModel.mood8, MoodModel.mood9, MoodModel.mood10, MoodModel.mood11, MoodModel.mood13]
