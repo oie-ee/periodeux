@@ -14,9 +14,6 @@ struct SmallBleedingCellView: View {
                 
                 VStack{
                     Image("\(bleeding.imageIcon):44x44")
-                        .resizable()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(.gray)
                     
                     Text(bleeding.name)
                         .font(.caption2)

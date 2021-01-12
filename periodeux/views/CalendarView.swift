@@ -3,7 +3,8 @@ import SwiftUI
 
 struct CalendarView: View {
     
-    private let calendar = Calendar(identifier: .iso8601)
+    private var calendar = Calendar.current
+    
     private let dateFormatter = DateFormatter()
     
     @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
@@ -63,7 +64,7 @@ struct CalendarView: View {
                             column in
                             
                             let previousDaysElapsed = 7 * (row - 1)
-                            let currentDay = (column + previousDaysElapsed) //+ 2
+                            let currentDay = (column + previousDaysElapsed)
                         
                             
                             let dayIsInRange = (currentDay > self.firstWeekday)  && currentDay <= (self.numbersOfDays + self.firstWeekday)
@@ -89,6 +90,7 @@ struct CalendarView: View {
                     if value.translation.width < 0 {
                         // left
                         self.selectedMonth = selectedMonth + 1
+                        
                     }
 
                     if value.translation.width > 0 {
@@ -96,7 +98,7 @@ struct CalendarView: View {
                         self.selectedMonth = selectedMonth - 1
                     }
                 }))
-        
+       
     }
     
     
@@ -110,7 +112,10 @@ struct CalendarView: View {
         self.numbersOfDays = range.count
         
         // First Weekday
-        self.firstWeekday = calendar.component(.weekday, from: selectedDate) //- 2 // 1 == sunday
+        self.firstWeekday = calendar.component(.weekday, from: selectedDate) - 2 // 1 == sunday
+            if self.firstWeekday == -1 {
+                self.firstWeekday = 6
+        }
         
         // Name of Month
         dateFormatter.dateStyle = .full

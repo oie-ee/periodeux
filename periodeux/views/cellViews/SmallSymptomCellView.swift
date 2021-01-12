@@ -16,9 +16,6 @@ struct SmallSymptomCellView: View {
                 
                 VStack{
                     Image("\(symptom.imageIcon):44x44")
-                        .resizable()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(.gray)
                     
                     Text(symptom.name)
                         .font(.caption2)

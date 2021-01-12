@@ -18,18 +18,12 @@ struct LargeMoodCellView: View {
                 
                 if(isSelected){
                     Image("\(mood.imageIcon):68x68")
-                        .resizable()
-                        .frame(width: 68, height: 68)
-                        .foregroundColor(.gray)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(ColorManager.highlightOrange, lineWidth: 3)
                         )
                 }else {
                     Image("\(mood.imageIcon):68x68")
-                        .resizable()
-                        .frame(width: 68, height: 68)
-                        .foregroundColor(.gray)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.clear, lineWidth: 3)

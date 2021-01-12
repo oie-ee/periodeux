@@ -22,9 +22,6 @@ struct SmallMoodCellView: View {
                     
                     if(isSelected) {
                         Image("\(mood.imageIcon):44x44")
-                            .resizable()
-                            .frame(width: 44, height: 44)
-                            .foregroundColor(.gray)
                         
                     } else {
                         Image("\(mood.imageIcon):44x44")

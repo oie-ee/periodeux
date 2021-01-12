@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30FCB0425AE180C00A9F6AF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAEE257BBCA3005343D6 /* CalendarView.swift */; };
 		F3150C0B258783A7003129DE /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C0A258783A7003129DE /* MoodModel.swift */; };
 		F3150C1325878419003129DE /* SymptomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C1225878419003129DE /* SymptomModel.swift */; };
 		F3150C1825878441003129DE /* BleedingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C1725878441003129DE /* BleedingModel.swift */; };
@@ -18,7 +19,6 @@
 		F31BCAC9257BB57F005343D6 /* periodeuxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAC8257BB57F005343D6 /* periodeuxUITests.swift */; };
 		F31BCADA257BB6FD005343D6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31BCAD9257BB6FD005343D6 /* Colors.xcassets */; };
 		F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAE1257BB92D005343D6 /* CountdownView.swift */; };
-		F31BCAEF257BBCA3005343D6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAEE257BBCA3005343D6 /* CalendarView.swift */; };
 		F31BCAF4257BBDBB005343D6 /* RectangleWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */; };
 		F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAF8257BC562005343D6 /* InfoInputView.swift */; };
 		F31BCB06257BC866005343D6 /* SmallMoodCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB05257BC866005343D6 /* SmallMoodCellView.swift */; };
@@ -283,6 +283,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"en-GB",
 				Base,
 			);
 			mainGroup = F31BCA9F257BB57D005343D6;
@@ -331,8 +332,8 @@
 			files = (
 				F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */,
 				F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */,
+				F30FCB0425AE180C00A9F6AF /* CalendarView.swift in Sources */,
 				F31BCAAE257BB57D005343D6 /* ContentView.swift in Sources */,
-				F31BCAEF257BBCA3005343D6 /* CalendarView.swift in Sources */,
 				F31BCB0B257BCDEC005343D6 /* SmallSymptomCellView.swift in Sources */,
 				F31BCB13257BD075005343D6 /* SmallBleedingCellView.swift in Sources */,
 				F3B0365F258906A9003A6771 /* LargeBleedingCellView.swift in Sources */,
