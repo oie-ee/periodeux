@@ -37,13 +37,17 @@ struct ContentView: View {
             }
             
             // MARK: – Second Tab
-            Text("Insights")
+            InsightsView()
+                
                 .tabItem {
                     Label("Insights", systemImage: "rectangle.and.text.magnifyingglass")
                 }
             
             // MARK: – Third Tab
-            Text("Settings")
+                
+            SettingView()
+               
+                
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
@@ -57,3 +61,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

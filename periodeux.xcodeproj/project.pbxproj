@@ -28,6 +28,8 @@
 		F3B0365525890687003A6771 /* LargeMoodCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0365425890687003A6771 /* LargeMoodCellView.swift */; };
 		F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B036592589069B003A6771 /* LargeSymptomCellView.swift */; };
 		F3B0365F258906A9003A6771 /* LargeBleedingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0365E258906A9003A6771 /* LargeBleedingCellView.swift */; };
+		F97F3D6925AE67A700622CBE /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F3D6825AE67A700622CBE /* SettingView.swift */; };
+		F97F3D6E25AE67FB00622CBE /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F3D6D25AE67FB00622CBE /* InsightsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		F3B0365425890687003A6771 /* LargeMoodCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeMoodCellView.swift; sourceTree = "<group>"; };
 		F3B036592589069B003A6771 /* LargeSymptomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSymptomCellView.swift; sourceTree = "<group>"; };
 		F3B0365E258906A9003A6771 /* LargeBleedingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeBleedingCellView.swift; sourceTree = "<group>"; };
+		F97F3D6825AE67A700622CBE /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		F97F3D6D25AE67FB00622CBE /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,8 @@
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
 				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
 				F34556A62580106E00523956 /* ModalInfoView.swift */,
+				F97F3D6825AE67A700622CBE /* SettingView.swift */,
+				F97F3D6D25AE67FB00622CBE /* InsightsView.swift */,
 				F3150C2325878703003129DE /* cellViews */,
 			);
 			path = views;
@@ -339,11 +345,13 @@
 				F3B0365F258906A9003A6771 /* LargeBleedingCellView.swift in Sources */,
 				F3B0365525890687003A6771 /* LargeMoodCellView.swift in Sources */,
 				F31BCAF4257BBDBB005343D6 /* RectangleWrapperView.swift in Sources */,
+				F97F3D6925AE67A700622CBE /* SettingView.swift in Sources */,
 				F31BCB06257BC866005343D6 /* SmallMoodCellView.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
 				F34556A72580106E00523956 /* ModalInfoView.swift in Sources */,
 				F3150C0B258783A7003129DE /* MoodModel.swift in Sources */,
 				F3150C1825878441003129DE /* BleedingModel.swift in Sources */,
+				F97F3D6E25AE67FB00622CBE /* InsightsView.swift in Sources */,
 				F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */,
 				F3150C1325878419003129DE /* SymptomModel.swift in Sources */,
 			);
