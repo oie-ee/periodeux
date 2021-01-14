@@ -7,12 +7,44 @@ struct CalendarView: View {
     
     private let dateFormatter = DateFormatter()
     
+    @State private var selectedDate: Date = Date()
+    
     @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
-    @State private var selectedMonth: Int = Calendar.current.component(.month, from: Date()) - 1
+    @State private var selectedMonth: Int = Calendar.current.component(.month, from: Date())
     
     @State private var numbersOfDays: Int = 0
-    @State private var firstWeekday: Int = 0
-    @State private var nameOfMonth: String = "–"
+    
+    var firstWeekday: Int {
+        return self.calendar.firstWeekday
+    }
+    
+    var numberOfDays: Range<Int> {
+        return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
+    }
+    
+    func weekdayPosition(_ elapsed: Int) -> Int {
+        let position = elapsed - (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
+        let firstPosition = (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
+        
+        return firstPosition < 0 ? position - 7 : position
+    }
+    
+    var firstDayOfMonth: Int {
+        
+        let firstDateOfMonthAMonthToMuch = self.calendar.date(bySetting: .day, value: 1, of: self.selectedDate) ?? Date()
+        let date = self.calendar.date(byAdding: .month, value: -1, to: firstDateOfMonthAMonthToMuch) ?? Date()
+        let weekday = self.calendar.component(.weekday, from: date)
+        
+        return weekday
+    }
+    
+    var monthName: String {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "MMMM Y"
+        
+        return dateFormatter.string(from: selectedDate)
+    }
     
     var body: some View {
         
@@ -21,37 +53,33 @@ struct CalendarView: View {
             // Data: Month with selection
             HStack {
                 
-                Text("\(self.nameOfMonth)")
+                Text(self.monthName)
                     .font(Font.title2.weight(.semibold))
                 
                 Spacer()
                 
                 //Left Chevron
                 Button(action: {
-                    self.selectedMonth = selectedMonth - 1
+                    self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
                 }) {
                     Image(systemName: "chevron.left")
                         .resizable()
                         .font(Font.title.weight(.semibold))
                         .frame(width: 10.0, height: 17.0)
-                }.onChange(of: selectedMonth, perform: {
-                    value in
-                    self.update()
-                }).padding(.trailing, 6)
+                }
+                .padding(.trailing, 6)
                 
                 
                 //Right Chevron
                 Button(action: {
-                    self.selectedMonth = selectedMonth + 1
+                    self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
                 }) {
                     Image(systemName: "chevron.right")
                         .resizable()
                         .font(Font.title.weight(.semibold))
                         .frame(width: 10.0, height: 17.0)
-                }.onChange(of: selectedMonth, perform: {
-                    value in
-                    self.update()
-                }).padding(.trailing, 10)
+                }
+                .padding(.trailing, 10)
                 
             }.padding([.leading, .trailing])
             .padding(.bottom, 8)
@@ -68,16 +96,19 @@ struct CalendarView: View {
                         ForEach(1..<8) {
                             column in
                             
-                            let previousDaysElapsed = 7 * (row - 1)
-                            let currentDay = (column + previousDaysElapsed)
+                            let daysElapsed = column + ((row - 1) * 7)
+                            let dayOfMonth = weekdayPosition(daysElapsed)
                             
-                            
-                            let dayIsInRange = (currentDay > self.firstWeekday)  && currentDay <= (self.numbersOfDays + self.firstWeekday)
                             
                             ZStack {
-                                Circle().foregroundColor(dayIsInRange ? .white : .white)
-                                Text(dayIsInRange ? "\(currentDay - self.firstWeekday)" : "")
-                                    .font(.title3)
+                                
+                                Circle().foregroundColor(.white)
+                                
+                                if self.numberOfDays.contains(dayOfMonth) {
+                                    Text("\(dayOfMonth)")
+                                        .font(.title3)
+                                }
+                                
                             }
                             
                         }
@@ -87,63 +118,47 @@ struct CalendarView: View {
             
         }
         .frame(height: 400)
-        .onAppear {
-            self.update()
-        }
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
                     .onEnded({ value in
                         if value.translation.width < 0 {
                             // left
-                            self.selectedMonth = selectedMonth + 1
+                            self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
                         }
                         
                         if value.translation.width > 0 {
                             // right
-                            self.selectedMonth = selectedMonth - 1
+                            self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
                         }
                     }))
-    }
-    
-    
-    private func update() {
-        
-        let dateComponents = DateComponents(year: self.selectedYear, month: self.selectedMonth + 1, day: 1)
-        guard let selectedDate = calendar.date(from: dateComponents) else { return }
-        
-        // Number of Days
-        let range = calendar.range(of: .day, in: .month, for: selectedDate)!
-        self.numbersOfDays = range.count
-        
-        // First Weekday
-        self.firstWeekday = calendar.component(.weekday, from: selectedDate) - 2 // 1 == sunday
-        if self.firstWeekday == -1 {
-            self.firstWeekday = 6
-        }
-        
-        // Name of Month
-        dateFormatter.dateStyle = .full
-        dateFormatter.dateFormat = "MMMM y"
-        nameOfMonth = dateFormatter.string(from: selectedDate)
-        
     }
 }
 
 struct WeekDays: View {
     
-    let weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
+    let firstWeekDay = Calendar.current.firstWeekday
+    let weekdays = Calendar.current.shortWeekdaySymbols
+    
+    var weekdayRange: ArraySlice<String> {
+        print(firstWeekDay)
+        
+        guard firstWeekDay > 1 else {
+            return weekdays[0...weekdays.count - 1]
+        }
+        return weekdays[(firstWeekDay - 1)...(weekdays.count - 1)] + weekdays[0...(firstWeekDay - 2)]
+        
+    }
     
     var body: some View {
         
         HStack{
-            
-            ForEach(weekdays, id: \.self) { weekdays in
+            ForEach(weekdayRange, id: \.self) { weekdays in
                 
                 Spacer()
-                
                 Text("\(weekdays)")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(Color(.systemGray2))
+                    .textCase(.uppercase)
                 
                 Spacer()
             }
@@ -152,8 +167,8 @@ struct WeekDays: View {
 }
 
 
-struct CalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarView()
-    }
-}
+//struct CalendarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CalendarView()
+//    }
+//}
