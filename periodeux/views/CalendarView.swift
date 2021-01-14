@@ -22,6 +22,13 @@ struct CalendarView: View {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
     }
     
+    func weekdayPosition(_ elapsed: Int) -> Int {
+        let position = elapsed - (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
+        let firstPosition = (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
+        
+        return firstPosition < 0 ? position - 7 : position
+    }
+    
     var firstDayOfMonth: Int {
         
         let firstDateOfMonthAMonthToMuch = self.calendar.date(bySetting: .day, value: 1, of: self.selectedDate) ?? Date()
@@ -90,7 +97,8 @@ struct CalendarView: View {
                             column in
                             
                             let daysElapsed = column + ((row - 1) * 7)
-                            let dayOfMonth = daysElapsed - (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
+                            let dayOfMonth = weekdayPosition(daysElapsed)
+                            
                             
                             ZStack {
                                 
