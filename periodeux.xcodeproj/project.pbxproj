@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F0C7FF625B049A100AD38C3 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C7FF825B049A100AD38C3 /* Localization.strings */; };
+		F304E6C525B1E04D001EB66E /* SingleDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F304E6C425B1E04D001EB66E /* SingleDayView.swift */; };
 		F30FCB0425AE180C00A9F6AF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAEE257BBCA3005343D6 /* CalendarView.swift */; };
 		F3150C0B258783A7003129DE /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C0A258783A7003129DE /* MoodModel.swift */; };
 		F3150C1325878419003129DE /* SymptomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C1225878419003129DE /* SymptomModel.swift */; };
@@ -26,6 +26,7 @@
 		F31BCB0B257BCDEC005343D6 /* SmallSymptomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB0A257BCDEC005343D6 /* SmallSymptomCellView.swift */; };
 		F31BCB13257BD075005343D6 /* SmallBleedingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB12257BD075005343D6 /* SmallBleedingCellView.swift */; };
 		F34556A72580106E00523956 /* ModalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34556A62580106E00523956 /* ModalInfoView.swift */; };
+		F398031E25B1DA81002BE543 /* Localizable.strings (German) in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C7FFC25B04AAA00AD38C3 /* Localizable.strings (German) */; };
 		F3B0365525890687003A6771 /* LargeMoodCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0365425890687003A6771 /* LargeMoodCellView.swift */; };
 		F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B036592589069B003A6771 /* LargeSymptomCellView.swift */; };
 		F3B0365F258906A9003A6771 /* LargeBleedingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0365E258906A9003A6771 /* LargeBleedingCellView.swift */; };
@@ -51,8 +52,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6F0C7FF725B049A100AD38C3 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text; name = "en-GB"; path = "en-GB.lproj/Localizable.strings (English)"; sourceTree = "<group>"; };
-		6F0C7FFC25B04AAA00AD38C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text; name = de; path = "Localizable.strings (German)"; sourceTree = "<group>"; };
+		6F0C7FFC25B04AAA00AD38C3 /* Localizable.strings (German) */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Localizable.strings (German)"; path = "New Group/Localizable.strings (German)"; sourceTree = "<group>"; };
+		F304E6C425B1E04D001EB66E /* SingleDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayView.swift; sourceTree = "<group>"; };
+		F304E6D025B1ED3F001EB66E /* Localizable.strings (English) */ = {isa = PBXFileReference; lastKnownFileType = text; name = "Localizable.strings (English)"; path = "en-GB.lproj/Localizable.strings (English)"; sourceTree = "<group>"; };
 		F3150C0A258783A7003129DE /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
 		F3150C1225878419003129DE /* SymptomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomModel.swift; sourceTree = "<group>"; };
 		F3150C1725878441003129DE /* BleedingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleedingModel.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				F31BCAE1257BB92D005343D6 /* CountdownView.swift */,
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
 				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
+				F304E6C425B1E04D001EB66E /* SingleDayView.swift */,
 				F34556A62580106E00523956 /* ModalInfoView.swift */,
 				F97F3D6825AE67A700622CBE /* SettingView.swift */,
 				F97F3D6D25AE67FB00622CBE /* InsightsView.swift */,
@@ -171,7 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				F31BCAAB257BB57D005343D6 /* periodeuxApp.swift */,
-				6F0C7FF825B049A100AD38C3 /* Localization.strings */,
+				6F0C7FFC25B04AAA00AD38C3 /* Localizable.strings (German) */,
+				F304E6D025B1ED3F001EB66E /* Localizable.strings (English) */,
 				F31BCAAD257BB57D005343D6 /* ContentView.swift */,
 				F3150C22258786FE003129DE /* views */,
 				F3150C0925878389003129DE /* models */,
@@ -315,7 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F31BCADA257BB6FD005343D6 /* Colors.xcassets in Resources */,
-				6F0C7FF625B049A100AD38C3 /* Localization.strings in Resources */,
+				F398031E25B1DA81002BE543 /* Localizable.strings (German) in Resources */,
 				F31BCAB3257BB57F005343D6 /* Preview Assets.xcassets in Resources */,
 				F31BCAB0257BB57F005343D6 /* Assets.xcassets in Resources */,
 			);
@@ -359,6 +363,7 @@
 				F3150C1825878441003129DE /* BleedingModel.swift in Sources */,
 				F97F3D6E25AE67FB00622CBE /* InsightsView.swift in Sources */,
 				F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */,
+				F304E6C525B1E04D001EB66E /* SingleDayView.swift in Sources */,
 				F3150C1325878419003129DE /* SymptomModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,18 +398,6 @@
 			targetProxy = F31BCAC5257BB57F005343D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		6F0C7FF825B049A100AD38C3 /* Localization.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6F0C7FF725B049A100AD38C3 /* en-GB */,
-				6F0C7FFC25B04AAA00AD38C3 /* de */,
-			);
-			name = Localization.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F31BCACB257BB57F005343D6 /* Debug */ = {

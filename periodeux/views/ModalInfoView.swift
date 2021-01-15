@@ -109,7 +109,7 @@ struct Mood : View {
                 mood in
                 LargeMoodCellView(mood: mood)
             }
-        }
+        }.padding([.leading, .trailing])
         
         Spacer()
     }
@@ -134,7 +134,7 @@ struct Symptom : View {
                 symptom in
                 LargeSymptomCellView(symptom: symptom)
             }
-        }
+        }.padding([.leading, .trailing])
         
         Spacer()
     }
@@ -160,7 +160,7 @@ struct Bleeding : View {
                 bleeding in
                 LargeBleedingCellView(bleeding: bleeding)
             }
-        }
+        }.padding([.leading, .trailing])
         
         Spacer()
     }

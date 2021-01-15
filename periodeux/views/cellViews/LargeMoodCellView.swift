@@ -31,7 +31,7 @@ struct LargeMoodCellView: View {
                 }
                 
                 Text(mood.name)
-                    .font(.callout)
+                    .font(.subheadline)
                     .foregroundColor(.black)
                     .frame(width: 80, height: 48)
                     .multilineTextAlignment(.center)

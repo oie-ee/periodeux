@@ -31,7 +31,7 @@ struct LargeBleedingCellView: View {
                 }
                 
                 Text(bleeding.name)
-                    .font(.callout)
+                    .font(.subheadline)
                     .foregroundColor(.black)
                     .frame(width: 80, height: 48)
                     .multilineTextAlignment(.center)
