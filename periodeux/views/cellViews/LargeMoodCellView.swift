@@ -35,6 +35,7 @@ struct LargeMoodCellView: View {
                     .foregroundColor(.black)
                     .frame(width: 80, height: 48)
                     .multilineTextAlignment(.center)
+                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
             }
         })
     }
