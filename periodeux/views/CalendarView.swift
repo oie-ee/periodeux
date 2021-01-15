@@ -3,7 +3,7 @@ import SwiftUI
 
 struct CalendarView: View {
     
-   @State  private var calendar = Calendar.current
+    @State  private var calendar = Calendar.current
     
     private let dateFormatter = DateFormatter()
     
@@ -47,6 +47,8 @@ struct CalendarView: View {
         
         return dateFormatter.string(from: selectedDate)
     }
+    
+    @State var isSelected = false
     
     var body: some View {
         
@@ -101,18 +103,24 @@ struct CalendarView: View {
                             let daysElapsed = column + ((row - 1) * 7)
                             let dayOfMonth = weekdayPosition(daysElapsed)
                             
-                            
-                            ZStack {
+                            //Single Day
+                            Button(action: {
+                                print("\(dayOfMonth) was selected")
+                                isSelected.toggle()
+                            }, label: {
                                 
-                                Circle().foregroundColor(.white)
-                                
-                                if self.numberOfDays.contains(dayOfMonth) {
-                                    Text("\(dayOfMonth)")
-                                        .font(.title3)
+                                ZStack {
+                                    
+                                    Circle().foregroundColor(isSelected ? .gray : .white)
+                                    
+                                    if self.numberOfDays.contains(dayOfMonth) {
+                                        Text("\(dayOfMonth)")
+                                            .font(.title3)
+                                            .foregroundColor(.black)
+                                    }
+                                    
                                 }
-                                
-                            }
-                            
+                            })
                         }
                     }
                 }

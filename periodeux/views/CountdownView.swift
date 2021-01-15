@@ -3,7 +3,7 @@ import SwiftUI
 
 struct CountdownView: View {
     
-    @State  var daysTilPeriod: Int = 15
+    @State var daysTilPeriod: Int = 15
     
     var body: some View {
         
