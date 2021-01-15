@@ -56,8 +56,38 @@ struct InsightsView: View {
                                 
                             }
                         }
-                    }
-                   
+                    }.padding(.bottom, 30)
+                    
+                   Text("This is how you are most likely to feel, \nin the days leading up to your period:")
+                    .font(Font.body.weight(.regular))
+                    .padding(.bottom, 15)
+                    
+                    HStack{
+                        LargeMoodCellView(mood: MoodModel.mood5)
+                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        LargeMoodCellView(mood: MoodModel.mood7)
+                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        LargeMoodCellView(mood: MoodModel.mood11)
+                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        LargeMoodCellView(mood: MoodModel.mood1)
+                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                    }.padding(.bottom, 30)
+                    
+                    Text("These are your most freuently reported symptoms:")
+                     .font(Font.body.weight(.regular))
+                     .padding(.bottom, 15)
+                     
+                     HStack{
+                         LargeSymptomCellView(symptom: SymptomModel.symptom4)
+                             .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                         LargeSymptomCellView(symptom: SymptomModel.symptom3)
+                             .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                         LargeSymptomCellView(symptom: SymptomModel.symptom7)
+                             .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                         LargeSymptomCellView(symptom: SymptomModel.symptom1)
+                             .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                     }
+                    
                     Spacer()
                     
                 }.navigationTitle("Insights")
