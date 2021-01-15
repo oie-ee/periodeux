@@ -51,8 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6F0C7FF725B049A100AD38C3 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localization.strings"; sourceTree = "<group>"; };
-		6F0C7FFC25B04AAA00AD38C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localization.strings; sourceTree = "<group>"; };
+		6F0C7FF725B049A100AD38C3 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text; name = "en-GB"; path = "en-GB.lproj/Localizable.strings (English)"; sourceTree = "<group>"; };
+		6F0C7FFC25B04AAA00AD38C3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text; name = de; path = "Localizable.strings (German)"; sourceTree = "<group>"; };
 		F3150C0A258783A7003129DE /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
 		F3150C1225878419003129DE /* SymptomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomModel.swift; sourceTree = "<group>"; };
 		F3150C1725878441003129DE /* BleedingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleedingModel.swift; sourceTree = "<group>"; };
