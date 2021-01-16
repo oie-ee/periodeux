@@ -8,8 +8,6 @@ struct ColorManager {
 
 struct ContentView: View {
     
-    var appStore = AppStore()
-    
     var body: some View {
         
         TabView {
@@ -56,7 +54,6 @@ struct ContentView: View {
             
         }
         .accentColor(ColorManager.highlightOrange)
-        .environmentObject(appStore)
     }
     
 }

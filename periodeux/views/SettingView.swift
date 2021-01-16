@@ -1,7 +1,5 @@
 
-
 import SwiftUI
-
 
 struct SettingView: View {
     
