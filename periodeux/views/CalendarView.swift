@@ -98,10 +98,10 @@ struct CalendarView: View {
             
             
             // Day-Grid
-            VStack {
+            VStack(spacing: 0){
                 ForEach(1..<7) {
                     row in
-                    HStack {
+                    HStack(spacing: 0){
                         ForEach(1..<8) {
                             column in
                             

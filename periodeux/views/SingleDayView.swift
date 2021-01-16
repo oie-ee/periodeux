@@ -27,10 +27,12 @@ struct SingleDayView: View {
             
             ZStack {
                 
+                RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(.white)
+                
                 let arrayRange = 0...31
                 
                 if(arrayRange.contains(dayOfMonth)) {
-                    Circle().foregroundColor(selectedDayArray[dayOfMonth] ? .gray : .white)
+                    Circle().foregroundColor(selectedDayArray[dayOfMonth] ? Color(UIColor.systemGray6) : .white)
                 } else {
                     Circle().foregroundColor(.white)
                 }
@@ -55,8 +57,3 @@ struct SingleDayView: View {
     }
 }
 
-//struct SingleDayView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SingleDayView()
-//    }
-//}

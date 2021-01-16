@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,14 @@
 		F31BCB0B257BCDEC005343D6 /* SmallSymptomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB0A257BCDEC005343D6 /* SmallSymptomCellView.swift */; };
 		F31BCB13257BD075005343D6 /* SmallBleedingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB12257BD075005343D6 /* SmallBleedingCellView.swift */; };
 		F34556A72580106E00523956 /* ModalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34556A62580106E00523956 /* ModalInfoView.swift */; };
+		F34EA86125B385CE007EA188 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F34EA86025B385CE007EA188 /* RealmSwift */; };
+		F34EA86325B385CE007EA188 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F34EA86225B385CE007EA188 /* Realm */; };
+		F34EA86825B3878E007EA188 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EA86725B3878E007EA188 /* Report.swift */; };
+		F34EA87525B389F9007EA188 /* ReportDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EA87425B389F9007EA188 /* ReportDB.swift */; };
+		F34EA87A25B38B5F007EA188 /* ReportDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EA87925B38B5F007EA188 /* ReportDBKeys.swift */; };
+		F34EA88025B38CE2007EA188 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EA87F25B38CE2007EA188 /* Settings.swift */; };
+		F34EA88825B38DBA007EA188 /* SettingsDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EA88725B38DBA007EA188 /* SettingsDB.swift */; };
+		F34EA88D25B38E2D007EA188 /* SettingsDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EA88C25B38E2D007EA188 /* SettingsDBKeys.swift */; };
 		F398031E25B1DA81002BE543 /* Localizable.strings (German) in Resources */ = {isa = PBXBuildFile; fileRef = 6F0C7FFC25B04AAA00AD38C3 /* Localizable.strings (German) */; };
 		F3B0365525890687003A6771 /* LargeMoodCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0365425890687003A6771 /* LargeMoodCellView.swift */; };
 		F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B036592589069B003A6771 /* LargeSymptomCellView.swift */; };
@@ -81,6 +89,12 @@
 		F31BCB0A257BCDEC005343D6 /* SmallSymptomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSymptomCellView.swift; sourceTree = "<group>"; };
 		F31BCB12257BD075005343D6 /* SmallBleedingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBleedingCellView.swift; sourceTree = "<group>"; };
 		F34556A62580106E00523956 /* ModalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalInfoView.swift; sourceTree = "<group>"; };
+		F34EA86725B3878E007EA188 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		F34EA87425B389F9007EA188 /* ReportDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDB.swift; sourceTree = "<group>"; };
+		F34EA87925B38B5F007EA188 /* ReportDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDBKeys.swift; sourceTree = "<group>"; };
+		F34EA87F25B38CE2007EA188 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F34EA88725B38DBA007EA188 /* SettingsDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDB.swift; sourceTree = "<group>"; };
+		F34EA88C25B38E2D007EA188 /* SettingsDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDBKeys.swift; sourceTree = "<group>"; };
 		F3B0365425890687003A6771 /* LargeMoodCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeMoodCellView.swift; sourceTree = "<group>"; };
 		F3B036592589069B003A6771 /* LargeSymptomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSymptomCellView.swift; sourceTree = "<group>"; };
 		F3B0365E258906A9003A6771 /* LargeBleedingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeBleedingCellView.swift; sourceTree = "<group>"; };
@@ -93,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F34EA86325B385CE007EA188 /* Realm in Frameworks */,
+				F34EA86125B385CE007EA188 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,9 +140,8 @@
 		F3150C0925878389003129DE /* models */ = {
 			isa = PBXGroup;
 			children = (
-				F3150C0A258783A7003129DE /* MoodModel.swift */,
-				F3150C1225878419003129DE /* SymptomModel.swift */,
-				F3150C1725878441003129DE /* BleedingModel.swift */,
+				F34EA87E25B38C79007EA188 /* Settings */,
+				F34EA87025B387AA007EA188 /* Report */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -156,6 +171,9 @@
 				F3B0365425890687003A6771 /* LargeMoodCellView.swift */,
 				F3B036592589069B003A6771 /* LargeSymptomCellView.swift */,
 				F3B0365E258906A9003A6771 /* LargeBleedingCellView.swift */,
+				F3150C0A258783A7003129DE /* MoodModel.swift */,
+				F3150C1225878419003129DE /* SymptomModel.swift */,
+				F3150C1725878441003129DE /* BleedingModel.swift */,
 			);
 			path = cellViews;
 			sourceTree = "<group>";
@@ -183,13 +201,13 @@
 		F31BCAAA257BB57D005343D6 /* periodeux */ = {
 			isa = PBXGroup;
 			children = (
+				F3150C0925878389003129DE /* models */,
 				99E6905525B3244D00E07559 /* viewModel */,
 				F31BCAAB257BB57D005343D6 /* periodeuxApp.swift */,
 				6F0C7FFC25B04AAA00AD38C3 /* Localizable.strings (German) */,
 				F304E6D025B1ED3F001EB66E /* Localizable.strings (English) */,
 				F31BCAAD257BB57D005343D6 /* ContentView.swift */,
 				F3150C22258786FE003129DE /* views */,
-				F3150C0925878389003129DE /* models */,
 				F31BCAD9257BB6FD005343D6 /* Colors.xcassets */,
 				F31BCAAF257BB57F005343D6 /* Assets.xcassets */,
 				F31BCAB4257BB57F005343D6 /* Info.plist */,
@@ -224,6 +242,26 @@
 			path = periodeuxUITests;
 			sourceTree = "<group>";
 		};
+		F34EA87025B387AA007EA188 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				F34EA86725B3878E007EA188 /* Report.swift */,
+				F34EA87425B389F9007EA188 /* ReportDB.swift */,
+				F34EA87925B38B5F007EA188 /* ReportDBKeys.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		F34EA87E25B38C79007EA188 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F34EA87F25B38CE2007EA188 /* Settings.swift */,
+				F34EA88725B38DBA007EA188 /* SettingsDB.swift */,
+				F34EA88C25B38E2D007EA188 /* SettingsDBKeys.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -240,6 +278,10 @@
 			dependencies = (
 			);
 			name = periodeux;
+			packageProductDependencies = (
+				F34EA86025B385CE007EA188 /* RealmSwift */,
+				F34EA86225B385CE007EA188 /* Realm */,
+			);
 			productName = periodeux;
 			productReference = F31BCAA8257BB57D005343D6 /* periodeux.app */;
 			productType = "com.apple.product-type.application";
@@ -313,6 +355,9 @@
 				de,
 			);
 			mainGroup = F31BCA9F257BB57D005343D6;
+			packageReferences = (
+				F34EA85F25B385CE007EA188 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = F31BCAA9257BB57D005343D6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -359,6 +404,7 @@
 			files = (
 				F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */,
 				F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */,
+				F34EA86825B3878E007EA188 /* Report.swift in Sources */,
 				F30FCB0425AE180C00A9F6AF /* CalendarView.swift in Sources */,
 				F31BCAAE257BB57D005343D6 /* ContentView.swift in Sources */,
 				F31BCB0B257BCDEC005343D6 /* SmallSymptomCellView.swift in Sources */,
@@ -369,12 +415,17 @@
 				F97F3D6925AE67A700622CBE /* SettingView.swift in Sources */,
 				F31BCB06257BC866005343D6 /* SmallMoodCellView.swift in Sources */,
 				99E6905725B3246600E07559 /* AppStore.swift in Sources */,
+				F34EA87525B389F9007EA188 /* ReportDB.swift in Sources */,
+				F34EA88D25B38E2D007EA188 /* SettingsDBKeys.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
+				F34EA87A25B38B5F007EA188 /* ReportDBKeys.swift in Sources */,
 				F34556A72580106E00523956 /* ModalInfoView.swift in Sources */,
 				F3150C0B258783A7003129DE /* MoodModel.swift in Sources */,
+				F34EA88025B38CE2007EA188 /* Settings.swift in Sources */,
 				F3150C1825878441003129DE /* BleedingModel.swift in Sources */,
 				F97F3D6E25AE67FB00622CBE /* InsightsView.swift in Sources */,
 				F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */,
+				F34EA88825B38DBA007EA188 /* SettingsDB.swift in Sources */,
 				F304E6C525B1E04D001EB66E /* SingleDayView.swift in Sources */,
 				F3150C1325878419003129DE /* SymptomModel.swift in Sources */,
 			);
@@ -690,6 +741,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F34EA85F25B385CE007EA188 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F34EA86025B385CE007EA188 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F34EA85F25B385CE007EA188 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		F34EA86225B385CE007EA188 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F34EA85F25B385CE007EA188 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F31BCAA0257BB57D005343D6 /* Project object */;
 }
