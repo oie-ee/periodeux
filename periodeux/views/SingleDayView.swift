@@ -9,8 +9,6 @@ struct SingleDayView: View {
     @State var dayOfMonth : Int
     @State var numberOfDays : Range<Int>
     
-    @State var isReallySelected : Bool = false
-    
     @State var selectedMonth : Int
     @State var selectedYear : Int
     

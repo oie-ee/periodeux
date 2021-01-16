@@ -27,8 +27,9 @@ struct ContentView: View {
                                 Spacer()
                                 RectangleWrapperView()
                                 Spacer()
+                                
                             }
-                        }
+                        }.offset(y: -60)
                     }
             }
             .tabItem {
