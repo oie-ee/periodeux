@@ -11,15 +11,11 @@ struct SettingView: View {
             NavigationView {
                 VStack (alignment: .leading){
                     List {
-                        NavigationLink(destination: PeriodDuration()) {
+                        
                             PeriodDuration()
-                        }
                         
-                        NavigationLink(destination: CycleDuration()) {
                             CycleDuration()
-                        }
                         
-                        NavigationLink(destination: FirstPeriod()) {
                             FirstPeriod()
                         }
                     }
@@ -28,7 +24,6 @@ struct SettingView: View {
                 .navigationTitle("Settings")
             }
         }
-    }
 
 struct PeriodDuration: View {
     

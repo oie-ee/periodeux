@@ -8,6 +8,8 @@ struct ColorManager {
 
 struct ContentView: View {
     
+    var appStore = AppStore()
+    
     var body: some View {
         
         TabView {
@@ -52,8 +54,11 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
             
-        }.accentColor(ColorManager.highlightOrange)
+        }
+        .accentColor(ColorManager.highlightOrange)
+        .environmentObject(appStore)
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

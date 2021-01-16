@@ -16,6 +16,11 @@ struct CalendarView: View {
     
     @State private var daysElapsed: Int = 0
     
+    @State var selectedDayArray = [Bool](repeating: false, count: 32)
+    
+    @EnvironmentObject var appStore : AppStore
+
+    
     var firstWeekday: Int {
         return self.calendar.firstWeekday
     }
@@ -48,7 +53,7 @@ struct CalendarView: View {
         return dateFormatter.string(from: selectedDate)
     }
     
-    @State var isSelected = false
+    
     
     var body: some View {
         
@@ -104,23 +109,14 @@ struct CalendarView: View {
                             let dayOfMonth = weekdayPosition(daysElapsed)
                             
                             //Single Day
-                            Button(action: {
-                                print("\(dayOfMonth) was selected")
-                                isSelected.toggle()
-                            }, label: {
-                                
-                                ZStack {
-                                    
-                                    Circle().foregroundColor(isSelected ? .gray : .white)
-                                    
-                                    if self.numberOfDays.contains(dayOfMonth) {
-                                        Text("\(dayOfMonth)")
-                                            .font(.title3)
-                                            .foregroundColor(.black)
-                                    }
-                                    
-                                }
-                            })
+                            SingleDayView(
+                                selectedDayArray: $selectedDayArray,
+                                dayOfMonth: dayOfMonth,
+                                numberOfDays: numberOfDays,
+                                selectedMonth: selectedMonth,
+                                selectedYear: selectedYear
+                            )
+                            
                         }
                     }
                 }
@@ -141,6 +137,7 @@ struct CalendarView: View {
                         }
                     }))
     }
+
 }
 
 struct WeekDays: View {
