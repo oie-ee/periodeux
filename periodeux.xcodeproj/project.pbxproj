@@ -36,6 +36,7 @@
 		F3B0365525890687003A6771 /* LargeMoodCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0365425890687003A6771 /* LargeMoodCellView.swift */; };
 		F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B036592589069B003A6771 /* LargeSymptomCellView.swift */; };
 		F3B0365F258906A9003A6771 /* LargeBleedingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B0365E258906A9003A6771 /* LargeBleedingCellView.swift */; };
+		F3F45A2325B4917100086059 /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F45A2225B4917100086059 /* WeekdaysView.swift */; };
 		F97F3D6925AE67A700622CBE /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F3D6825AE67A700622CBE /* SettingView.swift */; };
 		F97F3D6E25AE67FB00622CBE /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F3D6D25AE67FB00622CBE /* InsightsView.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		F3B0365425890687003A6771 /* LargeMoodCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeMoodCellView.swift; sourceTree = "<group>"; };
 		F3B036592589069B003A6771 /* LargeSymptomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeSymptomCellView.swift; sourceTree = "<group>"; };
 		F3B0365E258906A9003A6771 /* LargeBleedingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeBleedingCellView.swift; sourceTree = "<group>"; };
+		F3F45A2225B4917100086059 /* WeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
 		F97F3D6825AE67A700622CBE /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		F97F3D6D25AE67FB00622CBE /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +148,7 @@
 				F31BCAE1257BB92D005343D6 /* CountdownView.swift */,
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
 				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
+				F3F45A2225B4917100086059 /* WeekdaysView.swift */,
 				F304E6C425B1E04D001EB66E /* SingleDayView.swift */,
 				F34556A62580106E00523956 /* ModalInfoView.swift */,
 				F97F3D6825AE67A700622CBE /* SettingView.swift */,
@@ -398,6 +401,7 @@
 				F97F3D6925AE67A700622CBE /* SettingView.swift in Sources */,
 				F31BCB06257BC866005343D6 /* SmallMoodCellView.swift in Sources */,
 				99E6905725B3246600E07559 /* AppStore.swift in Sources */,
+				F3F45A2325B4917100086059 /* WeekdaysView.swift in Sources */,
 				F34EA87525B389F9007EA188 /* ReportDB.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
 				F34EA87A25B38B5F007EA188 /* ReportDBKeys.swift in Sources */,
