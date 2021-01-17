@@ -18,12 +18,11 @@ struct SettingView: View {
                         
                             FirstPeriod()
                         
-                        Text("\(appStore.selectedDate)")
                         }
-                    }
+                    }.navigationTitle("Settings")
                     .listStyle(GroupedListStyle())
                 }
-                .navigationTitle("Settings")
+                
             }
         }
 
@@ -76,7 +75,7 @@ struct FirstPeriod: View {
 
     var body: some View {
         
-      Text("First day of last period")
+      Text("First Day Of Last Period")
             }
         }
         

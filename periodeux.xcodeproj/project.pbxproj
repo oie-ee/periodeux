@@ -144,8 +144,8 @@
 		F3150C22258786FE003129DE /* views */ = {
 			isa = PBXGroup;
 			children = (
-				F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */,
 				F31BCAE1257BB92D005343D6 /* CountdownView.swift */,
+				F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */,
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
 				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
 				F3F45A2225B4917100086059 /* WeekdaysView.swift */,

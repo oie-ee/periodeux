@@ -20,7 +20,7 @@ extension SymptomModel {
     static var symptom9  = SymptomModel(name: "Flatulence", imageIcon: "symptom:flatulence")
     static var symptom10 = SymptomModel(name: "Ravenous Appetite", imageIcon: "symptom:ravenousAppetite")
     static var symptom11 = SymptomModel(name: "Insomnia", imageIcon: "symptom:insomnia")
-    static var symptom12 = SymptomModel(name: "Constipation", imageIcon: "symptom:constipation")
+    static var symptom12 = SymptomModel(name: "Constipa-\ntion", imageIcon: "symptom:constipation")
     static var symptom13 = SymptomModel(name: "Diarrhea", imageIcon: "symptom:diarrhea")
     
 }

@@ -23,6 +23,10 @@ struct CalendarView: View {
         return self.calendar.firstWeekday
     }
     
+    var today : Int {
+        return Calendar.current.component(.day, from: Date())
+    }
+    
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
     }
@@ -143,6 +147,13 @@ struct CalendarView: View {
                                             .font(.title3)
                                             .foregroundColor(.black)
                                     }
+                                    
+                                    if numberOfDays.contains(selectedDay) && numberOfDays.contains(today)  {
+                                        Text("\(selectedDay)")
+                                            .font(Font.title3.weight(.semibold))
+                                            .foregroundColor(.black)
+                                        }
+                                
                                 }
                             })
                         }

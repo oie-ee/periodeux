@@ -24,7 +24,7 @@ struct WeekDays: View {
                 Text("\(weekdays)")
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(Color(.systemGray2))
+                    .foregroundColor(.secondary)
                     .textCase(.uppercase)
                 
                 Spacer()
