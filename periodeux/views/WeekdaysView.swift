@@ -21,11 +21,13 @@ struct WeekDays: View {
             ForEach(weekdayRange, id: \.self) { weekdays in
                 
                 Spacer()
+                
                 Text("\(weekdays)")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
                     .textCase(.uppercase)
+                    .frame(width: 36)
                 
                 Spacer()
             }

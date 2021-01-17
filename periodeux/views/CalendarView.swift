@@ -97,7 +97,7 @@ struct CalendarView: View {
                         .font(Font.title.weight(.semibold))
                         .frame(width: 10.0, height: 17.0)
                 }
-                .padding(.trailing, 10)
+                .padding(.trailing, 4)
                 
             }.padding([.leading, .trailing])
             .padding(.bottom, 8)
@@ -161,7 +161,7 @@ struct CalendarView: View {
                         }
                     }
                 }
-            }.padding([.leading, .trailing])
+            }.padding([.leading, .trailing], 8)
             
         }
         .frame(height: 400)

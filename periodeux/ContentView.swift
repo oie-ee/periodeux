@@ -24,15 +24,19 @@ struct ContentView: View {
                             
                             //Rectangle and content
                             HStack{
+                                
                                 Spacer()
+                                
                                 RectangleWrapperView()
+                                
                                 Spacer()
                                 
                             }
-                        }.offset(y: -60)
-                    }
-            }
-            .tabItem {
+                        }.offset(y: 30)
+                        
+                    }.navigationBarTitle("")
+                     .navigationBarHidden(true)
+            }.tabItem {
                 Image(systemName: "calendar")
                 Text("Overview")
             }
