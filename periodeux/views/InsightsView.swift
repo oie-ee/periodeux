@@ -18,7 +18,7 @@ struct InsightsView: View {
                     
                     Text("Your Average Period")
                         .font(Font.title3.weight(.semibold))
-                        .padding(.bottom, 2)
+                        .padding(.bottom, 8)
                     
                     HStack(alignment: .top){
                         
@@ -28,6 +28,14 @@ struct InsightsView: View {
                                 
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                                     .fill(ColorManager.backgroundOrange)
+                                    .frame(height: 120)
+                                
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .stroke(Color.white, lineWidth: 12)
+                                    .frame(height: 120)
+                                
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .stroke(ColorManager.highlightOrange, lineWidth: 2)
                                     .frame(height: 120)
                                 
                                 VStack{
@@ -61,6 +69,7 @@ struct InsightsView: View {
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                                     .fill(ColorManager.highlightOrange.opacity(0.9))
                                     .frame(height: 120)
+                                
                                 
                                 VStack{
                                     HStack{

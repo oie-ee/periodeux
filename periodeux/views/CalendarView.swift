@@ -23,9 +23,7 @@ struct CalendarView: View {
         return self.calendar.firstWeekday
     }
     
-    var today : Int {
-        return Calendar.current.component(.day, from: Date())
-    }
+    @State private var today: Int = Calendar.current.component(.day, from: Date())
     
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
