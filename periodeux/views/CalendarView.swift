@@ -9,8 +9,6 @@ struct CalendarView: View {
     
     @State private var selectedDate: Date = Date()
     
-    @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
-    @State private var selectedMonth: Int = Calendar.current.component(.month, from: Date())
     
     @State private var numbersOfDays: Int = 0
     
@@ -29,6 +27,14 @@ struct CalendarView: View {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
     }
     
+    var selectedYear: Int {
+        return Calendar.current.component(.year, from: self.selectedDate)
+    }
+    
+    var selectedMonth: Int {
+        return Calendar.current.component(.month, from: self.selectedDate)
+    }
+    
     func weekdayPosition(_ elapsed: Int) -> Int {
         let position = elapsed - (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
         let firstPosition = (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
@@ -37,7 +43,6 @@ struct CalendarView: View {
     }
     
     var firstDayOfMonth: Int {
-        
         let firstDateOfMonthAMonthToMuch = self.calendar.date(bySetting: .day, value: 1, of: self.selectedDate) ?? Date()
         let date = self.calendar.date(byAdding: .month, value: -1, to: firstDateOfMonthAMonthToMuch) ?? Date()
         let weekday = self.calendar.component(.weekday, from: date)
@@ -96,7 +101,6 @@ struct CalendarView: View {
             //Days of the Week
             WeekDays()
             
-            
             // Day-Grid
             VStack(spacing: 0){
                 ForEach(1..<7) {
@@ -106,17 +110,41 @@ struct CalendarView: View {
                             column in
                             
                             let daysElapsed = column + ((row - 1) * 7)
-                            let dayOfMonth = weekdayPosition(daysElapsed)
+                            let selectedDay = weekdayPosition(daysElapsed)
                             
-                            //Single Day
-                            SingleDayView(
-                                selectedDayArray: $selectedDayArray,
-                                dayOfMonth: dayOfMonth,
-                                numberOfDays: numberOfDays,
-                                selectedMonth: selectedMonth,
-                                selectedYear: selectedYear
-                            )
-                            
+                            Button(action: {
+                                print("\(selectedDay) was selected")
+                                                                
+                                appStore.selectedDate = generateDateFromSelectedDay(
+                                    day: selectedDay,
+                                    month: self.selectedMonth,
+                                    year: self.selectedYear
+                                ) ?? Date()
+                                
+                                selectedDayArray =  [Bool](repeating: false, count: 32)
+                                
+                                selectedDayArray[selectedDay] = true
+                            }, label: {
+                                ZStack {
+                                    
+                                    RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(.white)
+                                    
+                                    let arrayRange = 0...31
+                                    
+                                    if(arrayRange.contains(selectedDay)) {
+                                        Circle().foregroundColor(selectedDayArray[selectedDay] ? Color(UIColor.systemGray6) : .white)
+                                    } else {
+                                        Circle().foregroundColor(.white)
+                                    }
+                                
+                                    
+                                    if numberOfDays.contains(selectedDay) {
+                                        Text("\(selectedDay)")
+                                            .font(.title3)
+                                            .foregroundColor(.black)
+                                    }
+                                }
+                            })
                         }
                     }
                 }
@@ -125,23 +153,36 @@ struct CalendarView: View {
         }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
-                    .onEnded({ value in
-                        if value.translation.width < 0 {
-                            // left
-                            self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
-                        }
-                        
-                        if value.translation.width > 0 {
-                            // right
-                            self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
-                        }
-                    }))
-    }
-
+            .onEnded({ value in
+                if value.translation.width < 0 {
+                    // left
+                    self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
+                }
+                
+                if value.translation.width > 0 {
+                    // right
+                    self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
+                }
+            }))
+        }
+    
+        func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
+            
+            print("Day \(day)")
+            print("Month \(month)")
+            print("Year \(year)")
+            
+            print("SelectedDate \(self.selectedMonth)")
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+            let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 01:00")
+            
+            return convertedDate
+        }
 }
 
 struct WeekDays: View {
-    
     let firstWeekDay = Calendar.current.firstWeekday
     let weekdays = Calendar.current.shortWeekdaySymbols
     
