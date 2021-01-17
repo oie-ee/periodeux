@@ -4,10 +4,13 @@ import Foundation
 
 struct ModalInfoView: View {
     
+    @EnvironmentObject var appStore : AppStore
+    
     @State var date = Date()
     
     @State var diaryTags = ["Mood", "Symptom", "Bleeding"]
     @Binding var selectedDiaryTag: Int
+    
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
@@ -22,7 +25,9 @@ struct ModalInfoView: View {
                     Picker("Diary Picker", selection: $selectedDiaryTag) {
                         ForEach(0..<diaryTags.count) { index in
                             Text(self.diaryTags[index]).tag(index)
+                            
                         }
+                        
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .padding()
@@ -40,6 +45,7 @@ struct ModalInfoView: View {
                         if changedValue == 2 {
                             selectedDiaryTag = 2
                         }
+                    
                     })
                 }
                 
@@ -55,8 +61,9 @@ struct ModalInfoView: View {
                     Bleeding()
                 }
                 
+                
             }
-            .navigationBarTitle(Text("\(currentDateString(date: date))"))
+            .navigationBarTitle(Text("\(convertDateToShort(date: appStore.selectedDate))"))
             .navigationBarItems(trailing:
                                     Button(action: {
                                         self.mode.wrappedValue.dismiss()
@@ -67,24 +74,26 @@ struct ModalInfoView: View {
             )
         }
         
+       
+        
     }
     
-    var dateFormat: DateFormatter {
+    /// This shortens a date to the string format, e.g. 01 January 2021
+    /// - Parameter date: Type Date is accepted
+    /// - Returns: A stringof the shortened date, e.g. 01 January 2021
+    func convertDateToShort(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMMM y"
-        return formatter
+        
+        return formatter.string(from: date)
     }
     
-    func currentDateString(date: Date) -> String {
-        let currentDate = dateFormat.string(from: date)
-        return currentDate
-    }
 }
 
 struct ModalInfoView_Previews: PreviewProvider {
-    
+
     @Binding var selectedDiaryTag: Int
-    
+
     static var previews: some View {
         ModalInfoView(selectedDiaryTag: .constant(2))//constant disables picker
     }

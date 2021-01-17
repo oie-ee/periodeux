@@ -3,12 +3,19 @@
 import SwiftUI
 
 struct InfoInputView: View {
+    
+    @EnvironmentObject var appStore : AppStore
+    
     @State var moods: [MoodModel] = dummyMoodData
     @State var symptoms: [SymptomModel] = dummySymptomData
     @State var bleedings: [BleedingModel] = dummyBleedingData
     @State var showingModalView = false
     
     @State var selectedDiaryTag = 0
+    
+//    @State var dayOfMonth : Int
+//    @State var selectedMonth : Int
+//    @State var selectedYear : Int
     
     var body: some View {
         

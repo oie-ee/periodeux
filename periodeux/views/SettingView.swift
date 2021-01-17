@@ -3,6 +3,8 @@ import SwiftUI
 
 struct SettingView: View {
     
+    @EnvironmentObject var appStore : AppStore
+    
     @State var showComposeMessageView: Bool = false
     
     var body: some View {
@@ -15,6 +17,8 @@ struct SettingView: View {
                             CycleDuration()
                         
                             FirstPeriod()
+                        
+                        Text("\(appStore.selectedDate)")
                         }
                     }
                     .listStyle(GroupedListStyle())
