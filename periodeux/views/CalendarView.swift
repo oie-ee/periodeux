@@ -17,13 +17,15 @@ struct CalendarView: View {
     @State var selectedDayArray = [Bool](repeating: false, count: 32)
     
     @EnvironmentObject var appStore : AppStore
-
+    
     
     var firstWeekday: Int {
         return self.calendar.firstWeekday
     }
     
     @State private var today: Int = Calendar.current.component(.day, from: Date())
+    @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
+    @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
     
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
@@ -116,7 +118,7 @@ struct CalendarView: View {
                             
                             Button(action: {
                                 print("\(selectedDay) was selected")
-                                                                
+                                
                                 appStore.selectedDate = generateDateFromSelectedDay(
                                     day: selectedDay,
                                     month: self.selectedMonth,
@@ -138,7 +140,6 @@ struct CalendarView: View {
                                     } else {
                                         Circle().foregroundColor(.white)
                                     }
-                                
                                     
                                     if numberOfDays.contains(selectedDay) {
                                         Text("\(selectedDay)")
@@ -146,12 +147,15 @@ struct CalendarView: View {
                                             .foregroundColor(.black)
                                     }
                                     
-                                    if numberOfDays.contains(selectedDay) && numberOfDays.contains(today)  {
+                                    //current Date is highlighted
+                                    if  selectedDay == today && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
+                                        Circle().foregroundColor(Color(UIColor.systemGray4)).opacity(0.7)
                                         Text("\(selectedDay)")
-                                            .font(Font.title3.weight(.semibold))
+                                            .font(Font.title3.weight(.bold))
                                             .foregroundColor(.black)
-                                        }
-                                
+                                        
+                                    }
+                                    
                                 }
                             })
                         }
@@ -162,33 +166,33 @@ struct CalendarView: View {
         }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
-            .onEnded({ value in
-                if value.translation.width < 0 {
-                    // left
-                    self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
-                }
-                
-                if value.translation.width > 0 {
-                    // right
-                    self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
-                }
-            }))
-        }
+                    .onEnded({ value in
+                        if value.translation.width < 0 {
+                            // left
+                            self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
+                        }
+                        
+                        if value.translation.width > 0 {
+                            // right
+                            self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
+                        }
+                    }))
+    }
     
-        func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
-            
-            print("Day \(day)")
-            print("Month \(month)")
-            print("Year \(year)")
-            
-            print("SelectedDate \(self.selectedMonth)")
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-            let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 01:00")
-            
-            return convertedDate
-        }
+    func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
+        
+        print("Day \(day)")
+        print("Month \(month)")
+        print("Year \(year)")
+        
+        print("SelectedDate \(self.selectedMonth)")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 01:00")
+        
+        return convertedDate
+    }
 }
 
 struct CalendarView_Previews: PreviewProvider {

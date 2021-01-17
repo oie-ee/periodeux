@@ -34,7 +34,7 @@ struct InsightsView: View {
                                     .stroke(Color.white, lineWidth: 12)
                                     .frame(height: 120)
                                 
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                RoundedRectangle(cornerRadius: 11, style: .continuous)
                                     .stroke(ColorManager.highlightOrange, lineWidth: 2)
                                     .frame(height: 120)
                                 
