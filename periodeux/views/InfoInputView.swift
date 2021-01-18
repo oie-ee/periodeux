@@ -13,13 +13,14 @@ struct InfoInputView: View {
     
     @State var selectedDiaryTag = 0
     
-//    @State var dayOfMonth : Int
-//    @State var selectedMonth : Int
-//    @State var selectedYear : Int
-    
     var body: some View {
         
         VStack(alignment: .leading){
+            
+            // Section Headline
+            Text("Entries for  \(convertDateToShort(date: appStore.selectedDate))")
+                .font(Font.title3.weight(.semibold))
+                .padding(.bottom, 2)
             
             //Mood and Edit
             HStack(alignment: .bottom){
@@ -107,6 +108,17 @@ struct InfoInputView: View {
             AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
         }
     }
+    
+    /// This shortens a date to the string format, e.g. 01 January 2021
+    /// - Parameter date: Type Date is accepted
+    /// - Returns: A stringof the shortened date, e.g. 01 January 2021
+    func convertDateToShort(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM y"
+        
+        return formatter.string(from: date)
+    }
+    
 }
 
 struct InfoInputView_Previews: PreviewProvider {
