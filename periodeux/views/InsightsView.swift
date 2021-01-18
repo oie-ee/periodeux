@@ -107,17 +107,25 @@ struct InsightsView: View {
                         .foregroundColor(.secondary)
                         .padding(.bottom, 15)
                     
-                    HStack{
-                        LargeMoodCellView(mood: MoodModel.mood5)
-                            .foregroundColor(ColorManager.highlightOrange)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        LargeMoodCellView(mood: MoodModel.mood7)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        LargeMoodCellView(mood: MoodModel.mood11)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        LargeMoodCellView(mood: MoodModel.mood1)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                    }.padding(.bottom, 32)
+                    ScrollView(.horizontal) {
+                        
+                        HStack{
+                            LargeMoodCellView(mood: MoodModel.mood5)
+                                .foregroundColor(ColorManager.highlightOrange)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeMoodCellView(mood: MoodModel.mood7)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeMoodCellView(mood: MoodModel.mood11)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeMoodCellView(mood: MoodModel.mood1)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeMoodCellView(mood: MoodModel.mood2)
+                                .disabled(true)
+                            LargeMoodCellView(mood: MoodModel.mood8)
+                                .disabled(true)
+                        }.padding(.bottom, 32)
+                        
+                    }
                     
                     Text("Most Frequent Symptoms")
                         .font(Font.title3.weight(.semibold))
@@ -128,15 +136,20 @@ struct InsightsView: View {
                         .foregroundColor(.secondary)
                         .padding(.bottom, 15)
                     
-                    HStack{
-                        LargeSymptomCellView(symptom: SymptomModel.symptom4)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        LargeSymptomCellView(symptom: SymptomModel.symptom3)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        LargeSymptomCellView(symptom: SymptomModel.symptom7)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        LargeSymptomCellView(symptom: SymptomModel.symptom1)
-                            .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                    ScrollView(.horizontal) {
+                        
+                        HStack{
+                            LargeSymptomCellView(symptom: SymptomModel.symptom4)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeSymptomCellView(symptom: SymptomModel.symptom3)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeSymptomCellView(symptom: SymptomModel.symptom5)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeSymptomCellView(symptom: SymptomModel.symptom10)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                            LargeSymptomCellView(symptom: SymptomModel.symptom1)
+                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        }
                     }
                     
                     Spacer()
