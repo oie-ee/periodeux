@@ -3,7 +3,7 @@ import SwiftUI
 
 struct CalendarView: View {
     
-    @State  private var calendar = Calendar.current
+    @State private var calendar = Calendar.current
     
     private let dateFormatter = DateFormatter()
     
@@ -26,6 +26,23 @@ struct CalendarView: View {
     @State private var today: Int = Calendar.current.component(.day, from: Date())
     @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
     @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
+    
+    @State private var firstDayOfPeriod: String = "11.01.2021 01:00"
+    @State private var lastDayOfPeriod: String = "16.01.2021 01:00"
+//    @State private var middleDayOfPeriod: String
+    
+    
+    
+    func compareFirstDateOfPeriod(date1: Date, to date2: Date, toGranularity component: Calendar.Component) -> Bool {
+
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone.current
+        let result = calendar.compare((generateDateFromString(string: firstDayOfPeriod)), to: (generateDateFromString(string: lastDayOfPeriod)), toGranularity: .day)
+       
+        let isFirstDay = result == .orderedAscending
+        
+        return isFirstDay
+    }
     
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
@@ -118,6 +135,9 @@ struct CalendarView: View {
                             
                             Button(action: {
                                 print("\(selectedDay) was selected")
+                                print("\(generateDateFromString(string: firstDayOfPeriod)) was the first day")
+                                print("\(generateDateFromString(string: lastDayOfPeriod)) was the last day")
+                                print("\(compareFirstDateOfPeriod(date1: (generateDateFromString(string: firstDayOfPeriod)), to: (generateDateFromString(string: lastDayOfPeriod)), toGranularity: .day))")
                                 
                                 appStore.selectedDate = generateDateFromSelectedDay(
                                     day: selectedDay,
@@ -157,16 +177,21 @@ struct CalendarView: View {
                                             .font(Font.title3.weight(.bold))
                                             .foregroundColor(.black)
                                     }
+                                  
                                     //FirstDay of Period
                                     if  selectedDay == 11 && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
                                         
-                                        RoundedCorners(tl: 30, tr: 0, bl: 30, br: 0)
+                                        RoundedCorners(tl: 40, tr: 0, bl: 40, br: 0)
                                             .foregroundColor(ColorManager.backgroundOrange)
+                                            .frame(height: 40)
+                                            .offset(x: 5)
+                                        
+                                        Circle().foregroundColor(ColorManager.highlightOrange)
                                             .frame(height: 40)
                                         
                                         Text("\(selectedDay)")
                                             .font(Font.title3.weight(.regular))
-                                            .foregroundColor(ColorManager.highlightOrange)
+                                            .foregroundColor(.white)
                                     }
                                     //Middle Days of Period
                                     if  (selectedDay >= 12 && selectedDay <= 15) && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
@@ -216,17 +241,19 @@ struct CalendarView: View {
     
     func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
         
-        print("Day \(day)")
-        print("Month \(month)")
-        print("Year \(year)")
-        
-        print("SelectedDate \(self.selectedMonth)")
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
         let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 01:00")
         
         return convertedDate
+    }
+    
+    func generateDateFromString(string: String) -> Date{
+        
+        let stringFormatter = DateFormatter()
+        stringFormatter.dateFormat = "DD.MM.y HH:mm"
+        
+        return (stringFormatter.date(from: string) ?? Date())
     }
 }
 
