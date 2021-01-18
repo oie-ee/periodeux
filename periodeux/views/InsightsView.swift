@@ -41,7 +41,7 @@ struct InsightsView: View {
                                 VStack{
                                     
                                     HStack{
-                                        Text("27")
+                                        Text("29")
                                             .font(.largeTitle)
                                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                                             .foregroundColor(ColorManager.highlightOrange)
@@ -102,7 +102,7 @@ struct InsightsView: View {
                         .font(Font.title3.weight(.semibold))
                         .padding(.bottom, 2)
                     
-                    Text("This is how you are most likely to feel, in the days leading up to your period:")
+                    Text("This is how you are most likely going to feel in the days leading up to your period:")
                         .font(Font.body.weight(.regular))
                         .foregroundColor(.secondary)
                         .padding(.bottom, 15)
@@ -127,7 +127,7 @@ struct InsightsView: View {
                         
                     }
                     
-                    Text("Most Frequent Symptoms")
+                    Text("Frequent Symptoms")
                         .font(Font.title3.weight(.semibold))
                         .padding(.bottom, 2)
                     

@@ -21,7 +21,7 @@ struct RectangleWrapperView: View {
                 //Divider
                 Divider()
                     .padding([.leading, .trailing], 12.0)
-                    .padding(.bottom, 12)
+                    .padding(.bottom, 16)
                 
                 InfoInputView()
                     .padding([.leading, .trailing], 12.0)
