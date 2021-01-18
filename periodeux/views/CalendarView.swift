@@ -137,8 +137,10 @@ struct CalendarView: View {
                                     
                                     if(arrayRange.contains(selectedDay)) {
                                         Circle().foregroundColor(selectedDayArray[selectedDay] ? Color(UIColor.systemGray6) : .white)
+                                            .frame(height: 40)
                                     } else {
                                         Circle().foregroundColor(.white)
+                                            .frame(height: 40)
                                     }
                                     
                                     if numberOfDays.contains(selectedDay) {
@@ -150,10 +152,43 @@ struct CalendarView: View {
                                     //current Date is highlighted
                                     if  selectedDay == today && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
                                         Circle().foregroundColor(Color(UIColor.systemGray4)).opacity(0.7)
+                                            .frame(height: 40)
                                         Text("\(selectedDay)")
                                             .font(Font.title3.weight(.bold))
                                             .foregroundColor(.black)
+                                    }
+                                    //FirstDay of Period
+                                    if  selectedDay == 11 && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
                                         
+                                        RoundedCorners(tl: 30, tr: 0, bl: 30, br: 0)
+                                            .foregroundColor(ColorManager.backgroundOrange)
+                                            .frame(height: 40)
+                                        
+                                        Text("\(selectedDay)")
+                                            .font(Font.title3.weight(.regular))
+                                            .foregroundColor(ColorManager.highlightOrange)
+                                    }
+                                    //Middle Days of Period
+                                    if  (selectedDay >= 12 && selectedDay <= 15) && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
+                                        
+                                        RoundedCorners(tl: 0, tr: 0, bl: 0, br: 0)
+                                            .foregroundColor(ColorManager.backgroundOrange)
+                                            .frame(height: 40)
+                                        
+                                        Text("\(selectedDay)")
+                                            .font(Font.title3.weight(.regular))
+                                            .foregroundColor(ColorManager.highlightOrange)
+                                    }
+                                    //Last Day Of Period
+                                    if  selectedDay == 16 && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
+                                        
+                                        RoundedCorners(tl: 00, tr: 30, bl: 0, br: 30)
+                                            .foregroundColor(ColorManager.backgroundOrange)
+                                            .frame(height: 40)
+                                        
+                                        Text("\(selectedDay)")
+                                            .font(Font.title3.weight(.regular))
+                                            .foregroundColor(ColorManager.highlightOrange)
                                     }
                                     
                                 }
@@ -192,6 +227,45 @@ struct CalendarView: View {
         let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 01:00")
         
         return convertedDate
+    }
+}
+
+struct RoundedCorners: Shape {
+    var tl: CGFloat = 0.0
+    var tr: CGFloat = 0.0
+    var bl: CGFloat = 0.0
+    var br: CGFloat = 0.0
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        let w = rect.size.width
+        let h = rect.size.height
+
+        // Make sure we do not exceed the size of the rectangle
+        let tr = min(min(self.tr, h/2), w/2)
+        let tl = min(min(self.tl, h/2), w/2)
+        let bl = min(min(self.bl, h/2), w/2)
+        let br = min(min(self.br, h/2), w/2)
+
+        path.move(to: CGPoint(x: w / 2.0, y: 0))
+        path.addLine(to: CGPoint(x: w - tr, y: 0))
+        path.addArc(center: CGPoint(x: w - tr, y: tr), radius: tr,
+                    startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 0), clockwise: false)
+
+        path.addLine(to: CGPoint(x: w, y: h - br))
+        path.addArc(center: CGPoint(x: w - br, y: h - br), radius: br,
+                    startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 90), clockwise: false)
+
+        path.addLine(to: CGPoint(x: bl, y: h))
+        path.addArc(center: CGPoint(x: bl, y: h - bl), radius: bl,
+                    startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 180), clockwise: false)
+
+        path.addLine(to: CGPoint(x: 0, y: tl))
+        path.addArc(center: CGPoint(x: tl, y: tl), radius: tl,
+                    startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
+
+        return path
     }
 }
 

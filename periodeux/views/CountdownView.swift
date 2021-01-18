@@ -26,18 +26,18 @@ struct CountdownView: View {
                 Circle()
                     .stroke(ColorManager.highlightOrange)
                     .frame(width: 58, height: 58)
-                    .offset( y: -6.0)
+                    .offset(y: -6.0)
                 
                 Circle()
                     .fill(ColorManager.backgroundOrange)
                     .frame(width: 50, height: 50)
-                    .offset( y: -6.0)
+                    .offset(y: -6.0)
                 
                 Text("\(daysTilPeriod)")
                     .font(.largeTitle)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .foregroundColor(ColorManager.highlightOrange)
-                    .offset( y: -6.0)
+                    .offset(y: -6.0)
             }
             
             Text("days.")

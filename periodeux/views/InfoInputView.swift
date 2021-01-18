@@ -18,7 +18,7 @@ struct InfoInputView: View {
         VStack(alignment: .leading){
             
             // Section Headline
-            Text("Entries for  \(convertDateToShort(date: appStore.selectedDate))")
+            Text("Entries for \(convertDateToShort(date: appStore.selectedDate))")
                 .font(Font.title3.weight(.semibold))
                 .padding(.bottom, 2)
             

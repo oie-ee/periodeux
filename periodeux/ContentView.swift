@@ -34,8 +34,9 @@ struct ContentView: View {
                             }
                         }.offset(y: 30)
                         
-                    }.navigationBarTitle("")
-                     .navigationBarHidden(true)
+                    }.navigationBarTitle("Overview", displayMode: .inline)
+                   // .navigationBarTitleDisplayMode(.inline)
+                     //.navigationBarHidden(true)
             }.tabItem {
                 Image(systemName: "calendar")
                 Text("Overview")
