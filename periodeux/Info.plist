@@ -32,7 +32,7 @@
 		<key>UIColorName</key>
 		<string>backgroundOrange</string>
 		<key>UIImageName</key>
-		<string>LaunchScreenIcon</string>
+		<string>LaunchScreenImage</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
 		<true/>
 	</dict>

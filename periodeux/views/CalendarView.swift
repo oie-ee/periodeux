@@ -26,6 +26,8 @@ struct CalendarView: View {
     @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
     @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
     
+    
+    //Period Calculation
     @State private var firstDayOfPeriod: String = "11.01.2021 01:00"
     @State private var lastDayOfPeriod: String = "16.01.2021 01:00"
     @State private var currentDate: Date = Date()
@@ -39,24 +41,39 @@ struct CalendarView: View {
     }
     
     var firstDayOfPeriodDate2: Date {
-        
-        let currentDate = firstDayOfPeriodDate
-        var dateComponent = DateComponents()
-        dateComponent.day = 29
-        
-        let firstDayOfPeriod2 = Calendar.current.date(byAdding: dateComponent, to: currentDate) ?? Date()
-        return firstDayOfPeriod2
+        return addCycleLengthDays(date: firstDayOfPeriodDate)
     }
     
     var lastDayOfPeriodDate2: Date {
-        
-        let currentDate = lastDayOfPeriodDate
-        var dateComponent = DateComponents()
-        dateComponent.day = 29
-        
-        let lastDayOfPeriod2 = Calendar.current.date(byAdding: dateComponent, to: currentDate) ?? Date()
-        return lastDayOfPeriod2
+        return addCycleLengthDays(date: lastDayOfPeriodDate)
     }
+    
+    var firstDayOfPeriodDate3: Date {
+        return addCycleLengthDays(date: firstDayOfPeriodDate2)
+    }
+    
+    var lastDayOfPeriodDate3: Date {
+        return addCycleLengthDays(date: lastDayOfPeriodDate2)
+    }
+    
+    var firstDayOfPeriodDate4: Date {
+        return addCycleLengthDays(date: firstDayOfPeriodDate3)
+    }
+    
+    var lastDayOfPeriodDate4: Date {
+        return addCycleLengthDays(date: lastDayOfPeriodDate3)
+    }
+    
+    var firstDayOfPeriodDate5: Date {
+        return addCycleLengthDays(date: firstDayOfPeriodDate4)
+    }
+    
+    var lastDayOfPeriodDate5: Date {
+        return addCycleLengthDays(date: lastDayOfPeriodDate4)
+    }
+    
+    //End of Period calculation
+    
     
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
@@ -149,6 +166,8 @@ struct CalendarView: View {
                             
                             Button(action: {
                                 
+                                print("\(addCycleLengthDays(date: lastDayOfPeriodDate))")
+                                
                                 appStore.selectedDate = generateDateFromSelectedDay(
                                     day: selectedDay,
                                     month: self.selectedMonth,
@@ -176,6 +195,21 @@ struct CalendarView: View {
                                         date: currentDate,
                                         startInterval: firstDayOfPeriodDate2,
                                         endInterval: lastDayOfPeriodDate2)
+                                    
+                                    let visualTypeOfDay3 = generateDateViewType(
+                                        date: currentDate,
+                                        startInterval: firstDayOfPeriodDate3,
+                                        endInterval: lastDayOfPeriodDate3)
+                                    
+                                    let visualTypeOfDay4 = generateDateViewType(
+                                        date: currentDate,
+                                        startInterval: firstDayOfPeriodDate4,
+                                        endInterval: lastDayOfPeriodDate4)
+                                    
+                                    let visualTypeOfDay5 = generateDateViewType(
+                                        date: currentDate,
+                                        startInterval: firstDayOfPeriodDate5,
+                                        endInterval: lastDayOfPeriodDate5)
                                     
                                     RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(.white)
                                     
@@ -205,7 +239,7 @@ struct CalendarView: View {
                                     }
                                   
                                     //FirstDay of Period
-                                    if  visualTypeOfDay == "startInterval" || visualTypeOfDay2 == "startInterval"{
+                                    if  visualTypeOfDay == "startInterval" || visualTypeOfDay2 == "startInterval" || visualTypeOfDay3 == "startInterval" || visualTypeOfDay4 == "startInterval" || visualTypeOfDay5 == "startInterval"{
                                         
                                         RoundedCorners(tl: 40, tr: 0, bl: 40, br: 0)
                                             .foregroundColor(ColorManager.backgroundOrange)
@@ -220,7 +254,7 @@ struct CalendarView: View {
                                             .foregroundColor(.white)
                                     }
                                     //Middle Days of Period
-                                    if  visualTypeOfDay == "isPeriod" || visualTypeOfDay2 == "isPeriod"{
+                                    if  visualTypeOfDay == "isPeriod" || visualTypeOfDay2 == "isPeriod" || visualTypeOfDay3 == "isPeriod" || visualTypeOfDay4 == "isPeriod" || visualTypeOfDay5 == "isPeriod"{
                                         
                                         RoundedCorners(tl: 0, tr: 0, bl: 0, br: 0)
                                             .foregroundColor(ColorManager.backgroundOrange)
@@ -231,7 +265,7 @@ struct CalendarView: View {
                                             .foregroundColor(ColorManager.highlightOrange)
                                     }
                                     //Last Day Of Period
-                                    if  visualTypeOfDay == "endInterval" || visualTypeOfDay2 == "endInterval"{
+                                    if  visualTypeOfDay == "endInterval" || visualTypeOfDay2 == "endInterval" || visualTypeOfDay3 == "endInterval" || visualTypeOfDay4 == "endInterval" || visualTypeOfDay5 == "endInterval"{
                                         
                                         RoundedCorners(tl: 00, tr: 30, bl: 0, br: 30)
                                             .foregroundColor(ColorManager.backgroundOrange)
@@ -280,6 +314,15 @@ struct CalendarView: View {
         stringFormatter.dateFormat = "DD.MM.y HH:mm"
         
         return (stringFormatter.date(from: string) ?? Date())
+    }
+    
+    func addCycleLengthDays(date: Date) -> Date {
+        
+        var dateComponent = DateComponents()
+        dateComponent.day = 29
+        
+        let increasedDate = Calendar.current.date(byAdding: dateComponent, to: date) ?? Date()
+        return increasedDate
     }
     
     func generateDateViewType (date: Date, startInterval: Date, endInterval: Date) -> String {
