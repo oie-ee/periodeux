@@ -10,18 +10,12 @@ struct SmallSymptomCellView: View {
     var body: some View {
         
         VStack{
-            Button(action: {
-                print("\(symptom.name) was selected")
-            }, label: {
-                
-                VStack{
-                    Image("\(symptom.imageIcon):44x44")
-                    
-                    Text(symptom.name)
-                        .font(.caption2)
-                        .foregroundColor(.black)
-                }
-            })
+            
+            Image("\(symptom.imageIcon):44x44")
+            
+            Text(symptom.name)
+                .font(.caption2)
+                .foregroundColor(.black)
         }
     }
 }
