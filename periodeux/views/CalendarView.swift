@@ -113,8 +113,7 @@ struct CalendarView: View {
         return addCycleLengthDays(date: lastDayOfPeriodDate7)
     }
     // MARK: - End Of Period Calculation
-    
-    
+        
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
     }
@@ -204,8 +203,6 @@ struct CalendarView: View {
                             let selectedDay = weekdayPosition(daysElapsed)
                             
                             Button(action: {
-                                
-                                print("\(addCycleLengthDays(date: lastDayOfPeriodDate))")
                                 
                                 appStore.selectedDate = generateDateFromSelectedDay(
                                     day: selectedDay,
@@ -302,6 +299,15 @@ struct CalendarView: View {
                                             .foregroundColor(.black)
                                     }
                                     
+                                    //Day of Ovulation
+                                    if  selectedDay == 29 && self.selectedMonth == 11 && self.selectedYear == 2020 || selectedDay == 28 && self.selectedMonth == 12 && self.selectedYear == 2020 || selectedDay == 26 && self.selectedMonth == currentMonth && self.selectedYear == currentYear || selectedDay == 24 && self.selectedMonth == 2 && self.selectedYear == currentYear || selectedDay == 25 && self.selectedMonth == 3 && self.selectedYear == currentYear || selectedDay == 23 && self.selectedMonth == 4 && self.selectedYear == currentYear || selectedDay == 22 && self.selectedMonth == 5 && self.selectedYear == currentYear || selectedDay == 20 && self.selectedMonth == 6 && self.selectedYear == currentYear || selectedDay == 19 && self.selectedMonth == 7 && self.selectedYear == currentYear || selectedDay == 17 && self.selectedMonth == 8 && self.selectedYear == currentYear{
+                                        Circle().foregroundColor(Color(UIColor.systemTeal)).opacity(0.1)
+                                            .frame(height: 40)
+                                        Text("\(selectedDay)")
+                                            .font(Font.title3.weight(.semibold))
+                                            .foregroundColor(Color(UIColor.systemTeal))
+                                    }
+                                    
                                     //FirstDay of Period
                                     if  visualTypeOfDay == "startInterval" || visualTypeOfDay2 == "startInterval" || visualTypeOfDay3 == "startInterval" || visualTypeOfDay4 == "startInterval" || visualTypeOfDay5 == "startInterval" || visualTypeOfDay6 == "startInterval" || visualTypeOfDay7 == "startInterval" || visualTypeOfDay8 == "startInterval"  || visualTypeOfDay012 == "startInterval" || visualTypeOfDay011 == "startInterval"{
                                         
@@ -331,7 +337,7 @@ struct CalendarView: View {
                                     }
                                     
                                     //Last Day Of Period
-                                    if  visualTypeOfDay == "endInterval" || visualTypeOfDay2 == "endInterval" || visualTypeOfDay3 == "endInterval" || visualTypeOfDay4 == "endInterval" || visualTypeOfDay5 == "endInterval" || visualTypeOfDay6 == "endInterval" || visualTypeOfDay7 == "endInterval"   || visualTypeOfDay012 == "endInterval" || visualTypeOfDay011 == "endInterval"{
+                                    if  visualTypeOfDay == "endInterval" || visualTypeOfDay2 == "endInterval" || visualTypeOfDay3 == "endInterval" || visualTypeOfDay4 == "endInterval" || visualTypeOfDay5 == "endInterval" || visualTypeOfDay6 == "endInterval" || visualTypeOfDay7 == "endInterval" || visualTypeOfDay8 == "endInterval"  || visualTypeOfDay012 == "endInterval" || visualTypeOfDay011 == "endInterval"{
                                         
                                         RoundedCorners(tl: 00, tr: 30, bl: 0, br: 30)
                                             .foregroundColor(ColorManager.backgroundOrange)
