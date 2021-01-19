@@ -18,6 +18,8 @@ struct CalendarView: View {
     
     @EnvironmentObject var appStore : AppStore
     
+    let selectedDay: Int = 1
+    
     
     var firstWeekday: Int {
         return self.calendar.firstWeekday
@@ -29,19 +31,34 @@ struct CalendarView: View {
     
     @State private var firstDayOfPeriod: String = "11.01.2021 01:00"
     @State private var lastDayOfPeriod: String = "16.01.2021 01:00"
-//    @State private var middleDayOfPeriod: String
+    @State private var currentDate: Date = Date()
     
-    
-    
-    func compareFirstDateOfPeriod(date1: Date, to date2: Date, toGranularity component: Calendar.Component) -> Bool {
+    var firstDayOfPeriodDate: Date {
+        return generateDateFromString(string: firstDayOfPeriod)
+    }
 
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone.current
-        let result = calendar.compare((generateDateFromString(string: firstDayOfPeriod)), to: (generateDateFromString(string: lastDayOfPeriod)), toGranularity: .day)
-       
-        let isFirstDay = result == .orderedAscending
+    var lastDayOfPeriodDate: Date {
+        return generateDateFromString(string: lastDayOfPeriod)
+    }
+    
+    var firstDayOfPeriodDate2: Date {
         
-        return isFirstDay
+        let currentDate = firstDayOfPeriodDate
+        var dateComponent = DateComponents()
+        dateComponent.day = 29
+        
+        let firstDayOfPeriod2 = Calendar.current.date(byAdding: dateComponent, to: currentDate) ?? Date()
+        return firstDayOfPeriod2
+    }
+    
+    var lastDayOfPeriodDate2: Date {
+        
+        let currentDate = lastDayOfPeriodDate
+        var dateComponent = DateComponents()
+        dateComponent.day = 29
+        
+        let lastDayOfPeriod2 = Calendar.current.date(byAdding: dateComponent, to: currentDate) ?? Date()
+        return lastDayOfPeriod2
     }
     
     var numberOfDays: Range<Int> {
@@ -102,7 +119,7 @@ struct CalendarView: View {
                         .font(Font.title.weight(.semibold))
                         .frame(width: 10.0, height: 17.0)
                 }
-                .padding(.trailing, 6)
+                .padding(.trailing, 14)
                 
                 
                 //Right Chevron
@@ -134,10 +151,6 @@ struct CalendarView: View {
                             let selectedDay = weekdayPosition(daysElapsed)
                             
                             Button(action: {
-                                print("\(selectedDay) was selected")
-                                print("\(generateDateFromString(string: firstDayOfPeriod)) was the first day")
-                                print("\(generateDateFromString(string: lastDayOfPeriod)) was the last day")
-                                print("\(compareFirstDateOfPeriod(date1: (generateDateFromString(string: firstDayOfPeriod)), to: (generateDateFromString(string: lastDayOfPeriod)), toGranularity: .day))")
                                 
                                 appStore.selectedDate = generateDateFromSelectedDay(
                                     day: selectedDay,
@@ -150,6 +163,22 @@ struct CalendarView: View {
                                 selectedDayArray[selectedDay] = true
                             }, label: {
                                 ZStack {
+                                    
+                                    let currentDate = generateDateFromSelectedDay(
+                                        day: selectedDay,
+                                        month: self.selectedMonth,
+                                        year: self.selectedYear
+                                    ) ?? Date()
+                                    
+                                    let visualTypeOfDay = generateDateViewType(
+                                        date: currentDate,
+                                        startInterval: firstDayOfPeriodDate,
+                                        endInterval: lastDayOfPeriodDate)
+                                    
+                                    let visualTypeOfDay2 = generateDateViewType(
+                                        date: currentDate,
+                                        startInterval: firstDayOfPeriodDate2,
+                                        endInterval: lastDayOfPeriodDate2)
                                     
                                     RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(.white)
                                     
@@ -179,7 +208,7 @@ struct CalendarView: View {
                                     }
                                   
                                     //FirstDay of Period
-                                    if  selectedDay == 11 && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
+                                    if  visualTypeOfDay == "startInterval" || visualTypeOfDay2 == "startInterval"{
                                         
                                         RoundedCorners(tl: 40, tr: 0, bl: 40, br: 0)
                                             .foregroundColor(ColorManager.backgroundOrange)
@@ -194,7 +223,7 @@ struct CalendarView: View {
                                             .foregroundColor(.white)
                                     }
                                     //Middle Days of Period
-                                    if  (selectedDay >= 12 && selectedDay <= 15) && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
+                                    if  visualTypeOfDay == "isPeriod" || visualTypeOfDay2 == "isPeriod"{
                                         
                                         RoundedCorners(tl: 0, tr: 0, bl: 0, br: 0)
                                             .foregroundColor(ColorManager.backgroundOrange)
@@ -205,7 +234,7 @@ struct CalendarView: View {
                                             .foregroundColor(ColorManager.highlightOrange)
                                     }
                                     //Last Day Of Period
-                                    if  selectedDay == 16 && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
+                                    if  visualTypeOfDay == "endInterval" || visualTypeOfDay2 == "endInterval"{
                                         
                                         RoundedCorners(tl: 00, tr: 30, bl: 0, br: 30)
                                             .foregroundColor(ColorManager.backgroundOrange)
@@ -255,6 +284,27 @@ struct CalendarView: View {
         
         return (stringFormatter.date(from: string) ?? Date())
     }
+    
+    func generateDateViewType (date: Date, startInterval: Date, endInterval: Date) -> String {
+        if(date == startInterval) {
+            return "startInterval"
+        }
+        
+        if(date == endInterval) {
+            return "endInterval"
+        }
+        
+        if(date < startInterval || date > endInterval) {
+            return "noPeriod"
+        }
+        
+        if(date > startInterval && date < endInterval) {
+            return "isPeriod"
+        }
+        
+        return "none"
+    }
+
 }
 
 struct RoundedCorners: Shape {
