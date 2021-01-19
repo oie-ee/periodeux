@@ -5,6 +5,7 @@ struct CountdownView: View {
     
     @State var daysTilPeriod: Int = 20
     
+    // MARK: - Body
     var body: some View {
         
         //Greeting
@@ -47,6 +48,7 @@ struct CountdownView: View {
     }
 }
 
+// MARK: - Preview
 struct CountdownView_Previews: PreviewProvider {
     static var previews: some View {
         CountdownView()

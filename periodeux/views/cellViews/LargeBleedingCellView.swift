@@ -1,4 +1,8 @@
+
+
+// MARK: - LargeBleedingCellView
 //this is a larger Icon and Title display for the detailed ModalInfoView
+
 
 import SwiftUI
 
@@ -7,6 +11,7 @@ struct LargeBleedingCellView: View {
     var bleeding: BleedingModel
     @State var isSelected = false
     
+    // MARK: - Body
     var body: some View {
         
         Button(action: {
@@ -41,7 +46,7 @@ struct LargeBleedingCellView: View {
     }
 }
 
-
+// MARK: - Preview
 struct LargeBleedingCellView_Previews: PreviewProvider {
     static var previews: some View {
         LargeBleedingCellView(bleeding: BleedingModel.bleeding1)

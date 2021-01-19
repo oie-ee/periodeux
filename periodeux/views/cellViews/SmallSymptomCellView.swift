@@ -1,9 +1,10 @@
-//this is a small Icon and Title display for InfoInputView
+
+// MARK: - SmallSymptomCellView
+//this is a small Icon and Title display for the InfoInputView
 
 import SwiftUI
 
 struct SmallSymptomCellView: View {
-    
     
     var symptom: SymptomModel
     
@@ -16,11 +17,14 @@ struct SmallSymptomCellView: View {
             Text(symptom.name)
                 .font(.caption2)
                 .foregroundColor(.black)
+                .frame(width: 50, height: 48, alignment: .top)
+                .multilineTextAlignment(.center)
+                .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
         }
     }
 }
 
-
+// MARK: - Preview
 struct SymptomRowView_Previews: PreviewProvider {
     static var previews: some View {
         SmallSymptomCellView(symptom: SymptomModel.symptom2)

@@ -13,6 +13,7 @@ struct ModalInfoView: View {
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+    // MARK: - Body
     var body: some View {
         
         NavigationView {
@@ -59,7 +60,6 @@ struct ModalInfoView: View {
                     Bleeding()
                 }
                 
-                
             }
             .navigationBarTitle(Text("\(convertDateToShort(date: appStore.selectedDate))"))
             .navigationBarItems(trailing:
@@ -84,6 +84,7 @@ struct ModalInfoView: View {
     }
 }
 
+// MARK: - Preview
 struct ModalInfoView_Previews: PreviewProvider {
     
     @Binding var selectedDiaryTag: Int
@@ -93,6 +94,7 @@ struct ModalInfoView_Previews: PreviewProvider {
     }
 }
 
+// MARK: - Mood Grid
 struct Mood : View {
     
     let columns = [
@@ -117,7 +119,7 @@ struct Mood : View {
     }
 }
 
-
+// MARK: - Symptom Grid
 struct Symptom : View {
     
     let columns = [
@@ -142,7 +144,7 @@ struct Symptom : View {
     }
 }
 
-
+// MARK: - Bleeding Grid
 struct Bleeding : View {
     
     let columns = [

@@ -1,6 +1,6 @@
 import Foundation
 
-//MARK –  SymptomModel
+// MARK: - Symptom Model
 struct SymptomModel: Identifiable {
     var id = UUID()
     var name: String

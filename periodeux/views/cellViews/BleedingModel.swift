@@ -1,6 +1,6 @@
 import Foundation
 
-//MARK –  BleedingModel
+// MARK: - Bleeding Model
 struct BleedingModel: Identifiable {
     var id = UUID()
     var name: String

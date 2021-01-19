@@ -1,3 +1,5 @@
+
+// MARK: - LargeMoodCellView
 //this is a larger Icon and Title display for the detailed ModalInfoView
 
 import SwiftUI
@@ -7,6 +9,7 @@ struct LargeMoodCellView: View {
     var mood: MoodModel
     @State var isSelected = false
     
+    // MARK: - Body
     var body: some View {
         
         Button(action: {
@@ -41,7 +44,7 @@ struct LargeMoodCellView: View {
     }
 }
 
-
+// MARK: - Preview
 struct LargeMoodCellView_Previews: PreviewProvider {
     static var previews: some View {
         LargeMoodCellView(mood: MoodModel.mood1)

@@ -3,6 +3,7 @@ import SwiftUI
 
 struct CalendarView: View {
     
+    // MARK: - Properties
     @State private var calendar = Calendar.current
     
     private let dateFormatter = DateFormatter()
@@ -26,7 +27,7 @@ struct CalendarView: View {
     @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
     
     
-    //Period Calculation
+    // MARK: - Start Of Period Calculation
     @State private var firstDayOfPeriod: String = "11.01.2021 01:00"
     @State private var lastDayOfPeriod: String = "16.01.2021 01:00"
     @State private var currentDate: Date = Date()
@@ -111,7 +112,7 @@ struct CalendarView: View {
     var lastDayOfPeriodDate8: Date {
         return addCycleLengthDays(date: lastDayOfPeriodDate7)
     }
-    //End of Period calculation
+    // MARK: - End Of Period Calculation
     
     
     var numberOfDays: Range<Int> {
@@ -149,6 +150,7 @@ struct CalendarView: View {
         return dateFormatter.string(from: selectedDate)
     }
     
+    // MARK: - Body
     var body: some View {
         
         VStack {
@@ -423,6 +425,7 @@ struct CalendarView: View {
     
 }
 
+// MARK: - RoundedCorners
 struct RoundedCorners: Shape {
     var tl: CGFloat = 0.0
     var tr: CGFloat = 0.0
@@ -462,6 +465,7 @@ struct RoundedCorners: Shape {
     }
 }
 
+// MARK: - Preview
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         CalendarView()

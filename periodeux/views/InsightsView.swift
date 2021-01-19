@@ -1,12 +1,13 @@
 
+// MARK: - Insights
 
 import SwiftUI
-
 
 struct InsightsView: View {
     
     @State var showComposeMessageView: Bool = false
     
+    // MARK: - Body
     var body: some View {
         
         NavigationView {
@@ -15,6 +16,7 @@ struct InsightsView: View {
                 
                 VStack (alignment: .leading){
                     
+                    // MARK: - First Section
                     Text("Your Average Period")
                         .font(Font.title3.weight(.semibold))
                         .padding(.bottom, 8)
@@ -84,7 +86,6 @@ struct InsightsView: View {
                                             .foregroundColor(ColorManager.backgroundOrange)
                                             .offset(x: -4, y: 6.5)
                                     }
-                                    
                                 }
                             }
                             
@@ -97,6 +98,7 @@ struct InsightsView: View {
                         
                     }.padding(.bottom, 40)
                     
+                    // MARK: - Second Section
                     Group{
                         Text("Mood Prognosis")
                             .font(Font.title3.weight(.semibold))
@@ -127,6 +129,7 @@ struct InsightsView: View {
                         }
                     }
                     
+                    // MARK: - Third Section
                     Group{
                         Text("Frequent Symptoms")
                             .font(Font.title3.weight(.semibold))
@@ -154,6 +157,7 @@ struct InsightsView: View {
                         }
                     }
                     
+                    // MARK: - Fourth Section
                     Group{
                         Text("Frequent Moods")
                             .font(Font.title3.weight(.semibold))

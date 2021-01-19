@@ -3,6 +3,7 @@ import SwiftUI
 
 struct RectangleWrapperView: View {
     
+    // MARK: - Body
     var body: some View {
         
         //RectangleView
@@ -32,6 +33,7 @@ struct RectangleWrapperView: View {
     }
 }
 
+// MARK: - Preview
 struct RectangleWrapperView_Previews: PreviewProvider {
     static var previews: some View {
         RectangleWrapperView()

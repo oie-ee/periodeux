@@ -14,6 +14,7 @@ struct WeekDays: View {
         
     }
     
+    // MARK: - Body
     var body: some View {
         
         HStack{

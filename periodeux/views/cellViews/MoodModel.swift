@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: MoodModel
+// MARK: - Mood Model
 struct MoodModel: Identifiable {
     var id = UUID()
     var name: String

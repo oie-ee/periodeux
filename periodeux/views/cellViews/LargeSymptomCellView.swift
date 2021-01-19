@@ -1,3 +1,5 @@
+
+// MARK: - LargeSymptomCellView
 //this is a larger Icon and Title display for the detailed ModalInfoView
 
 import SwiftUI
@@ -7,6 +9,7 @@ struct LargeSymptomCellView: View {
     var symptom: SymptomModel
     @State var isSelected = false
     
+    // MARK: - Body
     var body: some View {
         
         Button(action: {
@@ -41,7 +44,7 @@ struct LargeSymptomCellView: View {
     }
 }
 
-
+// MARK: - Preview
 struct LargeSymptomCellView_Previews: PreviewProvider {
     static var previews: some View {
         LargeSymptomCellView(symptom: SymptomModel.symptom1)

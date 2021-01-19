@@ -12,6 +12,7 @@ struct SingleDayView: View {
     @State var selectedMonth : Int
     @State var selectedYear : Int
     
+    // MARK: - Body
     var body: some View {
         Button(action: {
             
@@ -44,7 +45,7 @@ struct SingleDayView: View {
         })
     }
     
-    //Generate Date From DAy/Month/Year Ints
+    //Generate Date From Day/Month/Year Ints
     func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"

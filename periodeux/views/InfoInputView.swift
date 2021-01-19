@@ -4,6 +4,7 @@ import SwiftUI
 
 struct InfoInputView: View {
     
+    // MARK: - Properties
     @EnvironmentObject var appStore : AppStore
     
     @State var moods: [MoodModel] = dummyMoodData
@@ -15,6 +16,7 @@ struct InfoInputView: View {
     
     @State var exampleFilledDay = "02.01.2021 01:00"
     
+    // MARK: - Body
     var body: some View {
         
         VStack(alignment: .leading){
@@ -54,7 +56,7 @@ struct InfoInputView: View {
                     
                     SmallMoodCellView(mood: MoodModel.mood6)
                     SmallMoodCellView(mood: MoodModel.mood5)
-                    SmallMoodCellView(mood: MoodModel.mood13)
+                    SmallMoodCellView(mood: MoodModel.mood8)
                     
                 }
             }else {
@@ -94,9 +96,9 @@ struct InfoInputView: View {
                 HStack{
                     
                     SmallSymptomCellView(symptom: SymptomModel.symptom3)
-                    SmallSymptomCellView(symptom: SymptomModel.symptom10)
+                    SmallSymptomCellView(symptom: SymptomModel.symptom2)
                     SmallSymptomCellView(symptom: SymptomModel.symptom5)
-                    SmallSymptomCellView(symptom: SymptomModel.symptom8)
+                    SmallSymptomCellView(symptom: SymptomModel.symptom11)
                 }
             } else {
                 AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
@@ -161,6 +163,7 @@ struct InfoInputView: View {
     }
 }
 
+// MARK: - Preview
 struct InfoInputView_Previews: PreviewProvider {
     
     @State var selectedDiaryTag: Int
@@ -170,6 +173,7 @@ struct InfoInputView_Previews: PreviewProvider {
     }
 }
 
+// MARK: - Add Icon Cells
 struct AddIconCellView: View {
     
     @State var showingModalView = false
