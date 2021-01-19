@@ -17,7 +17,7 @@ Board(
 Board(
         title: "Keep a Diary",
         headline: "You can track symptoms, your mood and blood flow for each day.",
-        image: "placeholder2",
+        image: "placeholder4",
         gradientColors: [Color("backgroundOrange"), Color("highlightOrange")],
         description: "description",
         nutrition: ["nutrition"]
