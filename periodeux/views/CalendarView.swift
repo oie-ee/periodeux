@@ -347,12 +347,13 @@ struct CalendarView: View {
                                             .font(Font.title3.weight(.regular))
                                             .foregroundColor(ColorManager.highlightOrange)
                                     }
-                                }
+                                }.animation(.easeInOut(duration: 0.03))
                             })
                         }
                     }
                 }
             }.padding([.leading, .trailing], 8)
+            
         }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
