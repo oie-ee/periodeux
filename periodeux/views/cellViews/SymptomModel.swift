@@ -25,4 +25,4 @@ extension SymptomModel {
     
 }
 
-let dummySymptomData = [SymptomModel.symptom1, SymptomModel.symptom2, SymptomModel.symptom3, SymptomModel.symptom4, SymptomModel.symptom5, SymptomModel.symptom7, SymptomModel.symptom8, SymptomModel.symptom9, SymptomModel.symptom10, SymptomModel.symptom11, SymptomModel.symptom12, SymptomModel.symptom13]
+let dummySymptomData = [SymptomModel.symptom5, SymptomModel.symptom1, SymptomModel.symptom12, SymptomModel.symptom2, SymptomModel.symptom13, SymptomModel.symptom9, SymptomModel.symptom4, SymptomModel.symptom11, SymptomModel.symptom7, SymptomModel.symptom10, SymptomModel.symptom3, SymptomModel.symptom8]

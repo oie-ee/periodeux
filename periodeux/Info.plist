@@ -31,6 +31,10 @@
 	<dict>
 		<key>UIColorName</key>
 		<string>backgroundOrange</string>
+		<key>UIImageName</key>
+		<string>LaunchScreenIcon</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<true/>
 	</dict>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

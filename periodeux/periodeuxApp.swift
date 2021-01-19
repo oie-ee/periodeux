@@ -4,12 +4,21 @@ import SwiftUI
 @main
 struct periodeuxApp: App {
     
+    @AppStorage("isOnboarding") var isOnboarding: Bool = true
+    
     var appStore = AppStore()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(appStore)
+            
+            if isOnboarding {
+                OnboardingView()
+                
+            } else {
+                
+                ContentView()
+                    .environmentObject(appStore)
+            }
         }
     }
 }

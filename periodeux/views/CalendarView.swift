@@ -18,9 +18,6 @@ struct CalendarView: View {
     
     @EnvironmentObject var appStore : AppStore
     
-    let selectedDay: Int = 1
-    
-    
     var firstWeekday: Int {
         return self.calendar.firstWeekday
     }

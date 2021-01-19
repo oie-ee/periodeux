@@ -3,35 +3,43 @@ import SwiftUI
 
 struct SettingView: View {
     
+    // MARK: - Properties
+    @AppStorage("isOnboarding") var isOnboarding: Bool = false
     @EnvironmentObject var appStore : AppStore
-    
+    @Environment(\.presentationMode) var presentationMode
     @State var showComposeMessageView: Bool = false
     
+    // MARK: - Body
     var body: some View {
             NavigationView {
                 VStack (alignment: .leading){
                     List {
-                        
                             PeriodDuration()
-                        
                             CycleDuration()
-                        
-                            FirstPeriod()
-                        
+                           // FirstPeriod()
+                             
+                        Toggle(isOn: $isOnboarding) {
+                            if isOnboarding {
+                                Text("Restarted Onboarding")
+                                    .fontWeight(.bold)
+                           } else {
+                                Text("Restart Onboarding")
+                            }
                         }
-                    }.navigationTitle("Settings")
+                    }
+                }.navigationTitle("Settings")
                     .listStyle(GroupedListStyle())
-                }
-                
             }
-        }
+        }//: Body
+    }
 
+
+// MARK: - Period Duration
 struct PeriodDuration: View {
     
     @AppStorage("isPeriodDuration") private var isPeriodDuration = 7
     
     var body: some View {
-        
         VStack{
             Picker("Period Duration", selection: $isPeriodDuration) {
                 Text("1 Day").tag(1)
@@ -47,9 +55,9 @@ struct PeriodDuration: View {
             }
         }
     }
-    
 }
 
+// MARK: - Cycle Duration
 struct CycleDuration: View {
     @AppStorage("isCycleDuration") private var isCycleDuration = 7
     
@@ -71,15 +79,14 @@ struct CycleDuration: View {
     }
 }
 
+// MARK: - First Day Of Last Period
 struct FirstPeriod: View {
-
     var body: some View {
-        
       Text("First Day Of Last Period")
-            }
-        }
-        
-    
+    }
+}
+  
+
 
 
 

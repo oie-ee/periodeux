@@ -27,6 +27,12 @@
 		F31BCB0B257BCDEC005343D6 /* SmallSymptomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB0A257BCDEC005343D6 /* SmallSymptomCellView.swift */; };
 		F31BCB13257BD075005343D6 /* SmallBleedingCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCB12257BD075005343D6 /* SmallBleedingCellView.swift */; };
 		F34556A72580106E00523956 /* ModalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34556A62580106E00523956 /* ModalInfoView.swift */; };
+		F348310C25B73B2600F3FBD5 /* BoardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348310625B73B2600F3FBD5 /* BoardData.swift */; };
+		F348310D25B73B2600F3FBD5 /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348310725B73B2600F3FBD5 /* StartButtonView.swift */; };
+		F348310E25B73B2600F3FBD5 /* OnboardingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348310825B73B2600F3FBD5 /* OnboardingHeaderView.swift */; };
+		F348310F25B73B2600F3FBD5 /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348310925B73B2600F3FBD5 /* BoardModel.swift */; };
+		F348311025B73B2600F3FBD5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348310A25B73B2600F3FBD5 /* OnboardingView.swift */; };
+		F348311125B73B2600F3FBD5 /* OnboardingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348310B25B73B2600F3FBD5 /* OnboardingCardView.swift */; };
 		F34EA86125B385CE007EA188 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F34EA86025B385CE007EA188 /* RealmSwift */; };
 		F34EA86325B385CE007EA188 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F34EA86225B385CE007EA188 /* Realm */; };
 		F34EA86825B3878E007EA188 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EA86725B3878E007EA188 /* Report.swift */; };
@@ -87,6 +93,12 @@
 		F31BCB0A257BCDEC005343D6 /* SmallSymptomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSymptomCellView.swift; sourceTree = "<group>"; };
 		F31BCB12257BD075005343D6 /* SmallBleedingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBleedingCellView.swift; sourceTree = "<group>"; };
 		F34556A62580106E00523956 /* ModalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalInfoView.swift; sourceTree = "<group>"; };
+		F348310625B73B2600F3FBD5 /* BoardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
+		F348310725B73B2600F3FBD5 /* StartButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
+		F348310825B73B2600F3FBD5 /* OnboardingHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingHeaderView.swift; sourceTree = "<group>"; };
+		F348310925B73B2600F3FBD5 /* BoardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		F348310A25B73B2600F3FBD5 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F348310B25B73B2600F3FBD5 /* OnboardingCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCardView.swift; sourceTree = "<group>"; };
 		F34EA86725B3878E007EA188 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		F34EA87425B389F9007EA188 /* ReportDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDB.swift; sourceTree = "<group>"; };
 		F34EA87925B38B5F007EA188 /* ReportDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDBKeys.swift; sourceTree = "<group>"; };
@@ -153,6 +165,7 @@
 				F34556A62580106E00523956 /* ModalInfoView.swift */,
 				F97F3D6825AE67A700622CBE /* SettingView.swift */,
 				F97F3D6D25AE67FB00622CBE /* InsightsView.swift */,
+				F348310525B73B2600F3FBD5 /* Onboarding */,
 				F3150C2325878703003129DE /* cellViews */,
 			);
 			path = views;
@@ -236,6 +249,19 @@
 				F31BCACA257BB57F005343D6 /* Info.plist */,
 			);
 			path = periodeuxUITests;
+			sourceTree = "<group>";
+		};
+		F348310525B73B2600F3FBD5 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F348310A25B73B2600F3FBD5 /* OnboardingView.swift */,
+				F348310B25B73B2600F3FBD5 /* OnboardingCardView.swift */,
+				F348310625B73B2600F3FBD5 /* BoardData.swift */,
+				F348310725B73B2600F3FBD5 /* StartButtonView.swift */,
+				F348310825B73B2600F3FBD5 /* OnboardingHeaderView.swift */,
+				F348310925B73B2600F3FBD5 /* BoardModel.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		F34EA87025B387AA007EA188 /* Report */ = {
@@ -388,17 +414,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F348311025B73B2600F3FBD5 /* OnboardingView.swift in Sources */,
 				F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */,
 				F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */,
 				F34EA86825B3878E007EA188 /* Report.swift in Sources */,
 				F30FCB0425AE180C00A9F6AF /* CalendarView.swift in Sources */,
 				F31BCAAE257BB57D005343D6 /* ContentView.swift in Sources */,
+				F348310C25B73B2600F3FBD5 /* BoardData.swift in Sources */,
 				F31BCB0B257BCDEC005343D6 /* SmallSymptomCellView.swift in Sources */,
+				F348310D25B73B2600F3FBD5 /* StartButtonView.swift in Sources */,
+				F348310F25B73B2600F3FBD5 /* BoardModel.swift in Sources */,
 				F31BCB13257BD075005343D6 /* SmallBleedingCellView.swift in Sources */,
 				F3B0365F258906A9003A6771 /* LargeBleedingCellView.swift in Sources */,
 				F3B0365525890687003A6771 /* LargeMoodCellView.swift in Sources */,
 				F31BCAF4257BBDBB005343D6 /* RectangleWrapperView.swift in Sources */,
 				F97F3D6925AE67A700622CBE /* SettingView.swift in Sources */,
+				F348311125B73B2600F3FBD5 /* OnboardingCardView.swift in Sources */,
 				F31BCB06257BC866005343D6 /* SmallMoodCellView.swift in Sources */,
 				99E6905725B3246600E07559 /* AppStore.swift in Sources */,
 				F3F45A2325B4917100086059 /* WeekdaysView.swift in Sources */,
@@ -406,6 +437,7 @@
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
 				F34EA87A25B38B5F007EA188 /* ReportDBKeys.swift in Sources */,
 				F34556A72580106E00523956 /* ModalInfoView.swift in Sources */,
+				F348310E25B73B2600F3FBD5 /* OnboardingHeaderView.swift in Sources */,
 				F3150C0B258783A7003129DE /* MoodModel.swift in Sources */,
 				F3150C1825878441003129DE /* BleedingModel.swift in Sources */,
 				F97F3D6E25AE67FB00622CBE /* InsightsView.swift in Sources */,

@@ -27,7 +27,7 @@ struct WeekDays: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
                     .textCase(.uppercase)
-                    .frame(width: 36)
+                   // .frame(width: 36)
                 
                 Spacer()
             }

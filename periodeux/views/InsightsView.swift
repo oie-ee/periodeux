@@ -98,57 +98,87 @@ struct InsightsView: View {
                         
                     }.padding(.bottom, 40)
                     
-                    Text("Mood Prognosis")
-                        .font(Font.title3.weight(.semibold))
-                        .padding(.bottom, 2)
-                    
-                    Text("This is how you are most likely going to feel in the days leading up to your period:")
-                        .font(Font.body.weight(.regular))
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 15)
-                    
-                    ScrollView(.horizontal) {
+                    Group{
+                        Text("Mood Prognosis")
+                            .font(Font.title3.weight(.semibold))
+                            .padding(.bottom, 2)
                         
-                        HStack{
-                            LargeMoodCellView(mood: MoodModel.mood5)
-                                .foregroundColor(ColorManager.highlightOrange)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeMoodCellView(mood: MoodModel.mood7)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeMoodCellView(mood: MoodModel.mood11)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeMoodCellView(mood: MoodModel.mood1)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeMoodCellView(mood: MoodModel.mood2)
-                                .disabled(true)
-                            LargeMoodCellView(mood: MoodModel.mood8)
-                                .disabled(true)
-                        }.padding(.bottom, 32)
+                        Text("This is how you are most likely going to feel in the days leading up to your period:")
+                            .font(Font.body.weight(.regular))
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 15)
                         
-                    }
+                        ScrollView(.horizontal) {
+                            
+                            HStack(spacing: 5){
+                                LargeMoodCellView(mood: MoodModel.mood5)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood7)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood1)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood2)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood11)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood8)
+                                    .disabled(true)
+                            }.padding(.bottom, 32)
+                            
+                        }
+                }
                     
-                    Text("Frequent Symptoms")
-                        .font(Font.title3.weight(.semibold))
-                        .padding(.bottom, 2)
-                    
-                    Text("These are your most frequently reported symptoms:")
-                        .font(Font.body.weight(.regular))
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 15)
-                    
-                    ScrollView(.horizontal) {
+                    Group{
+                        Text("Frequent Symptoms")
+                            .font(Font.title3.weight(.semibold))
+                            .padding(.bottom, 2)
                         
-                        HStack{
-                            LargeSymptomCellView(symptom: SymptomModel.symptom4)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeSymptomCellView(symptom: SymptomModel.symptom3)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeSymptomCellView(symptom: SymptomModel.symptom5)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeSymptomCellView(symptom: SymptomModel.symptom10)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                            LargeSymptomCellView(symptom: SymptomModel.symptom1)
-                                .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                        Text("These are your most frequently reported symptoms:")
+                            .font(Font.body.weight(.regular))
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 15)
+                        
+                        ScrollView(.horizontal) {
+                            
+                            HStack(spacing: 5){
+                                LargeSymptomCellView(symptom: SymptomModel.symptom4)
+                                    .disabled(true)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom3)
+                                    .disabled(true)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom5)
+                                    .disabled(true)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom10)
+                                    .disabled(true)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom1)
+                                    .disabled(true)
+                            }.padding(.bottom, 32)
+                        }
+                }
+                    
+                    Group{
+                        Text("Frequent Moods")
+                            .font(Font.title3.weight(.semibold))
+                            .padding(.bottom, 2)
+                        
+                        Text("These are your most frequently reported moods:")
+                            .font(Font.body.weight(.regular))
+                            .foregroundColor(.secondary)
+                            .padding(.bottom, 15)
+                        
+                        ScrollView(.horizontal) {
+                            
+                            HStack(spacing: 5){
+                                LargeMoodCellView(mood: MoodModel.mood1)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood13)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood6)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood4)
+                                    .disabled(true)
+                                LargeMoodCellView(mood: MoodModel.mood10)
+                                    .disabled(true)
+                            }
                         }
                     }
                     
