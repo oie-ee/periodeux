@@ -14,8 +14,7 @@ struct SingleDayView: View {
     
     var body: some View {
         Button(action: {
-            print("\(dayOfMonth) was selected")
-                                            
+            
             appStore.selectedDate = generateDateFromSelectedDay(day: dayOfMonth, month: self.selectedMonth, year: self.selectedYear) ?? Date()
             
             selectedDayArray =  [Bool](repeating: false, count: 32)
@@ -34,18 +33,18 @@ struct SingleDayView: View {
                 } else {
                     Circle().foregroundColor(.white)
                 }
-            
+                
                 
                 if numberOfDays.contains(dayOfMonth) {
                     Text("\(dayOfMonth)")
                         .font(.title3)
                         .foregroundColor(.black)
                 }
-                
             }
         })
     }
     
+    //Generate Date From DAy/Month/Year Ints
     func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"

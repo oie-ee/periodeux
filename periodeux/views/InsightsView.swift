@@ -15,7 +15,6 @@ struct InsightsView: View {
                 
                 VStack (alignment: .leading){
                     
-                    
                     Text("Your Average Period")
                         .font(Font.title3.weight(.semibold))
                         .padding(.bottom, 8)
@@ -126,7 +125,7 @@ struct InsightsView: View {
                             }.padding(.bottom, 32)
                             
                         }
-                }
+                    }
                     
                     Group{
                         Text("Frequent Symptoms")
@@ -153,7 +152,7 @@ struct InsightsView: View {
                                     .disabled(true)
                             }.padding(.bottom, 32)
                         }
-                }
+                    }
                     
                     Group{
                         Text("Frequent Moods")
@@ -187,18 +186,10 @@ struct InsightsView: View {
                 }.navigationTitle("Insights")
                 .padding([.top, .leading, .trailing])
                 
-                
             }
         }
-        
     }
 }
-
-
-
-
-
-
 
 
 // MARK: - Preview

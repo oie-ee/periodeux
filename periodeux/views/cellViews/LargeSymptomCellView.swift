@@ -41,6 +41,7 @@ struct LargeSymptomCellView: View {
     }
 }
 
+
 struct LargeSymptomCellView_Previews: PreviewProvider {
     static var previews: some View {
         LargeSymptomCellView(symptom: SymptomModel.symptom1)

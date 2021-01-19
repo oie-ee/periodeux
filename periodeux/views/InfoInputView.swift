@@ -49,13 +49,13 @@ struct InfoInputView: View {
             
             //MoodAddIconCell
             if appStore.selectedDate == generateDateFromString(string: exampleFilledDay){
-               
-                HStack{
                 
+                HStack{
+                    
                     SmallMoodCellView(mood: MoodModel.mood6)
                     SmallMoodCellView(mood: MoodModel.mood5)
                     SmallMoodCellView(mood: MoodModel.mood13)
-                
+                    
                 }
             }else {
                 AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
@@ -90,17 +90,17 @@ struct InfoInputView: View {
             
             //SymptomsAddIconCell
             if appStore.selectedDate == generateDateFromString(string: exampleFilledDay){
-               
-                HStack{
                 
-                    SmallSymptomCellView(symptom: SymptomModel.symptom8)
+                HStack{
+                    
                     SmallSymptomCellView(symptom: SymptomModel.symptom3)
-                    SmallSymptomCellView(symptom: SymptomModel.symptom5)
                     SmallSymptomCellView(symptom: SymptomModel.symptom10)
+                    SmallSymptomCellView(symptom: SymptomModel.symptom5)
+                    SmallSymptomCellView(symptom: SymptomModel.symptom8)
                 }
-                } else {
-            AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
-                }
+            } else {
+                AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+            }
             
             Spacer()
                 .frame(height: 15)
@@ -130,15 +130,14 @@ struct InfoInputView: View {
             
             //BleedingAddIconCell
             if appStore.selectedDate == generateDateFromString(string: exampleFilledDay){
-               
-                HStack{
                 
+                HStack{
+                    
                     SmallBleedingCellView(bleeding: BleedingModel.bleeding1)
                 }
-                } else {
-            AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
-                }
-           
+            } else {
+                AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
+            }
         }
     }
     
@@ -152,6 +151,7 @@ struct InfoInputView: View {
         return formatter.string(from: date)
     }
     
+    //Generate Date From String
     func generateDateFromString(string: String) -> Date{
         
         let stringFormatter = DateFormatter()
@@ -159,17 +159,16 @@ struct InfoInputView: View {
         
         return (stringFormatter.date(from: string) ?? Date())
     }
-    
 }
 
-//struct InfoInputView_Previews: PreviewProvider {
-//    
-//    @State var selectedDiaryTag: Int
-//    
-//    static var previews: some View {
-//        InfoInputView(selectedDiaryTag: 0, )
-//    }
-//}
+struct InfoInputView_Previews: PreviewProvider {
+    
+    @State var selectedDiaryTag: Int
+    
+    static var previews: some View {
+        InfoInputView(selectedDiaryTag: 0)
+    }
+}
 
 struct AddIconCellView: View {
     

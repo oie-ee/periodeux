@@ -29,8 +29,6 @@ struct RectangleWrapperView: View {
                 Spacer()
             }.padding([.top, .bottom])
         }
-       // .frame(width: 360)
-        
     }
 }
 

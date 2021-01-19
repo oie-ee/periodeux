@@ -11,7 +11,6 @@ struct ModalInfoView: View {
     @State var diaryTags = ["Mood", "Symptom", "Bleeding"]
     @Binding var selectedDiaryTag: Int
     
-    
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
@@ -25,7 +24,6 @@ struct ModalInfoView: View {
                     Picker("Diary Picker", selection: $selectedDiaryTag) {
                         ForEach(0..<diaryTags.count) { index in
                             Text(self.diaryTags[index]).tag(index)
-                            
                         }
                         
                     }
@@ -45,7 +43,7 @@ struct ModalInfoView: View {
                         if changedValue == 2 {
                             selectedDiaryTag = 2
                         }
-                    
+                        
                     })
                 }
                 
@@ -73,9 +71,6 @@ struct ModalInfoView: View {
                                     })
             )
         }
-        
-       
-        
     }
     
     /// This shortens a date to the string format, e.g. 01 January 2021
@@ -87,18 +82,16 @@ struct ModalInfoView: View {
         
         return formatter.string(from: date)
     }
-    
 }
 
 struct ModalInfoView_Previews: PreviewProvider {
-
+    
     @Binding var selectedDiaryTag: Int
-
+    
     static var previews: some View {
         ModalInfoView(selectedDiaryTag: .constant(2))//constant disables picker
     }
 }
-
 
 struct Mood : View {
     

@@ -11,27 +11,27 @@ struct SettingView: View {
     
     // MARK: - Body
     var body: some View {
-            NavigationView {
-                VStack (alignment: .leading){
-                    List {
-                            PeriodDuration()
-                            CycleDuration()
-                           // FirstPeriod()
-                             
-                        Toggle(isOn: $isOnboarding) {
-                            if isOnboarding {
-                                Text("Restarted Onboarding")
-                                    .fontWeight(.bold)
-                           } else {
-                                Text("Restart Onboarding")
-                            }
+        NavigationView {
+            VStack (alignment: .leading){
+                List {
+                    PeriodDuration()
+                    CycleDuration()
+                    // FirstPeriod()
+                    
+                    Toggle(isOn: $isOnboarding) {
+                        if isOnboarding {
+                            Text("Restarted Onboarding")
+                                .fontWeight(.bold)
+                        } else {
+                            Text("Restart Onboarding")
                         }
                     }
-                }.navigationTitle("Settings")
-                    .listStyle(GroupedListStyle())
-            }
-        }//: Body
+                }
+            }.navigationTitle("Settings")
+            .listStyle(GroupedListStyle())
+        }
     }
+}
 
 
 // MARK: - Period Duration
@@ -82,12 +82,9 @@ struct CycleDuration: View {
 // MARK: - First Day Of Last Period
 struct FirstPeriod: View {
     var body: some View {
-      Text("First Day Of Last Period")
+        Text("First Day Of Last Period")
     }
 }
-  
-
-
 
 
 // MARK: - Preview

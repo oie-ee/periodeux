@@ -6,7 +6,6 @@ struct WeekDays: View {
     let weekdays = Calendar.current.shortWeekdaySymbols
     
     var weekdayRange: ArraySlice<String> {
-        print(firstWeekDay)
         
         guard firstWeekDay > 1 else {
             return weekdays[0...weekdays.count - 1]
@@ -27,7 +26,7 @@ struct WeekDays: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
                     .textCase(.uppercase)
-                   // .frame(width: 36)
+                // .frame(width: 36)
                 
                 Spacer()
             }

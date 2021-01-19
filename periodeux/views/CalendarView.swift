@@ -9,7 +9,6 @@ struct CalendarView: View {
     
     @State private var selectedDate: Date = Date()
     
-    
     @State private var numbersOfDays: Int = 0
     
     @State private var daysElapsed: Int = 0
@@ -35,7 +34,7 @@ struct CalendarView: View {
     var pastFirstDayOfPeriodDate11: Date {
         return subtractsCycleLengthDays(date: pastFirstDayOfPeriodDate12)
     }
-
+    
     var pastLastDayOfPeriodDate11: Date {
         return subtractsCycleLengthDays(date: pastLastDayOfPeriodDate12)
     }
@@ -43,17 +42,16 @@ struct CalendarView: View {
     var pastFirstDayOfPeriodDate12: Date {
         return subtractsCycleLengthDays(date: firstDayOfPeriodDate)
     }
-
+    
     var pastLastDayOfPeriodDate12: Date {
         return subtractsCycleLengthDays(date: lastDayOfPeriodDate)
     }
-    
     
     //January is here
     var firstDayOfPeriodDate: Date {
         return generateDateFromString(string: firstDayOfPeriod)
     }
-
+    
     var lastDayOfPeriodDate: Date {
         return generateDateFromString(string: lastDayOfPeriod)
     }
@@ -113,7 +111,6 @@ struct CalendarView: View {
     var lastDayOfPeriodDate8: Date {
         return addCycleLengthDays(date: lastDayOfPeriodDate7)
     }
-    
     //End of Period calculation
     
     
@@ -151,8 +148,6 @@ struct CalendarView: View {
         
         return dateFormatter.string(from: selectedDate)
     }
-    
-    
     
     var body: some View {
         
@@ -304,7 +299,7 @@ struct CalendarView: View {
                                             .font(Font.title3.weight(.bold))
                                             .foregroundColor(.black)
                                     }
-                                  
+                                    
                                     //FirstDay of Period
                                     if  visualTypeOfDay == "startInterval" || visualTypeOfDay2 == "startInterval" || visualTypeOfDay3 == "startInterval" || visualTypeOfDay4 == "startInterval" || visualTypeOfDay5 == "startInterval" || visualTypeOfDay6 == "startInterval" || visualTypeOfDay7 == "startInterval" || visualTypeOfDay8 == "startInterval"  || visualTypeOfDay012 == "startInterval" || visualTypeOfDay011 == "startInterval"{
                                         
@@ -320,6 +315,7 @@ struct CalendarView: View {
                                             .font(Font.title3.weight(.regular))
                                             .foregroundColor(.white)
                                     }
+                                    
                                     //Middle Days of Period
                                     if  visualTypeOfDay == "isPeriod" || visualTypeOfDay2 == "isPeriod" || visualTypeOfDay3 == "isPeriod" || visualTypeOfDay4 == "isPeriod" || visualTypeOfDay5 == "isPeriod" || visualTypeOfDay6 == "isPeriod" || visualTypeOfDay7 == "isPeriod" || visualTypeOfDay8 == "isPeriod" || visualTypeOfDay012 == "isPeriod" || visualTypeOfDay011 == "isPeriod"{
                                         
@@ -331,6 +327,7 @@ struct CalendarView: View {
                                             .font(Font.title3.weight(.regular))
                                             .foregroundColor(ColorManager.highlightOrange)
                                     }
+                                    
                                     //Last Day Of Period
                                     if  visualTypeOfDay == "endInterval" || visualTypeOfDay2 == "endInterval" || visualTypeOfDay3 == "endInterval" || visualTypeOfDay4 == "endInterval" || visualTypeOfDay5 == "endInterval" || visualTypeOfDay6 == "endInterval" || visualTypeOfDay7 == "endInterval"   || visualTypeOfDay012 == "endInterval" || visualTypeOfDay011 == "endInterval"{
                                         
@@ -342,14 +339,12 @@ struct CalendarView: View {
                                             .font(Font.title3.weight(.regular))
                                             .foregroundColor(ColorManager.highlightOrange)
                                     }
-                                    
                                 }
                             })
                         }
                     }
                 }
             }.padding([.leading, .trailing], 8)
-            
         }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
@@ -366,6 +361,7 @@ struct CalendarView: View {
                     }))
     }
     
+    //Generate Date From Day/Month/Year Int
     func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
         
         let dateFormatter = DateFormatter()
@@ -375,6 +371,7 @@ struct CalendarView: View {
         return convertedDate
     }
     
+    //Generate Date From String
     func generateDateFromString(string: String) -> Date{
         
         let stringFormatter = DateFormatter()
@@ -383,6 +380,7 @@ struct CalendarView: View {
         return (stringFormatter.date(from: string) ?? Date())
     }
     
+    //Add CycleLength (Days) To Date
     func addCycleLengthDays(date: Date) -> Date {
         
         var dateComponent = DateComponents()
@@ -392,6 +390,7 @@ struct CalendarView: View {
         return increasedDate
     }
     
+    //Substract CycleLength (Days) From Date
     func subtractsCycleLengthDays(date: Date) -> Date {
         
         var dateComponent = DateComponents()
@@ -401,6 +400,7 @@ struct CalendarView: View {
         return decreasedDate
     }
     
+    //Generate String That Tells Period Yes/No From Dates
     func generateDateViewType (date: Date, startInterval: Date, endInterval: Date) -> String {
         if(date == startInterval) {
             return "startInterval"
@@ -420,7 +420,7 @@ struct CalendarView: View {
         
         return "none"
     }
-
+    
 }
 
 struct RoundedCorners: Shape {
@@ -428,36 +428,36 @@ struct RoundedCorners: Shape {
     var tr: CGFloat = 0.0
     var bl: CGFloat = 0.0
     var br: CGFloat = 0.0
-
+    
     func path(in rect: CGRect) -> Path {
         var path = Path()
-
+        
         let w = rect.size.width
         let h = rect.size.height
-
+        
         // Make sure we do not exceed the size of the rectangle
         let tr = min(min(self.tr, h/2), w/2)
         let tl = min(min(self.tl, h/2), w/2)
         let bl = min(min(self.bl, h/2), w/2)
         let br = min(min(self.br, h/2), w/2)
-
+        
         path.move(to: CGPoint(x: w / 2.0, y: 0))
         path.addLine(to: CGPoint(x: w - tr, y: 0))
         path.addArc(center: CGPoint(x: w - tr, y: tr), radius: tr,
                     startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 0), clockwise: false)
-
+        
         path.addLine(to: CGPoint(x: w, y: h - br))
         path.addArc(center: CGPoint(x: w - br, y: h - br), radius: br,
                     startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 90), clockwise: false)
-
+        
         path.addLine(to: CGPoint(x: bl, y: h))
         path.addArc(center: CGPoint(x: bl, y: h - bl), radius: bl,
                     startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 180), clockwise: false)
-
+        
         path.addLine(to: CGPoint(x: 0, y: tl))
         path.addArc(center: CGPoint(x: tl, y: tl), radius: tl,
                     startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
-
+        
         return path
     }
 }

@@ -18,12 +18,9 @@ struct SmallBleedingCellView: View {
     }
 }
 
+
 struct BleedingRowView_Previews: PreviewProvider {
     static var previews: some View {
         SmallBleedingCellView(bleeding: BleedingModel.bleeding1)
     }
 }
-
-
-
-

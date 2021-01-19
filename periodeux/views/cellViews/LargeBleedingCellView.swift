@@ -41,6 +41,7 @@ struct LargeBleedingCellView: View {
     }
 }
 
+
 struct LargeBleedingCellView_Previews: PreviewProvider {
     static var previews: some View {
         LargeBleedingCellView(bleeding: BleedingModel.bleeding1)

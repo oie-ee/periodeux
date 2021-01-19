@@ -19,13 +19,10 @@ struct SmallSymptomCellView: View {
         }
     }
 }
+
+
 struct SymptomRowView_Previews: PreviewProvider {
     static var previews: some View {
         SmallSymptomCellView(symptom: SymptomModel.symptom2)
     }
 }
-
-
-
-
-
