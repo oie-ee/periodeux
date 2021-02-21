@@ -3,7 +3,8 @@ import SwiftUI
 
 struct CountdownView: View {
     
-    @State var daysTilPeriod: Int = 20
+    @EnvironmentObject var appStore : AppStore
+    
     
     // MARK: - Body
     var body: some View {
@@ -34,7 +35,7 @@ struct CountdownView: View {
                     .frame(width: 46, height: 46)
                     .offset(y: -4.0)
                 
-                Text("\(daysTilPeriod)")
+                Text("\(appStore.daysTilPeriod)")
                     .font(.title)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .foregroundColor(ColorManager.highlightOrange)

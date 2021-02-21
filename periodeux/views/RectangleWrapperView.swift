@@ -3,6 +3,8 @@ import SwiftUI
 
 struct RectangleWrapperView: View {
     
+    @EnvironmentObject var appStore : AppStore
+    
     // MARK: - Body
     var body: some View {
         
@@ -18,7 +20,6 @@ struct RectangleWrapperView: View {
             VStack{
                 
                 CalendarView()
-                
                 //Divider
                 Divider()
                     .padding([.leading, .trailing], 12.0)

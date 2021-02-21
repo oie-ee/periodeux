@@ -113,6 +113,15 @@ struct CalendarView: View {
         return addCycleLengthDays(date: lastDayOfPeriodDate7)
     }
     // MARK: - End Of Period Calculation
+    
+    //Calculate days til next period start
+    var daysBetweenDates: Int {
+        let startDate = currentDate
+        let endDate = firstDayOfPeriodDate3
+        
+        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
+        return components.day! + 1
+    }
         
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
@@ -355,6 +364,9 @@ struct CalendarView: View {
             }.padding([.leading, .trailing], 8)
             
         }
+        .onAppear {
+            appStore.daysTilPeriod = daysBetweenDates
+        }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
                     .onEnded({ value in
@@ -430,6 +442,8 @@ struct CalendarView: View {
         return "none"
     }
     
+    
+    
 }
 
 // MARK: - RoundedCorners
@@ -469,12 +483,5 @@ struct RoundedCorners: Shape {
                     startAngle: Angle(degrees: 180), endAngle: Angle(degrees: 270), clockwise: false)
         
         return path
-    }
-}
-
-// MARK: - Preview
-struct CalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarView()
     }
 }
