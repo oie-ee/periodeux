@@ -14,7 +14,8 @@ struct InfoInputView: View {
     
     @State var selectedDiaryTag = 0
     
-    @State var exampleFilledDay = "02.01.2021 01:00"
+    @State var exampleFilledDay = "03 February 2021 01:00"
+    @State var exampleFilledDay2 = "03 March 2021 01:00"
     
     // MARK: - Body
     var body: some View {
@@ -50,7 +51,8 @@ struct InfoInputView: View {
             }
             
             //MoodAddIconCell
-            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay){
+            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay) ||
+               appStore.selectedDate == generateDateFromString(string: exampleFilledDay2){
                 
                 HStack{
                     
@@ -91,7 +93,8 @@ struct InfoInputView: View {
             }
             
             //SymptomsAddIconCell
-            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay){
+            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay) ||
+               appStore.selectedDate == generateDateFromString(string: exampleFilledDay2){
                 
                 HStack{
                     
@@ -131,7 +134,8 @@ struct InfoInputView: View {
             }
             
             //BleedingAddIconCell
-            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay){
+            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay) ||
+               appStore.selectedDate == generateDateFromString(string: exampleFilledDay2){
                 
                 HStack{
                     
@@ -157,7 +161,7 @@ struct InfoInputView: View {
     func generateDateFromString(string: String) -> Date{
         
         let stringFormatter = DateFormatter()
-        stringFormatter.dateFormat = "DD.MM.y HH:mm"
+        stringFormatter.dateFormat = "dd MMMM y HH:mm"
         
         return (stringFormatter.date(from: string) ?? Date())
     }

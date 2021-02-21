@@ -17,7 +17,7 @@ struct SmallBleedingCellView: View {
             Text(bleeding.name)
                 .font(.caption2)
                 .foregroundColor(.black)
-                .frame(width: 50, height: 48, alignment: .top)
+                .frame(width: 50, height: 30, alignment: .top)
                 .multilineTextAlignment(.center)
                 .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
         }
