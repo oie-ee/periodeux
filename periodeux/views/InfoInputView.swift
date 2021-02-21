@@ -14,7 +14,7 @@ struct InfoInputView: View {
     
     @State var selectedDiaryTag = 0
     
-    @State var exampleFilledDay = "03 February 2021 01:00"
+    @State var exampleFilledDay  = "03 February 2021 01:00"
     @State var exampleFilledDay2 = "03 March 2021 01:00"
     
     // MARK: - Body
@@ -65,11 +65,8 @@ struct InfoInputView: View {
                 AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
             }
             
-            Spacer()
-                .frame(height: 15)
             
             //Symptoms and Edit
-            
             HStack(alignment: .bottom){
                 
                 Text("Symptom")
@@ -106,9 +103,7 @@ struct InfoInputView: View {
             } else {
                 AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
             }
-            
-            Spacer()
-                .frame(height: 15)
+        
             
             //Bleeding and Edit
             HStack(alignment: .bottom){
@@ -209,6 +204,10 @@ struct AddIconCellView: View {
                 Text("Add")
                     .font(.caption2)
                     .foregroundColor(.black)
+                    //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
+                    .frame(width: 50, height: 30, alignment: .top)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
             }
             
         }.sheet(isPresented: $showingModalView) {
