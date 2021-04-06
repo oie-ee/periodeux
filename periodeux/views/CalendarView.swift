@@ -117,7 +117,12 @@ struct CalendarView: View {
     //Calculate days til next period start
     var daysBetweenDates: Int {
         let startDate = currentDate
-        let endDate = firstDayOfPeriodDate3
+        let endDate = firstDayOfPeriodDate4
+        
+        //Escape
+        if(currentDate >= endDate) {
+            return 20
+        }
         
         let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
         return components.day! + 1
@@ -369,17 +374,17 @@ struct CalendarView: View {
         }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
-                    .onEnded({ value in
-                        if value.translation.width < 0 {
-                            // left
-                            self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
-                        }
-                        
-                        if value.translation.width > 0 {
-                            // right
-                            self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
-                        }
-                    }))
+            .onEnded({ value in
+                if value.translation.width < 0 {
+                    // left
+                    self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
+                }
+                
+                if value.translation.width > 0 {
+                    // right
+                    self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
+                }
+            }))
     }
     
     //Generate Date From Day/Month/Year Int
