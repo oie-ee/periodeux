@@ -9,12 +9,18 @@ struct LargeMoodCellView: View {
     var mood: MoodModel
     @State var isSelected = false
     
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
+    
     // MARK: - Body
     var body: some View {
         
         Button(action: {
             print("\(mood.name) was selected")
             isSelected.toggle()
+            
+            // HOOK Save Report
+            reportStore.create(name: mood.name, date: appStore.selectedDate)
         }, label: {
             
             VStack {

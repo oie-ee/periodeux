@@ -4,7 +4,6 @@ import SwiftUI
 import RealmSwift
 
 struct Report: Identifiable, Hashable {
-    
     let id          : Int
     let name        : String
     let date        : Date
@@ -14,11 +13,9 @@ struct Report: Identifiable, Hashable {
 extension Report {
     
     init(reportDB: ReportDB) {
-    
-    id              = reportDB.id
-    name            = reportDB.name
-    date            = reportDB.date
-    reportID        = reportDB.reportID
-        
+        id              = reportDB.id
+        name            = reportDB.name
+        date            = reportDB.date
+        reportID        = reportDB.reportID
     }
 }
