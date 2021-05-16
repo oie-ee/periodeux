@@ -7,5 +7,6 @@ enum ReportDBKeys: String {
     case name           = "name"
     case date           = "date"
     case reportID       = "reportID"
+    case moodList       = "moodList"
     
 }

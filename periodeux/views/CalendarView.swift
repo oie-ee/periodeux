@@ -28,8 +28,8 @@ struct CalendarView: View {
     
     
     // MARK: - Start Of Period Calculation
-    @State private var firstDayOfPeriod: String = "11.01.2021 01:00"
-    @State private var lastDayOfPeriod: String = "16.01.2021 01:00"
+    @State private var firstDayOfPeriod: String = "11.01.2021 03:00"
+    @State private var lastDayOfPeriod: String = "16.01.2021 03:00"
     @State private var currentDate: Date = Date()
     
     var pastFirstDayOfPeriodDate11: Date {
@@ -392,7 +392,7 @@ struct CalendarView: View {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-        let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 01:00")
+        let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 03:00")
         
         return convertedDate
     }

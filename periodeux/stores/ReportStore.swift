@@ -38,9 +38,21 @@ final class ReportStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension ReportStore {
-    func create(name: String, date: Date) {
+    func create(date: Date, moodType: String, moodAction: Action) {
         
         objectWillChange.send()
+        
+        print("MOODACTION \(moodAction)")
+        
+        
+        // Escape for update rather than create a new report,
+        // if the report is already existing
+        let reportID = getExistingReportID(date: date)
+        
+        if(reportID != 0) {
+            self.update(reportID: reportID, date: date, moodType: moodType, moodAction: moodAction)
+            return
+        }
         
         do {
             let realm = try Realm()
@@ -49,8 +61,9 @@ extension ReportStore {
             
             let id = UUID().hashValue
             refDB.id = id
-            refDB.name = name
+            refDB.name = moodType
             refDB.date = date
+            refDB.moodList.append(moodType)
             
             try realm.write {
                 realm.add(refDB)
@@ -61,22 +74,27 @@ extension ReportStore {
         }
     }
     
-    func update(venueID: Int, venueName: String, venueLocation: String, venueStreet: String, venueCountry: String) {
+    func update(reportID: Int, date: Date, moodType: String, moodAction: Action) {
         // TODO: Add Realm update code below
         objectWillChange.send()
         
+        let report = self.findByID(id: reportID)!
+                
         do {
             let realm = try Realm()
+            
             try realm.write {
-                realm.create(ReportDB.self,
-                             value: [
-//                                VenueDBKeys.id.rawValue: venueID,
-//                                VenueDBKeys.name.rawValue: venueName,
-//                                VenueDBKeys.location.rawValue: venueLocation,
-//                                VenueDBKeys.street.rawValue: venueStreet,
-//                                VenueDBKeys.country.rawValue: venueCountry
-                             ],
-                             update: .modified)
+                let updatedReport = ReportDB()
+                
+                let newMoodList = self.updateList(report: report, action: moodAction, type: moodType)
+                
+                updatedReport.id = reportID
+                updatedReport.date = date
+                updatedReport.moodList = newMoodList
+                
+                
+                
+                realm.add(updatedReport, update: .modified)
             }
             
         } catch let err {
@@ -98,6 +116,56 @@ extension ReportStore {
         } catch let err {
             print(err.localizedDescription)
         }
+    }
+    
+    func getExistingReportID(date: Date) -> Int {
+        print("SELECTED DATE \(date)")
+        
+        // Returns the ReportID if the Dates are matching
+        for report in self.reports {
+            if(self.checkDatesForSameDay(firstDate: report.date, secondDate: date)) {
+                return report.id
+            }
+        }
+                
+        return 0
+    }
+    
+    func checkDatesForSameDay(firstDate: Date, secondDate: Date) -> Bool {
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        
+        let a = formatter.string(from: firstDate)
+        let b = formatter.string(from: secondDate)
+        
+        if(a == b) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func updateList (report: ReportDB, action: Action, type: String) -> RealmSwift.List<String> {
+        // Append new Items to MoodList
+        var newMoodList : RealmSwift.List<String>
+        newMoodList = report.moodList
+        
+        if(action == .add) {
+            newMoodList.append(type)
+        }
+        
+        if (action == .remove) {
+            let index = newMoodList.index(of: type) ?? Int.max
+            
+            if(index != Int.max) {
+                newMoodList.remove(at: index)
+            }
+        }
+        
+        return newMoodList
     }
 }
 

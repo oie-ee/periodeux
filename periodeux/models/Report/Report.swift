@@ -8,6 +8,7 @@ struct Report: Identifiable, Hashable {
     let name        : String
     let date        : Date
     let reportID    : Int
+    let moodList    : RealmSwift.List<String>
 }
 
 extension Report {
@@ -17,5 +18,6 @@ extension Report {
         name            = reportDB.name
         date            = reportDB.date
         reportID        = reportDB.reportID
+        moodList        = reportDB.moodList
     }
 }

@@ -4,6 +4,20 @@
 
 import SwiftUI
 
+enum Action  {
+    case add
+    case remove
+    
+    var bool: Bool {
+        switch self {
+        case .add:
+            return true
+        default:
+            return false
+        }
+    }
+}
+
 struct LargeMoodCellView: View {
     
     var mood: MoodModel
@@ -12,15 +26,26 @@ struct LargeMoodCellView: View {
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
+    @State var moods: [MoodModel] = dummyMoodData
+    
     // MARK: - Body
     var body: some View {
         
         Button(action: {
             print("\(mood.name) was selected")
-            isSelected.toggle()
             
             // HOOK Save Report
-            reportStore.create(name: mood.name, date: appStore.selectedDate)
+            var action : Action
+            
+            if(isSelected) {
+                action = Action.remove
+            } else {
+                action = Action.add
+            }
+            
+            isSelected.toggle()
+            
+            reportStore.create(date: appStore.selectedDate, moodType: mood.name, moodAction: action)
         }, label: {
             
             VStack {
