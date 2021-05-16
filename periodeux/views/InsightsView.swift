@@ -112,17 +112,17 @@ struct InsightsView: View {
                         ScrollView(.horizontal) {
                             
                             HStack(spacing: 5){
-                                LargeMoodCellView(mood: MoodModel.mood5)
+                                LargeMoodCellView(mood: MoodModel.mood5, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood7)
+                                LargeMoodCellView(mood: MoodModel.mood7, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood1)
+                                LargeMoodCellView(mood: MoodModel.mood1, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood2)
+                                LargeMoodCellView(mood: MoodModel.mood2, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood11)
+                                LargeMoodCellView(mood: MoodModel.mood11, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood8)
+                                LargeMoodCellView(mood: MoodModel.mood8, isSelected: false)
                                     .disabled(true)
                             }.padding(.bottom, 32)
                             
@@ -171,15 +171,15 @@ struct InsightsView: View {
                         ScrollView(.horizontal) {
                             
                             HStack(spacing: 5){
-                                LargeMoodCellView(mood: MoodModel.mood1)
+                                LargeMoodCellView(mood: MoodModel.mood1, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood13)
+                                LargeMoodCellView(mood: MoodModel.mood13, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood6)
+                                LargeMoodCellView(mood: MoodModel.mood6, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood4)
+                                LargeMoodCellView(mood: MoodModel.mood4, isSelected: false)
                                     .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood10)
+                                LargeMoodCellView(mood: MoodModel.mood10, isSelected: false)
                                     .disabled(true)
                             }
                         }

@@ -104,15 +104,43 @@ struct Mood : View {
         GridItem(.flexible())
     ]
     
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
+    
     @State var moods: [MoodModel] = dummyMoodData
+    
     
     var body : some View{
         LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
             
-            ForEach(moods){
-                mood in
-                LargeMoodCellView(mood: mood)
+            let existingReport = reportStore.getExistingReportID(date: appStore.selectedDate)
+            
+            // When no Report is currently existing display the default
+            // one with every mood set to false
+            if(existingReport == 0) {
+                ForEach(moods){
+                    mood in
+                    LargeMoodCellView(mood: mood, isSelected: false)
+                }
             }
+            
+            else {
+                let report = reportStore.findByID(id: existingReport)!
+                
+                ForEach(moods) {
+                    mood in
+                        let selectedMood = report.moodList.index(of: mood.name) ?? Int.max
+                        if(selectedMood != Int.max) {
+                            LargeMoodCellView(mood: mood, isSelected: true)
+                        } else {
+                            LargeMoodCellView(mood: mood, isSelected: false)
+                        }
+                        
+                }
+            }
+            
+            
+            
         }.padding([.leading, .trailing])
         
         Spacer()

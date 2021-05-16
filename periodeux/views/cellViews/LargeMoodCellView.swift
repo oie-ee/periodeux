@@ -21,7 +21,7 @@ enum Action  {
 struct LargeMoodCellView: View {
     
     var mood: MoodModel
-    @State var isSelected = false
+    @State var isSelected : Bool
     
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
@@ -75,9 +75,3 @@ struct LargeMoodCellView: View {
     }
 }
 
-// MARK: - Preview
-struct LargeMoodCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        LargeMoodCellView(mood: MoodModel.mood1)
-    }
-}

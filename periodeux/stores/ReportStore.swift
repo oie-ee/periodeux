@@ -47,7 +47,7 @@ extension ReportStore {
         
         // Escape for update rather than create a new report,
         // if the report is already existing
-        let reportID = getExistingReportID(date: date)
+        let reportID = self.getExistingReportID(date: date)
         
         if(reportID != 0) {
             self.update(reportID: reportID, date: date, moodType: moodType, moodAction: moodAction)
