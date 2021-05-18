@@ -143,15 +143,15 @@ struct InsightsView: View {
                         ScrollView(.horizontal) {
                             
                             HStack(spacing: 5){
-                                LargeSymptomCellView(symptom: SymptomModel.symptom4)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom4, isSelected: false)
                                     .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom3)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom3, isSelected: false)
                                     .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom5)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom5, isSelected: false)
                                     .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom10)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom10, isSelected: false)
                                     .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom1)
+                                LargeSymptomCellView(symptom: SymptomModel.symptom1, isSelected: false)
                                     .disabled(true)
                             }.padding(.bottom, 32)
                         }

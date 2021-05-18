@@ -4,17 +4,49 @@
 
 import SwiftUI
 
+//enum Action  {
+//    case add
+//    case remove
+//
+//    var bool: Bool {
+//        switch self {
+//        case .add:
+//            return true
+//        default:
+//            return false
+//        }
+//    }
+//}
+
 struct LargeSymptomCellView: View {
     
     var symptom: SymptomModel
-    @State var isSelected = false
+    @State var isSelected : Bool
+    
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
+    
+    @State var symptoms: [SymptomModel] = dummySymptomData
     
     // MARK: - Body
     var body: some View {
         
         Button(action: {
             print("\(symptom.name) was selected")
+            
+            // HOOK Save Report
+            var action : Action
+            
+            if(isSelected) {
+                action = Action.remove
+            } else {
+                action = Action.add
+            }
+            
             isSelected.toggle()
+            
+            reportStore.create(date: appStore.selectedDate, moodType: "", moodAction: action, symptomType: symptom.name, symptomAction: action)
+            
         }, label: {
             
             VStack {
@@ -41,12 +73,5 @@ struct LargeSymptomCellView: View {
                     .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
             }
         })
-    }
-}
-
-// MARK: - Preview
-struct LargeSymptomCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        LargeSymptomCellView(symptom: SymptomModel.symptom1)
     }
 }

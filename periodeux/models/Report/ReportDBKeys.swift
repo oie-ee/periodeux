@@ -8,5 +8,7 @@ enum ReportDBKeys: String {
     case date           = "date"
     case reportID       = "reportID"
     case moodList       = "moodList"
+    case symptomList    = "symptomList"
+    //bleeding fehlt
     
 }

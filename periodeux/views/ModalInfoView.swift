@@ -157,14 +157,38 @@ struct Symptom : View {
         GridItem(.flexible())
     ]
     
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
+    
     @State var symptoms: [SymptomModel] = dummySymptomData
     
     var body : some View{
         LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
             
-            ForEach(symptoms){
-                symptom in
-                LargeSymptomCellView(symptom: symptom)
+            let existingReport = reportStore.getExistingReportID(date: appStore.selectedDate)
+            
+            // When no Report is currently existing display the default
+            // one with every mood set to false
+            if(existingReport == 0) {
+                ForEach(symptoms){
+                    symptom in
+                    LargeSymptomCellView(symptom: symptom, isSelected: false)
+                }
+            }
+            
+            else {
+                let report = reportStore.findByID(id: existingReport)!
+                
+                ForEach(symptoms) {
+                    symptom in
+                        let selectedSymptom = report.symptomList.index(of: symptom.name) ?? Int.max
+                        if(selectedSymptom != Int.max) {
+                            LargeSymptomCellView(symptom: symptom, isSelected: true)
+                        } else {
+                            LargeSymptomCellView(symptom: symptom, isSelected: false)
+                        }
+                        
+                }
             }
         }.padding([.leading, .trailing])
         

@@ -10,6 +10,8 @@ class ReportDB: Object {
     @objc dynamic var date = Date()
     @objc dynamic var reportID = 0
     var moodList = RealmSwift.List<String>()
+    var symptomList = RealmSwift.List<String>()
+    //bleeding fehlt
     
     //Defines the standard key – realm needs this for identification
     override static func primaryKey() -> String? {

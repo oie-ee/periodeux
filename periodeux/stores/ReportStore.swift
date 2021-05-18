@@ -38,7 +38,7 @@ final class ReportStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension ReportStore {
-    func create(date: Date, moodType: String, moodAction: Action) {
+    func create(date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action) {
         
         objectWillChange.send()
         
@@ -50,7 +50,7 @@ extension ReportStore {
         let reportID = self.getExistingReportID(date: date)
         
         if(reportID != 0) {
-            self.update(reportID: reportID, date: date, moodType: moodType, moodAction: moodAction)
+            self.update(reportID: reportID, date: date, moodType: moodType, moodAction: moodAction, symptomType: symptomType, symptomAction: symptomAction)
             return
         }
         
@@ -64,6 +64,7 @@ extension ReportStore {
             refDB.name = moodType
             refDB.date = date
             refDB.moodList.append(moodType)
+            refDB.symptomList.append(symptomType)
             
             try realm.write {
                 realm.add(refDB)
@@ -74,7 +75,7 @@ extension ReportStore {
         }
     }
     
-    func update(reportID: Int, date: Date, moodType: String, moodAction: Action) {
+    func update(reportID: Int, date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action) {
         // TODO: Add Realm update code below
         objectWillChange.send()
         
@@ -87,10 +88,12 @@ extension ReportStore {
                 let updatedReport = ReportDB()
                 
                 let newMoodList = self.updateList(report: report, action: moodAction, type: moodType)
+                let newSymptomList = self.updateSymptomList(report: report, action: symptomAction, type: symptomType)
                 
                 updatedReport.id = reportID
                 updatedReport.date = date
                 updatedReport.moodList = newMoodList
+                updatedReport.symptomList = newSymptomList
                 
                 
                 
@@ -166,6 +169,26 @@ extension ReportStore {
         }
         
         return newMoodList
+    }
+    
+    func updateSymptomList (report: ReportDB, action: Action, type: String) -> RealmSwift.List<String> {
+        // Append new Items to symptomList
+        var newSymptomList : RealmSwift.List<String>
+        newSymptomList = report.symptomList
+        
+        if(action == .add) {
+            newSymptomList.append(type)
+        }
+        
+        if (action == .remove) {
+            let index = newSymptomList.index(of: type) ?? Int.max
+            
+            if(index != Int.max) {
+                newSymptomList.remove(at: index)
+            }
+        }
+        
+        return newSymptomList
     }
 }
 

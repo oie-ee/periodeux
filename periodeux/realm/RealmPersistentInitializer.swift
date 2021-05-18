@@ -13,7 +13,7 @@ class RealmPersistent {
     static func initializer() -> Realm {
         do {
             let realm = try Realm()
-            print("Successsssfully connected to RealmDB")
+            print("Successfully connected to RealmDB")
             return realm
         }
         catch let err {
