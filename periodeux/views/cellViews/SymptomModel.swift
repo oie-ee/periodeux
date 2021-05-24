@@ -9,7 +9,7 @@ struct SymptomModel: Identifiable {
 
 extension SymptomModel {
     
-    static var symptom1  = SymptomModel(name: "All Is Well", imageIcon: "symptom:allIsWell")
+    static var symptom1  = SymptomModel(name: "All Is Well", imageIcon: "symptom:alliswell")
     static var symptom2  = SymptomModel(name: "Cramps", imageIcon: "symptom:cramps")
     static var symptom3  = SymptomModel(name: "Sensitive Breast", imageIcon: "symptom:sensitiveBreasts")
     static var symptom4  = SymptomModel(name: "Headache", imageIcon: "symptom:headache")

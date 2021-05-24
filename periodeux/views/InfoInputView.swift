@@ -14,10 +14,10 @@ struct InfoInputView: View {
     
     @State var selectedDiaryTag = 0
     
-    @State var currentReport : ReportDB = ReportDB()
-    
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
+    
+    @State var currentReport: ReportDB = ReportDB()
     
     // MARK: - Body
     var body: some View {
@@ -57,9 +57,12 @@ struct InfoInputView: View {
             AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
             
             HStack {
-                ForEach(currentReport.moodList, id: \.self) {
-                    Text("\($0)…")
-//                    SmallMoodCellView(mood: ".mood6")
+                ForEach(appStore.currentReport.moodList, id: \.self) {
+                    let iconName = String($0.lowercased().filter { !" \n\t\r".contains($0) })
+                    
+                    let model = MoodModel(name: $0, imageIcon: "mood:\(iconName)")
+                    
+                    SmallMoodCellView(mood: model)
                 }
             }
             
@@ -91,6 +94,16 @@ struct InfoInputView: View {
             
             AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
             
+            HStack {
+                ForEach(appStore.currentReport.symptomList, id: \.self) {
+                    let iconName = String($0.lowercased().filter { !" \n\t\r".contains($0) })
+                    
+                    let model = SymptomModel(name: $0, imageIcon: "symptom:\(iconName)")
+                    
+                    SmallSymptomCellView(symptom: model)
+                }
+            }
+            
         
             //Bleeding and Edit
             HStack(alignment: .bottom){
@@ -117,12 +130,26 @@ struct InfoInputView: View {
             
             //BleedingAddIconCell
             
-            AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
             
-        }.onAppear{
+            
+            HStack {
+                let bleeding = appStore.currentReport.bleeding
+                
+                if(bleeding != Int.min){
+                    let model = bleedingModel[bleeding]
+                    SmallBleedingCellView(bleeding: model)
+                }
+                else {
+                    AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
+                }
+                
+            }
+            
+        }.onAppear {
             let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
             if(reportID != 0) {
-                self.currentReport = reportStore.findByID(id: reportID)
+                let report = reportStore.findByID(id: reportID)
+                appStore.currentReport = report!
             }
         }
     }
@@ -147,15 +174,7 @@ struct InfoInputView: View {
     }
 }
 
-// MARK: - Preview
-struct InfoInputView_Previews: PreviewProvider {
-    
-    @State var selectedDiaryTag: Int
-    
-    static var previews: some View {
-        InfoInputView(selectedDiaryTag: 0)
-    }
-}
+
 
 // MARK: - Add Icon Cells
 struct AddIconCellView: View {

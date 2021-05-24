@@ -239,7 +239,9 @@ struct Bleeding : View {
     func generateIsActiveArrayFromReport (report: ReportDB) -> [Bool] {
         var isActive : [Bool] = [false, false, false, false]
         
-        isActive[report.bleeding] = true
+        if(report.bleeding != Int.min) {
+            isActive[report.bleeding] = true
+        }
         
         return isActive
     }

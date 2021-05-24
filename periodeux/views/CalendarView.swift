@@ -17,6 +17,7 @@ struct CalendarView: View {
     @State var selectedDayArray = [Bool](repeating: false, count: 32)
     
     @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
     
     var firstWeekday: Int {
         return self.calendar.firstWeekday
@@ -218,11 +219,20 @@ struct CalendarView: View {
                             
                             Button(action: {
                                 
-                                appStore.selectedDate = generateDateFromSelectedDay(
+                                let selectedDate = generateDateFromSelectedDay(
                                     day: selectedDay,
                                     month: self.selectedMonth,
                                     year: self.selectedYear
                                 ) ?? Date()
+                                
+                                appStore.selectedDate = selectedDate
+                                
+                                let reportID = reportStore.getExistingReportID(date: selectedDate)
+                                if(reportID != 0) {
+                                    let report = reportStore.findByID(id: reportID)
+                                    appStore.currentReport = report!
+                                }
+                            
                                 
                                 selectedDayArray =  [Bool](repeating: false, count: 32)
                                 

@@ -4,6 +4,7 @@ import SwiftUI
 struct RectangleWrapperView: View {
     
     @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
     
     // MARK: - Body
     var body: some View {

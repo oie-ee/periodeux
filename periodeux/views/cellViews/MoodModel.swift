@@ -14,7 +14,7 @@ extension MoodModel {
     static var mood2  = MoodModel(name: "Happy", imageIcon: "mood:happy")
     static var mood3  = MoodModel(name: "Energetic", imageIcon: "mood:energetic")
     static var mood4  = MoodModel(name: "Playful", imageIcon: "mood:playful")
-    static var mood5  = MoodModel(name: "Mood Swings", imageIcon: "mood:moodswing")
+    static var mood5  = MoodModel(name: "Mood Swings", imageIcon: "mood:moodswings")
     static var mood6  = MoodModel(name: "Irritable", imageIcon: "mood:irritable")
     static var mood7  = MoodModel(name: "Sad", imageIcon: "mood:sad")
     static var mood8  = MoodModel(name: "Anxious", imageIcon: "mood:anxious")
