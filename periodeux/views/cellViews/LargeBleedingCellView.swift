@@ -3,7 +3,6 @@
 // MARK: - LargeBleedingCellView
 //this is a larger Icon and Title display for the detailed ModalInfoView
 
-
 import SwiftUI
 
 struct LargeBleedingCellView: View {
@@ -11,12 +10,17 @@ struct LargeBleedingCellView: View {
     var bleeding: BleedingModel
     @State var isSelected = false
     
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
+    
     // MARK: - Body
     var body: some View {
         
         Button(action: {
             print("\(bleeding.name) was selected")
             isSelected.toggle()
+            
+            reportStore.create(date: appStore.selectedDate, moodType: "", moodAction: .none , symptomType: "", symptomAction: .none, bleeding: self.convertBleedingTypeToInteger(type: bleeding.name))
         }, label: {
             
             VStack {
@@ -44,6 +48,19 @@ struct LargeBleedingCellView: View {
             }
         })
     }
+    
+    func convertBleedingTypeToInteger (type: String) -> Int {
+        if(type == "No Bleeding") { return 0 }
+        
+        if(type == "Light") { return 1 }
+        
+        if(type == "Regular") { return 2 }
+        
+        if(type == "Heavy") { return 3 }
+        
+        return Int.min
+    }
+
 }
 
 // MARK: - Preview

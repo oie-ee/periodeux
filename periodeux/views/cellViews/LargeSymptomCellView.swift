@@ -4,20 +4,6 @@
 
 import SwiftUI
 
-//enum Action  {
-//    case add
-//    case remove
-//
-//    var bool: Bool {
-//        switch self {
-//        case .add:
-//            return true
-//        default:
-//            return false
-//        }
-//    }
-//}
-
 struct LargeSymptomCellView: View {
     
     var symptom: SymptomModel
@@ -45,7 +31,7 @@ struct LargeSymptomCellView: View {
             
             isSelected.toggle()
             
-            reportStore.create(date: appStore.selectedDate, moodType: "", moodAction: action, symptomType: symptom.name, symptomAction: action)
+            reportStore.create(date: appStore.selectedDate, moodType: "", moodAction: action, symptomType: symptom.name, symptomAction: action, bleeding: Int.min)
             
         }, label: {
             

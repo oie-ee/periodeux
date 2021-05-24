@@ -7,11 +7,14 @@ import SwiftUI
 enum Action  {
     case add
     case remove
+    case none
     
     var bool: Bool {
         switch self {
         case .add:
             return true
+        case .none:
+            return false
         default:
             return false
         }
@@ -45,7 +48,7 @@ struct LargeMoodCellView: View {
             
             isSelected.toggle()
             
-            reportStore.create(date: appStore.selectedDate, moodType: mood.name, moodAction: action, symptomType: "", symptomAction: action)
+            reportStore.create(date: appStore.selectedDate, moodType: mood.name, moodAction: action, symptomType: "", symptomAction: action, bleeding: Int.min)
         }, label: {
             
             VStack {

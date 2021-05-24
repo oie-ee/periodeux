@@ -10,7 +10,8 @@ struct Report: Identifiable, Hashable {
     let reportID    : Int
     let moodList    : RealmSwift.List<String>
     let symptomList : RealmSwift.List<String>
-    //bleeding fehlt
+    let bleeding    : Int
+   
 }
 
 extension Report {
@@ -22,6 +23,7 @@ extension Report {
         reportID        = reportDB.reportID
         moodList        = reportDB.moodList
         symptomList     = reportDB.symptomList
-        //bleeding fehlt
+        bleeding        = reportDB.bleeding
+        
     }
 }

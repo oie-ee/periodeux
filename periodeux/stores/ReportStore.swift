@@ -38,7 +38,7 @@ final class ReportStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension ReportStore {
-    func create(date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action) {
+    func create(date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action, bleeding: Int) {
         
         objectWillChange.send()
         
@@ -50,7 +50,16 @@ extension ReportStore {
         let reportID = self.getExistingReportID(date: date)
         
         if(reportID != 0) {
-            self.update(reportID: reportID, date: date, moodType: moodType, moodAction: moodAction, symptomType: symptomType, symptomAction: symptomAction)
+            self.update(
+                reportID: reportID,
+                date: date,
+                moodType: moodType,
+                moodAction: moodAction,
+                symptomType: symptomType,
+                symptomAction: symptomAction,
+                bleeding: bleeding
+            
+            )
             return
         }
         
@@ -63,8 +72,16 @@ extension ReportStore {
             refDB.id = id
             refDB.name = moodType
             refDB.date = date
-            refDB.moodList.append(moodType)
-            refDB.symptomList.append(symptomType)
+            
+            refDB.bleeding = bleeding
+            
+            if(!moodType.isEmpty) {
+                refDB.moodList.append(moodType)
+            }
+            
+            if(!symptomType.isEmpty) {
+                refDB.symptomList.append(symptomType)
+            }
             
             try realm.write {
                 realm.add(refDB)
@@ -75,7 +92,7 @@ extension ReportStore {
         }
     }
     
-    func update(reportID: Int, date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action) {
+    func update(reportID: Int, date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action, bleeding: Int) {
         // TODO: Add Realm update code below
         objectWillChange.send()
         
@@ -92,10 +109,9 @@ extension ReportStore {
                 
                 updatedReport.id = reportID
                 updatedReport.date = date
+                updatedReport.bleeding = bleeding
                 updatedReport.moodList = newMoodList
                 updatedReport.symptomList = newSymptomList
-                
-                
                 
                 realm.add(updatedReport, update: .modified)
             }
@@ -156,6 +172,10 @@ extension ReportStore {
         var newMoodList : RealmSwift.List<String>
         newMoodList = report.moodList
         
+        if(type.isEmpty) {
+            return newMoodList
+        }
+        
         if(action == .add) {
             newMoodList.append(type)
         }
@@ -175,6 +195,10 @@ extension ReportStore {
         // Append new Items to symptomList
         var newSymptomList : RealmSwift.List<String>
         newSymptomList = report.symptomList
+        
+        if(type.isEmpty) {
+            return newSymptomList
+        }
         
         if(action == .add) {
             newSymptomList.append(type)
