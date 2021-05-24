@@ -1,9 +1,7 @@
 //
 //  RealmPersistentInitializer.swift
 //  periodeux
-//
-//  Created by Felix Tesche on 15.05.21.
-//
+
 
 import Foundation
 import RealmSwift

@@ -1,9 +1,7 @@
 //
 //  ReportStore.swift
 //  periodeux
-//
-//  Created by Felix Tesche on 15.05.21.
-//
+
 
 import Foundation
 import RealmSwift
@@ -73,7 +71,9 @@ extension ReportStore {
             refDB.name = moodType
             refDB.date = date
             
-            refDB.bleeding = bleeding
+            if(bleeding >= 0) {
+                refDB.bleeding = bleeding
+            }
             
             if(!moodType.isEmpty) {
                 refDB.moodList.append(moodType)
@@ -82,7 +82,7 @@ extension ReportStore {
             if(!symptomType.isEmpty) {
                 refDB.symptomList.append(symptomType)
             }
-            
+         
             try realm.write {
                 realm.add(refDB)
             }

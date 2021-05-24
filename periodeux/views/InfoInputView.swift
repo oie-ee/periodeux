@@ -22,6 +22,15 @@ struct InfoInputView: View {
     // MARK: - Body
     var body: some View {
         
+        let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+        
         VStack(alignment: .leading){
             
             // Section Headline
@@ -54,9 +63,8 @@ struct InfoInputView: View {
             
             //MoodAddIconCell
             
-            AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
-            
-            HStack {
+            LazyVGrid(columns: columns) {
+                
                 ForEach(appStore.currentReport.moodList, id: \.self) {
                     let iconName = String($0.lowercased().filter { !" \n\t\r".contains($0) })
                     
@@ -64,7 +72,11 @@ struct InfoInputView: View {
                     
                     SmallMoodCellView(mood: model)
                 }
+                
+                AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+                
             }
+   
             
             //Symptoms and Edit
             HStack(alignment: .bottom){
@@ -91,10 +103,7 @@ struct InfoInputView: View {
             
             //SymptomsAddIconCell
             
-            
-            AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
-            
-            HStack {
+            LazyVGrid(columns: columns) {
                 ForEach(appStore.currentReport.symptomList, id: \.self) {
                     let iconName = String($0.lowercased().filter { !" \n\t\r".contains($0) })
                     
@@ -102,6 +111,8 @@ struct InfoInputView: View {
                     
                     SmallSymptomCellView(symptom: model)
                 }
+                
+                AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
             }
             
         

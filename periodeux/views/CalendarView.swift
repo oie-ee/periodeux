@@ -118,7 +118,7 @@ struct CalendarView: View {
     //Calculate days til next period start
     var daysBetweenDates: Int {
         let startDate = currentDate
-        let endDate = firstDayOfPeriodDate4
+        let endDate = firstDayOfPeriodDate6
         
         //Escape
         if(currentDate >= endDate) {
