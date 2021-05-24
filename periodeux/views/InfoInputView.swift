@@ -5,17 +5,19 @@ import SwiftUI
 struct InfoInputView: View {
     
     // MARK: - Properties
-    @EnvironmentObject var appStore : AppStore
     
-    @State var moods: [MoodModel] = dummyMoodData
-    @State var symptoms: [SymptomModel] = dummySymptomData
-    @State var bleedings: [BleedingModel] = dummyBleedingData
+    
+    @State var moods: [MoodModel] = moodModel
+    @State var symptoms: [SymptomModel] = symptomModel
+    @State var bleedings: [BleedingModel] = bleedingModel
     @State var showingModalView = false
     
     @State var selectedDiaryTag = 0
     
-    @State var exampleFilledDay  = "03 February 2021 01:00"
-    @State var exampleFilledDay2 = "03 March 2021 01:00"
+    @State var currentReport : ReportDB = ReportDB()
+    
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
     
     // MARK: - Body
     var body: some View {
@@ -51,20 +53,15 @@ struct InfoInputView: View {
             }
             
             //MoodAddIconCell
-            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay) ||
-               appStore.selectedDate == generateDateFromString(string: exampleFilledDay2){
-                
-                HStack{
-                    
-                    SmallMoodCellView(mood: MoodModel.mood6)
-                    SmallMoodCellView(mood: MoodModel.mood5)
-                    SmallMoodCellView(mood: MoodModel.mood8)
-                    
-                }
-            }else {
-                AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
-            }
             
+            AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+            
+            HStack {
+                ForEach(currentReport.moodList, id: \.self) {
+                    Text("\($0)…")
+//                    SmallMoodCellView(mood: ".mood6")
+                }
+            }
             
             //Symptoms and Edit
             HStack(alignment: .bottom){
@@ -90,21 +87,11 @@ struct InfoInputView: View {
             }
             
             //SymptomsAddIconCell
-            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay) ||
-               appStore.selectedDate == generateDateFromString(string: exampleFilledDay2){
-                
-                HStack{
-                    
-                    SmallSymptomCellView(symptom: SymptomModel.symptom3)
-                    SmallSymptomCellView(symptom: SymptomModel.symptom2)
-                    SmallSymptomCellView(symptom: SymptomModel.symptom5)
-                    SmallSymptomCellView(symptom: SymptomModel.symptom11)
-                }
-            } else {
-                AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
-            }
-        
             
+            
+            AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+            
+        
             //Bleeding and Edit
             HStack(alignment: .bottom){
                 
@@ -129,15 +116,13 @@ struct InfoInputView: View {
             }
             
             //BleedingAddIconCell
-            if appStore.selectedDate == generateDateFromString(string: exampleFilledDay) ||
-               appStore.selectedDate == generateDateFromString(string: exampleFilledDay2){
-                
-                HStack{
-                    
-                    SmallBleedingCellView(bleeding: BleedingModel.bleeding1)
-                }
-            } else {
-                AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
+            
+            AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
+            
+        }.onAppear{
+            let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
+            if(reportID != 0) {
+                self.currentReport = reportStore.findByID(id: reportID)
             }
         }
     }

@@ -15,4 +15,4 @@ extension BleedingModel {
     static var bleeding4 = BleedingModel(name: "Heavy", imageIcon: "bleeding:heavy")
 }
 
-let dummyBleedingData = [BleedingModel.bleeding1, BleedingModel.bleeding2, BleedingModel.bleeding3, BleedingModel.bleeding4]
+let bleedingModel = [BleedingModel.bleeding1, BleedingModel.bleeding2, BleedingModel.bleeding3, BleedingModel.bleeding4]

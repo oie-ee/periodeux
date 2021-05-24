@@ -12,7 +12,7 @@ struct LargeSymptomCellView: View {
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
-    @State var symptoms: [SymptomModel] = dummySymptomData
+    @State var symptoms: [SymptomModel] = symptomModel
     
     // MARK: - Body
     var body: some View {

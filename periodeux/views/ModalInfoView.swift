@@ -107,7 +107,7 @@ struct Mood : View {
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
-    @State var moods: [MoodModel] = dummyMoodData
+    @State var moods: [MoodModel] = moodModel
     
     
     var body : some View{
@@ -160,7 +160,7 @@ struct Symptom : View {
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
-    @State var symptoms: [SymptomModel] = dummySymptomData
+    @State var symptoms: [SymptomModel] = symptomModel
     
     var body : some View{
         LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
@@ -206,7 +206,7 @@ struct Bleeding : View {
         GridItem(.flexible())
     ]
     
-    @State var bleedings: [BleedingModel] = dummyBleedingData
+    @State var bleedings: [BleedingModel] = bleedingModel
     
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore

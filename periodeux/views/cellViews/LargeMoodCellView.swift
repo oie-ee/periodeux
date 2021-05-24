@@ -29,7 +29,7 @@ struct LargeMoodCellView: View {
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
-    @State var moods: [MoodModel] = dummyMoodData
+    @State var moods: [MoodModel] = moodModel
     
     // MARK: - Body
     var body: some View {
