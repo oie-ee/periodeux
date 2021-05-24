@@ -8,19 +8,38 @@ import SwiftUI
 struct LargeBleedingCellView: View {
     
     var bleeding: BleedingModel
-    @State var isSelected = false
+    var isSelected : Bool {
+        if(isActive[index] == true) {
+            return true
+        } else {
+            return false
+        }
+    }
     
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
+    
+    @Binding var isActive : [Bool]
+    
+    @State var index : Int
     
     // MARK: - Body
     var body: some View {
         
         Button(action: {
             print("\(bleeding.name) was selected")
-            isSelected.toggle()
             
-            reportStore.create(date: appStore.selectedDate, moodType: "", moodAction: .none , symptomType: "", symptomAction: .none, bleeding: self.convertBleedingTypeToInteger(type: bleeding.name))
+            isActive = [false, false, false, false]
+            isActive[index] = true
+            
+            reportStore.create(
+                date: appStore.selectedDate,
+                moodType: "",
+                moodAction: .none ,
+                symptomType: "",
+                symptomAction: .none,
+                bleeding: self.convertBleedingTypeToInteger(type: bleeding.name)
+            )
         }, label: {
             
             VStack {
@@ -63,9 +82,3 @@ struct LargeBleedingCellView: View {
 
 }
 
-// MARK: - Preview
-struct LargeBleedingCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        LargeBleedingCellView(bleeding: BleedingModel.bleeding1)
-    }
-}

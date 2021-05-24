@@ -208,14 +208,18 @@ struct Bleeding : View {
     
     @State var bleedings: [BleedingModel] = dummyBleedingData
     
+    @State var isActive : [Bool] = [false, false, false, false]
+    
     var body : some View{
         
         LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
             
-            ForEach(bleedings){
-                bleeding in
-                LargeBleedingCellView(bleeding: bleeding)
+            ForEach(Array(bleedings.enumerated()), id: \.offset) { index, bleeding in
+                
+                LargeBleedingCellView(bleeding: bleeding, isActive: $isActive, index: index)
+                
             }
+
         }.padding([.leading, .trailing])
         
         Spacer()
