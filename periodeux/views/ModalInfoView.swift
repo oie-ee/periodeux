@@ -208,20 +208,39 @@ struct Bleeding : View {
     
     @State var bleedings: [BleedingModel] = dummyBleedingData
     
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
+    
     @State var isActive : [Bool] = [false, false, false, false]
     
-    var body : some View{
+    var body : some View {
         
         LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
-            
             ForEach(Array(bleedings.enumerated()), id: \.offset) { index, bleeding in
                 
                 LargeBleedingCellView(bleeding: bleeding, isActive: $isActive, index: index)
                 
             }
 
-        }.padding([.leading, .trailing])
+        }
+        .padding([.leading, .trailing])
+        .onAppear {
+            let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
+            if(reportID != 0) {
+                let report = reportStore.findByID(id: reportID)!
+                
+                self.isActive = self.generateIsActiveArrayFromReport(report: report)
+            }
+        }
         
         Spacer()
+    }
+    
+    func generateIsActiveArrayFromReport (report: ReportDB) -> [Bool] {
+        var isActive : [Bool] = [false, false, false, false]
+        
+        isActive[report.bleeding] = true
+        
+        return isActive
     }
 }
