@@ -70,7 +70,7 @@ struct InfoInputView: View {
                     
                     let model = MoodModel(name: $0, imageIcon: "mood:\(iconName)")
                     
-                    SmallMoodCellView(mood: model)
+                    SmallMoodCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag, mood: model)
                 }
                 
                 AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
@@ -109,7 +109,7 @@ struct InfoInputView: View {
                     
                     let model = SymptomModel(name: $0, imageIcon: "symptom:\(iconName)")
                     
-                    SmallSymptomCellView(symptom: model)
+                    SmallSymptomCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag, symptom: model)
                 }
                 
                 AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
@@ -139,16 +139,12 @@ struct InfoInputView: View {
                 
             }
             
-            //BleedingAddIconCell
-            
-            
-            
             HStack {
                 let bleeding = appStore.currentReport.bleeding
                 
                 if(bleeding != Int.min){
                     let model = bleedingModel[bleeding]
-                    SmallBleedingCellView(bleeding: model)
+                    SmallBleedingCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag, bleeding: model)
                 }
                 else {
                     AddIconCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag)
