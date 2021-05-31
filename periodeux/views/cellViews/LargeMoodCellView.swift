@@ -48,7 +48,7 @@ struct LargeMoodCellView: View {
             
             isSelected.toggle()
             
-            reportStore.create(date: appStore.selectedDate, moodType: mood.name, moodAction: action, symptomType: "", symptomAction: action, bleeding: Int.min)
+            reportStore.create(date: appStore.selectedDate, moodType: mood.name, moodAction: action, symptomType: "", symptomAction: action, bleeding: nil)
         }, label: {
             
             VStack {

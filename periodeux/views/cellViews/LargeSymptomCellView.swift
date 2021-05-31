@@ -31,7 +31,7 @@ struct LargeSymptomCellView: View {
             
             isSelected.toggle()
             
-            reportStore.create(date: appStore.selectedDate, moodType: "", moodAction: action, symptomType: symptom.name, symptomAction: action, bleeding: Int.min)
+            reportStore.create(date: appStore.selectedDate, moodType: "", moodAction: action, symptomType: symptom.name, symptomAction: action, bleeding: nil)
             
         }, label: {
             

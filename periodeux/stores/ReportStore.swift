@@ -36,7 +36,7 @@ final class ReportStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension ReportStore {
-    func create(date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action, bleeding: Int) {
+    func create(date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action, bleeding: Int? = nil) {
         
         objectWillChange.send()
         
@@ -71,10 +71,6 @@ extension ReportStore {
             refDB.name = moodType
             refDB.date = date
             
-            if(bleeding >= 0) {
-                refDB.bleeding = bleeding
-            }
-            
             if(!moodType.isEmpty) {
                 refDB.moodList.append(moodType)
             }
@@ -92,24 +88,31 @@ extension ReportStore {
         }
     }
     
-    func update(reportID: Int, date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action, bleeding: Int) {
+    func update(reportID: Int, date: Date, moodType: String, moodAction: Action, symptomType: String, symptomAction: Action, bleeding: Int? = nil) {
         // TODO: Add Realm update code below
         objectWillChange.send()
         
-        let report = self.findByID(id: reportID)!
+        let previousReport = self.findByID(id: reportID)!
                 
         do {
             let realm = try Realm()
             
             try realm.write {
                 let updatedReport = ReportDB()
+                updatedReport.id = reportID
                 
-                let newMoodList = self.updateList(report: report, action: moodAction, type: moodType)
-                let newSymptomList = self.updateSymptomList(report: report, action: symptomAction, type: symptomType)
+                let newMoodList = self.updateList(report: previousReport, action: moodAction, type: moodType)
+                let newSymptomList = self.updateSymptomList(report: previousReport, action: symptomAction, type: symptomType)
+                
+                if(bleeding == nil) {
+                    updatedReport.bleeding = previousReport.bleeding
+                }else {
+                    updatedReport.bleeding = bleeding!
+                }
                 
                 updatedReport.id = reportID
                 updatedReport.date = date
-                updatedReport.bleeding = bleeding
+                //updatedReport.bleeding = bleeding!
                 updatedReport.moodList = newMoodList
                 updatedReport.symptomList = newSymptomList
                 
