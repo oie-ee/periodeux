@@ -192,6 +192,7 @@ struct CalendarView: View {
                 //Right Chevron
                 Button(action: {
                     self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
+                    
                 }) {
                     Image(systemName: "chevron.right")
                         .resizable()

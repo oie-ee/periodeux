@@ -70,6 +70,8 @@ extension ReportStore {
             refDB.id = id
             refDB.name = moodType
             refDB.date = date
+            refDB.bleeding = Int.min
+           
             
             if(!moodType.isEmpty) {
                 refDB.moodList.append(moodType)
