@@ -19,7 +19,7 @@ struct CalendarView: View {
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
-    var firstWeekday: Int {
+    var firstWeekdayOfCalendar: Int {
         return self.calendar.firstWeekday
     }
     
@@ -141,17 +141,29 @@ struct CalendarView: View {
         return Calendar.current.component(.month, from: self.selectedDate)
     }
     
-    func weekdayPosition(_ elapsed: Int) -> Int {
-        let position = elapsed - (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
-        let firstPosition = (self.firstDayOfMonth - 1 - (self.firstWeekday - 1))
+    func weekdayPosition(_ cellNumber: Int) -> Int {
+        
+        let firstCellPositionOfMonth = self.firstWeekdayOfMonth - self.firstWeekdayOfCalendar + 1
+        let position = cellNumber - (self.firstWeekdayOfMonth - 1 - (self.firstWeekdayOfCalendar - 1))
+        let firstPosition = (self.firstWeekdayOfMonth - 1 - (self.firstWeekdayOfCalendar - 1))
         
         return firstPosition < 0 ? position - 7 : position
     }
     
-    var firstDayOfMonth: Int {
-        let firstDateOfMonthAMonthToMuch = self.calendar.date(bySetting: .day, value: 1, of: self.selectedDate) ?? Date()
-        let date = self.calendar.date(byAdding: .month, value: -1, to: firstDateOfMonthAMonthToMuch) ?? Date()
-        let weekday = self.calendar.component(.weekday, from: date)
+    
+    
+    func dateFromCellNumber(_ cellNumber: Int) -> Date? {
+        let firstCellPositionOfMonth = (self.firstWeekdayOfMonth - self.firstWeekdayOfCalendar + 7) % 7
+        let day = cellNumber - firstCellPositionOfMonth
+        
+        return day > 0 && day <= self.numberOfDays.count ?
+            self.generateDateFromSelectedDay(day: day, month: self.selectedMonth, year: self.selectedYear) : nil
+    }
+   
+    var firstWeekdayOfMonth: Int {
+        
+        let firstDayOfMonth = self.calendar.dateComponents([.calendar, .year,.month], from: self.selectedDate).date!
+        let weekday = self.calendar.component(.weekday, from: firstDayOfMonth)
         
         return weekday
     }
@@ -215,165 +227,12 @@ struct CalendarView: View {
                         ForEach(1..<8) {
                             column in
                             
-                            let daysElapsed = column + ((row - 1) * 7)
-                            let selectedDay = weekdayPosition(daysElapsed)
+                            let cellNumber = column + ((row - 1) * 7)
+                            let currentDate = dateFromCellNumber(cellNumber)
                             
-                            Button(action: {
-                                
-                                let selectedDate = generateDateFromSelectedDay(
-                                    day: selectedDay,
-                                    month: self.selectedMonth,
-                                    year: self.selectedYear
-                                ) ?? Date()
-                                
-                                appStore.selectedDate = selectedDate
-                                
-                                let reportID = reportStore.getExistingReportID(date: selectedDate)
-                                if(reportID != 0) {
-                                    let report = reportStore.findByID(id: reportID)
-                                    appStore.currentReport = report!
-                                }
+                            CalenderDayView(dayType: .ovulation, date: currentDate)
                             
-                                
-                                selectedDayArray =  [Bool](repeating: false, count: 32)
-                                
-                                selectedDayArray[selectedDay] = true
-                            }, label: {
-                                ZStack {
-                                    
-                                    let currentDate = generateDateFromSelectedDay(
-                                        day: selectedDay,
-                                        month: self.selectedMonth,
-                                        year: self.selectedYear
-                                    ) ?? Date()
-                                    
-                                    let visualTypeOfDay011 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: pastFirstDayOfPeriodDate11,
-                                        endInterval: pastLastDayOfPeriodDate11)
-                                    
-                                    let visualTypeOfDay012 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: pastFirstDayOfPeriodDate12,
-                                        endInterval: pastLastDayOfPeriodDate12)
-                                    
-                                    let visualTypeOfDay = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate,
-                                        endInterval: lastDayOfPeriodDate)
-                                    
-                                    let visualTypeOfDay2 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate2,
-                                        endInterval: lastDayOfPeriodDate2)
-                                    
-                                    let visualTypeOfDay3 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate3,
-                                        endInterval: lastDayOfPeriodDate3)
-                                    
-                                    let visualTypeOfDay4 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate4,
-                                        endInterval: lastDayOfPeriodDate4)
-                                    
-                                    let visualTypeOfDay5 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate5,
-                                        endInterval: lastDayOfPeriodDate5)
-                                    
-                                    let visualTypeOfDay6 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate6,
-                                        endInterval: lastDayOfPeriodDate6)
-                                    
-                                    let visualTypeOfDay7 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate7,
-                                        endInterval: lastDayOfPeriodDate7)
-                                    
-                                    let visualTypeOfDay8 = generateDateViewType(
-                                        date: currentDate,
-                                        startInterval: firstDayOfPeriodDate8,
-                                        endInterval: lastDayOfPeriodDate8)
-                                    
-                                    RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(.white)
-                                    
-                                    let arrayRange = 0...31
-                                    
-                                    if(arrayRange.contains(selectedDay)) {
-                                        Circle().foregroundColor(selectedDayArray[selectedDay] ? Color(UIColor.systemGray6) : .white)
-                                            .frame(height: 40)
-                                    } else {
-                                        Circle().foregroundColor(.white)
-                                            .frame(height: 40)
-                                    }
-                                    
-                                    if numberOfDays.contains(selectedDay) {
-                                        Text("\(selectedDay)")
-                                            .font(.title3)
-                                            .foregroundColor(.black)
-                                    }
-                                    
-                                    //current Date is highlighted
-                                    if  selectedDay == today && self.selectedMonth == currentMonth && self.selectedYear == currentYear{
-                                        Circle().foregroundColor(Color(UIColor.systemGray4)).opacity(0.7)
-                                            .frame(height: 40)
-                                        Text("\(selectedDay)")
-                                            .font(Font.title3.weight(.bold))
-                                            .foregroundColor(.black)
-                                    }
-                                    
-                                    //Day of Ovulation
-                                    if  selectedDay == 29 && self.selectedMonth == 11 && self.selectedYear == 2020 || selectedDay == 28 && self.selectedMonth == 12 && self.selectedYear == 2020 || selectedDay == 26 && self.selectedMonth == 1 && self.selectedYear == currentYear || selectedDay == 24 && self.selectedMonth == 2 && self.selectedYear == currentYear || selectedDay == 25 && self.selectedMonth == 3 && self.selectedYear == currentYear || selectedDay == 23 && self.selectedMonth == 4 && self.selectedYear == currentYear || selectedDay == 22 && self.selectedMonth == 5 && self.selectedYear == currentYear || selectedDay == 20 && self.selectedMonth == 6 && self.selectedYear == currentYear || selectedDay == 19 && self.selectedMonth == 7 && self.selectedYear == currentYear || selectedDay == 17 && self.selectedMonth == 8 && self.selectedYear == currentYear{
-                                        Circle().foregroundColor(Color(UIColor.systemTeal)).opacity(0.1)
-                                            .frame(height: 40)
-                                        Text("\(selectedDay)")
-                                            .font(Font.title3.weight(.semibold))
-                                            .foregroundColor(Color(UIColor.systemTeal))
-                                    }
-                                    
-                                    //FirstDay of Period
-                                    if  visualTypeOfDay == "startInterval" || visualTypeOfDay2 == "startInterval" || visualTypeOfDay3 == "startInterval" || visualTypeOfDay4 == "startInterval" || visualTypeOfDay5 == "startInterval" || visualTypeOfDay6 == "startInterval" || visualTypeOfDay7 == "startInterval" || visualTypeOfDay8 == "startInterval"  || visualTypeOfDay012 == "startInterval" || visualTypeOfDay011 == "startInterval"{
-                                        
-                                        RoundedCorners(tl: 40, tr: 0, bl: 40, br: 0)
-                                            .foregroundColor(ColorManager.backgroundOrange)
-                                            .frame(height: 40)
-                                            .offset(x: 5)
-                                        
-                                        Circle().foregroundColor(ColorManager.highlightOrange)
-                                            .frame(height: 40)
-                                        
-                                        Text("\(selectedDay)")
-                                            .font(Font.title3.weight(.regular))
-                                            .foregroundColor(.white)
-                                    }
-                                    
-                                    //Middle Days of Period
-                                    if  visualTypeOfDay == "isPeriod" || visualTypeOfDay2 == "isPeriod" || visualTypeOfDay3 == "isPeriod" || visualTypeOfDay4 == "isPeriod" || visualTypeOfDay5 == "isPeriod" || visualTypeOfDay6 == "isPeriod" || visualTypeOfDay7 == "isPeriod" || visualTypeOfDay8 == "isPeriod" || visualTypeOfDay012 == "isPeriod" || visualTypeOfDay011 == "isPeriod"{
-                                        
-                                        RoundedCorners(tl: 0, tr: 0, bl: 0, br: 0)
-                                            .foregroundColor(ColorManager.backgroundOrange)
-                                            .frame(height: 40)
-                                        
-                                        Text("\(selectedDay)")
-                                            .font(Font.title3.weight(.regular))
-                                            .foregroundColor(ColorManager.highlightOrange)
-                                    }
-                                    
-                                    //Last Day Of Period
-                                    if  visualTypeOfDay == "endInterval" || visualTypeOfDay2 == "endInterval" || visualTypeOfDay3 == "endInterval" || visualTypeOfDay4 == "endInterval" || visualTypeOfDay5 == "endInterval" || visualTypeOfDay6 == "endInterval" || visualTypeOfDay7 == "endInterval" || visualTypeOfDay8 == "endInterval"  || visualTypeOfDay012 == "endInterval" || visualTypeOfDay011 == "endInterval"{
-                                        
-                                        RoundedCorners(tl: 00, tr: 30, bl: 0, br: 30)
-                                            .foregroundColor(ColorManager.backgroundOrange)
-                                            .frame(height: 40)
-                                        
-                                        Text("\(selectedDay)")
-                                            .font(Font.title3.weight(.regular))
-                                            .foregroundColor(ColorManager.highlightOrange)
-                                    }
-                                }
-                            })
+                            
                         }
                     }
                 }
@@ -438,24 +297,26 @@ struct CalendarView: View {
     }
     
     //Generate String That Tells Period Yes/No From Dates
-    func generateDateViewType (date: Date, startInterval: Date, endInterval: Date) -> String {
-        if(date == startInterval) {
-            return "startInterval"
-        }
+    func generateDateViewType (date: Date) -> CalenderDayView.DayType {
         
-        if(date == endInterval) {
-            return "endInterval"
-        }
-        
-        if(date < startInterval || date > endInterval) {
-            return "noPeriod"
-        }
-        
-        if(date > startInterval && date < endInterval) {
-            return "isPeriod"
-        }
-        
-        return "none"
+        return .startInterval
+//        if(date == startInterval) {
+//            return .startInterval
+//        }
+//
+//        if(date == endInterval) {
+//            return .endInterval
+//        }
+//
+//        if(date < startInterval || date > endInterval) {
+//            return .noPeriod
+//        }
+//
+//        if(date > startInterval && date < endInterval) {
+//            return .inInterval
+//        }
+//
+//        return .none
     }
     
     
