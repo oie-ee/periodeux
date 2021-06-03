@@ -175,6 +175,7 @@ struct CalenderDayView: View {
             if dayEntry != nil {
                 Text("\(dayNumber)")
                     .foregroundColor(self.textColor)
+                    .font(textFont)
             }
             
         }
