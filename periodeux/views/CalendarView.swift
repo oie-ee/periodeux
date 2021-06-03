@@ -39,7 +39,7 @@ struct CalendarView: View {
             dayType: .endInterval
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 24, month: 6, year: 2021)!,
+            DayEntry.generateDayDateFromDate(Date()),
             dayType: .currentDay
         )
     ]

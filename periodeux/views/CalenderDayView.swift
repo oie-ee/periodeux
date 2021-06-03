@@ -22,7 +22,6 @@ struct DayEntry: Identifiable {
         case inInterval
         case ovulation
         case currentDay
-        case selectedDay
     }
     
     let dayType: DayType
@@ -34,7 +33,7 @@ struct DayEntry: Identifiable {
         
         self.id = day + month + year
             
-        self.date = Self.generateDateFromComponents(day: day, month: month, year: year)!
+        self.date = Self.generateDayDateFromDate(date)
         
         self.dayType = dayType
     }
@@ -50,6 +49,11 @@ struct DayEntry: Identifiable {
         return Calendar.current.date(from: components)
     }
     
+    // strips away time component
+    static func generateDayDateFromDate(_ date: Date) -> Date {
+        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date) ?? date
+    }
+    
 }
 
 
@@ -58,10 +62,16 @@ struct CalenderDayView: View {
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
+    @State var currentReport: ReportDB = ReportDB()
+    
     let dayEntry: DayEntry?
     
     var date: Date? {
         return self.dayEntry?.date
+    }
+    
+    var isSelected: Bool {
+        return self.date == appStore.selectedDate
     }
     
     var circleColor: Color {
@@ -69,6 +79,10 @@ struct CalenderDayView: View {
         guard self.dayEntry != nil else {
             return .clear
         }
+        guard !isSelected else {
+            return Color(UIColor.systemGray6)
+        }
+        
         
         switch self.dayEntry!.dayType {
         case .noPeriod:
@@ -81,8 +95,9 @@ struct CalenderDayView: View {
             return .clear
         case .ovulation:
             return Color(UIColor.systemTeal).opacity(0.1)
-        case .selectedDay:
-            return Color(UIColor.systemGray6)
+            
+        case .currentDay:
+            return Color(UIColor.systemGray4)
         default:
             return .red
         }
@@ -93,6 +108,10 @@ struct CalenderDayView: View {
             return .clear
         }
         
+        guard !isSelected else {
+            return .primary
+        }
+        
         switch self.dayEntry!.dayType {
         case .ovulation:
             return Color(UIColor.systemTeal)
@@ -100,7 +119,8 @@ struct CalenderDayView: View {
             return .white
         case .inInterval, .endInterval:
             return ColorManager.highlightOrange
-        case .selectedDay:
+            
+        case .currentDay:
             return .primary
         
         default:
@@ -113,13 +133,11 @@ struct CalenderDayView: View {
             return .body
         }
         
-        guard appStore.selectedDate != self.date else {
-            return Font.title3.weight(.bold)
-        }
-        
         switch self.dayEntry!.dayType {
         case .ovulation:
             return Font.title3.weight(.semibold)
+        case .currentDay:
+            return Font.title3.weight(.bold)
         default:
             return Font.title3
         }
