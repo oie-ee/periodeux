@@ -64,7 +64,7 @@ struct CalenderDayView: View {
     
     @State var currentReport: ReportDB = ReportDB()
     
-    let dayEntry: DayEntry?
+    var dayEntry: DayEntry?
     
     var date: Date? {
         return self.dayEntry?.date
@@ -202,7 +202,7 @@ struct CalenderDayView: View {
                 Button(
                     action: {
                     
-                        appStore.selectedDate = self.date!
+                        appStore.selectDate(self.date!)
                     
                     },
                     label: {

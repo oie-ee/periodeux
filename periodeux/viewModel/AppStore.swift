@@ -21,6 +21,10 @@ class AppStore: ObservableObject {
         self.currentReport = ReportDB()
     }
     
+    func selectDate(_ date: Date) -> Void {
+        self.selectedDate = date
+    }
+    
     func setDaysTilPeriod(value: Int) {
         self.daysTilPeriod = value
     }
