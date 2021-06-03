@@ -10,123 +10,56 @@ struct CalendarView: View {
     
     @State private var selectedDate: Date = Date()
     
-    @State private var numbersOfDays: Int = 0
-    
-    @State private var daysElapsed: Int = 0
-    
-    @State var selectedDayArray = [Bool](repeating: false, count: 32)
-    
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
-    var firstWeekdayOfCalendar: Int {
-        return self.calendar.firstWeekday
-    }
-    
-    @State private var today: Int = Calendar.current.component(.day, from: Date())
+    @State private var currentToday: Int = Calendar.current.component(.day, from: Date())
     @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
     @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
     
+    let dummyData = [
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 2, month: 6, year: 2021)!,
+            dayType: .ovulation
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 5, month: 6, year: 2021)!,
+            dayType: .startInterval
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 6, month: 6, year: 2021)!,
+            dayType: .inInterval
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 7, month: 6, year: 2021)!,
+            dayType: .inInterval
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 8, month: 6, year: 2021)!,
+            dayType: .endInterval
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 24, month: 6, year: 2021)!,
+            dayType: .selectedDay
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 29, month: 6, year: 2021)!,
+            dayType: .currentDay
+        ),
+    ]
     
-    // MARK: - Start Of Period Calculation
-    @State private var firstDayOfPeriod: String = "11.01.2021 03:00"
-    @State private var lastDayOfPeriod: String = "16.01.2021 03:00"
-    @State private var currentDate: Date = Date()
-    
-    var pastFirstDayOfPeriodDate11: Date {
-        return subtractsCycleLengthDays(date: pastFirstDayOfPeriodDate12)
+    func getEntryOfDate(_ date: Date) -> DayEntry {
+        return self.dummyData.first { entry in
+            return entry.date == date
+        } ?? DayEntry(
+            date,
+            dayType: .none
+        )
     }
-    
-    var pastLastDayOfPeriodDate11: Date {
-        return subtractsCycleLengthDays(date: pastLastDayOfPeriodDate12)
-    }
-    
-    var pastFirstDayOfPeriodDate12: Date {
-        return subtractsCycleLengthDays(date: firstDayOfPeriodDate)
-    }
-    
-    var pastLastDayOfPeriodDate12: Date {
-        return subtractsCycleLengthDays(date: lastDayOfPeriodDate)
-    }
-    
-    //January is here
-    var firstDayOfPeriodDate: Date {
-        return generateDateFromString(string: firstDayOfPeriod)
-    }
-    
-    var lastDayOfPeriodDate: Date {
-        return generateDateFromString(string: lastDayOfPeriod)
-    }
-    
-    var firstDayOfPeriodDate2: Date {
-        return addCycleLengthDays(date: firstDayOfPeriodDate)
-    }
-    
-    var lastDayOfPeriodDate2: Date {
-        return addCycleLengthDays(date: lastDayOfPeriodDate)
-    }
-    
-    var firstDayOfPeriodDate3: Date {
-        return addCycleLengthDays(date: firstDayOfPeriodDate2)
-    }
-    
-    var lastDayOfPeriodDate3: Date {
-        return addCycleLengthDays(date: lastDayOfPeriodDate2)
-    }
-    
-    var firstDayOfPeriodDate4: Date {
-        return addCycleLengthDays(date: firstDayOfPeriodDate3)
-    }
-    
-    var lastDayOfPeriodDate4: Date {
-        return addCycleLengthDays(date: lastDayOfPeriodDate3)
-    }
-    
-    var firstDayOfPeriodDate5: Date {
-        return addCycleLengthDays(date: firstDayOfPeriodDate4)
-    }
-    
-    var lastDayOfPeriodDate5: Date {
-        return addCycleLengthDays(date: lastDayOfPeriodDate4)
-    }
-    
-    var firstDayOfPeriodDate6: Date {
-        return addCycleLengthDays(date: firstDayOfPeriodDate5)
-    }
-    
-    var lastDayOfPeriodDate6: Date {
-        return addCycleLengthDays(date: lastDayOfPeriodDate5)
-    }
-    
-    var firstDayOfPeriodDate7: Date {
-        return addCycleLengthDays(date: firstDayOfPeriodDate6)
-    }
-    
-    var lastDayOfPeriodDate7: Date {
-        return addCycleLengthDays(date: lastDayOfPeriodDate6)
-    }
-    
-    var firstDayOfPeriodDate8: Date {
-        return addCycleLengthDays(date: firstDayOfPeriodDate7)
-    }
-    
-    var lastDayOfPeriodDate8: Date {
-        return addCycleLengthDays(date: lastDayOfPeriodDate7)
-    }
-    // MARK: - End Of Period Calculation
     
     //Calculate days til next period start
     var daysBetweenDates: Int {
-        let startDate = currentDate
-        let endDate = firstDayOfPeriodDate6
-        
-        //Escape
-        if(currentDate >= endDate) {
-            return 20
-        }
-        
-        let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
-        return components.day! + 1
+        return 1
     }
         
     var numberOfDays: Range<Int> {
@@ -141,23 +74,12 @@ struct CalendarView: View {
         return Calendar.current.component(.month, from: self.selectedDate)
     }
     
-    func weekdayPosition(_ cellNumber: Int) -> Int {
-        
-        let firstCellPositionOfMonth = self.firstWeekdayOfMonth - self.firstWeekdayOfCalendar + 1
-        let position = cellNumber - (self.firstWeekdayOfMonth - 1 - (self.firstWeekdayOfCalendar - 1))
-        let firstPosition = (self.firstWeekdayOfMonth - 1 - (self.firstWeekdayOfCalendar - 1))
-        
-        return firstPosition < 0 ? position - 7 : position
-    }
-    
-    
-    
     func dateFromCellNumber(_ cellNumber: Int) -> Date? {
-        let firstCellPositionOfMonth = (self.firstWeekdayOfMonth - self.firstWeekdayOfCalendar + 7) % 7
+        let firstCellPositionOfMonth = (self.firstWeekdayOfMonth - self.calendar.firstWeekday + 7) % 7
         let day = cellNumber - firstCellPositionOfMonth
         
         return day > 0 && day <= self.numberOfDays.count ?
-            self.generateDateFromSelectedDay(day: day, month: self.selectedMonth, year: self.selectedYear) : nil
+            DayEntry.generateDateFromComponents(day: day, month: self.selectedMonth, year: self.selectedYear) : nil
     }
    
     var firstWeekdayOfMonth: Int {
@@ -169,6 +91,7 @@ struct CalendarView: View {
     }
     
     var monthName: String {
+        
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "MMMM Y"
@@ -230,8 +153,14 @@ struct CalendarView: View {
                             let cellNumber = column + ((row - 1) * 7)
                             let currentDate = dateFromCellNumber(cellNumber)
                             
-                            CalenderDayView(dayType: .ovulation, date: currentDate)
+                            if currentDate != nil {
+                                CalenderDayView(dayEntry: self.getEntryOfDate(currentDate!))
+                            } else  {
+                                CalenderDayView(dayEntry: nil)
+                            }
                             
+                            
+
                             
                         }
                     }
@@ -257,15 +186,6 @@ struct CalendarView: View {
             }))
     }
     
-    //Generate Date From Day/Month/Year Int
-    func generateDateFromSelectedDay(day: Int, month: Int, year: Int) -> Date? {
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-        let convertedDate = dateFormatter.date(from: "\(year)/\(month)/\(day) 03:00")
-        
-        return convertedDate
-    }
     
     //Generate Date From String
     func generateDateFromString(string: String) -> Date{
@@ -297,26 +217,9 @@ struct CalendarView: View {
     }
     
     //Generate String That Tells Period Yes/No From Dates
-    func generateDateViewType (date: Date) -> CalenderDayView.DayType {
+    func generateDateViewType (date: Date) -> DayEntry.DayType {
         
         return .startInterval
-//        if(date == startInterval) {
-//            return .startInterval
-//        }
-//
-//        if(date == endInterval) {
-//            return .endInterval
-//        }
-//
-//        if(date < startInterval || date > endInterval) {
-//            return .noPeriod
-//        }
-//
-//        if(date > startInterval && date < endInterval) {
-//            return .inInterval
-//        }
-//
-//        return .none
     }
     
     
@@ -329,6 +232,8 @@ struct RoundedCorners: Shape {
     var tr: CGFloat = 0.0
     var bl: CGFloat = 0.0
     var br: CGFloat = 0.0
+    
+    let offset: CGSize = CGSize(width: 0, height: 0)
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
