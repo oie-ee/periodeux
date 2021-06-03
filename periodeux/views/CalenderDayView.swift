@@ -55,7 +55,14 @@ struct DayEntry: Identifiable {
 
 struct CalenderDayView: View {
     
+    @EnvironmentObject var appStore : AppStore
+    @EnvironmentObject var reportStore : ReportStore
+    
     let dayEntry: DayEntry?
+    
+    var date: Date? {
+        return self.dayEntry?.date
+    }
     
     var circleColor: Color {
         
@@ -162,23 +169,41 @@ struct CalenderDayView: View {
     
     
     var body: some View {
-        ZStack {
-            intervalBackground
-                .foregroundColor(ColorManager.backgroundOrange)
+        
+        guard dayEntry != nil else  {
+            return AnyView(
+                Circle().foregroundColor(circleColor)
                 .frame(height: 40)
-                .padding(intervalBackgroundPadding)
-            
-            Circle().foregroundColor(circleColor)
-                .frame(height: 40)
-            
-
-            if dayEntry != nil {
-                Text("\(dayNumber)")
-                    .foregroundColor(self.textColor)
-                    .font(textFont)
-            }
-            
+            )
         }
+        return AnyView(
+                Button(
+                    action: {
+                    
+                    appStore.selectedDate = self.date!
+                        print(self.date)
+                    
+                    },
+                    label: {
+                        ZStack {
+                            
+                            Circle().foregroundColor(circleColor)
+                                .frame(height: 40)
+                            
+                            
+                            if dayEntry != nil {
+                                Text("\(dayNumber)")
+                                    .foregroundColor(self.textColor)
+                                    .font(textFont)
+                            }
+                        }
+                    }
+                ).background(
+                    intervalBackground
+                        .foregroundColor(ColorManager.backgroundOrange)
+                        .padding(intervalBackgroundPadding)
+                )
+            )
         
     }
 }
