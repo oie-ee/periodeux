@@ -24,11 +24,11 @@ struct CalendarView: View {
         ),
         DayEntry(
             DayEntry.generateDateFromComponents(day: 5, month: 6, year: 2021)!,
-            dayType: .startInterval
+            dayType: .none
         ),
         DayEntry(
             DayEntry.generateDateFromComponents(day: 6, month: 6, year: 2021)!,
-            dayType: .inInterval
+            dayType: .startInterval
         ),
         DayEntry(
             DayEntry.generateDateFromComponents(day: 7, month: 6, year: 2021)!,

@@ -18,6 +18,7 @@ struct DayEntry: Identifiable {
         case startInterval
         case endInterval
         case noPeriod
+//        auto check for inInterval!
         case inInterval
         case ovulation
         case currentDay
@@ -73,6 +74,8 @@ struct CalenderDayView: View {
             return .clear
         case .ovulation:
             return Color(UIColor.systemTeal).opacity(0.1)
+        case .selectedDay:
+            return Color(UIColor.systemGray6)
         default:
             return .red
         }
@@ -90,6 +93,9 @@ struct CalenderDayView: View {
             return .white
         case .inInterval, .endInterval:
             return ColorManager.highlightOrange
+        case .selectedDay:
+            return .primary
+        
         default:
             return .secondary
         }
@@ -135,6 +141,23 @@ struct CalenderDayView: View {
             return nil
         }
     }
+    
+    var intervalBackgroundPadding: EdgeInsets {
+        guard self.dayEntry != nil else {
+            return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        }
+        
+        switch self.dayEntry!.dayType {
+        case .startInterval:
+            return EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0)
+            
+        case .endInterval:
+            return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5)
+            
+        default:
+            return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        }
+    }
 
     
     
@@ -143,6 +166,7 @@ struct CalenderDayView: View {
             intervalBackground
                 .foregroundColor(ColorManager.backgroundOrange)
                 .frame(height: 40)
+                .padding(intervalBackgroundPadding)
             
             Circle().foregroundColor(circleColor)
                 .frame(height: 40)
