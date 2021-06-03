@@ -113,6 +113,10 @@ struct CalenderDayView: View {
             return .body
         }
         
+        guard appStore.selectedDate != self.date else {
+            return Font.title3.weight(.bold)
+        }
+        
         switch self.dayEntry!.dayType {
         case .ovulation:
             return Font.title3.weight(.semibold)
@@ -180,8 +184,7 @@ struct CalenderDayView: View {
                 Button(
                     action: {
                     
-                    appStore.selectedDate = self.date!
-                        print(self.date)
+                        appStore.selectedDate = self.date!
                     
                     },
                     label: {

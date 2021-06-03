@@ -40,12 +40,8 @@ struct CalendarView: View {
         ),
         DayEntry(
             DayEntry.generateDateFromComponents(day: 24, month: 6, year: 2021)!,
-            dayType: .selectedDay
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 29, month: 6, year: 2021)!,
             dayType: .currentDay
-        ),
+        )
     ]
     
     func getEntryOfDate(_ date: Date) -> DayEntry {
