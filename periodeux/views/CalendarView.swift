@@ -24,7 +24,7 @@ struct CalendarView: View {
         ),
         DayEntry(
             DayEntry.generateDateFromComponents(day: 5, month: 6, year: 2021)!,
-            dayType: .none
+            dayType: .noPeriod
         ),
         DayEntry(
             DayEntry.generateDateFromComponents(day: 6, month: 6, year: 2021)!,
@@ -41,6 +41,35 @@ struct CalendarView: View {
         DayEntry(
             DayEntry.generateDayDateFromDate(Date()),
             dayType: .currentDay
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 12, month: 7, year: 2021)!,
+            dayType: .ovulation
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 15, month: 7, year: 2021)!,
+            dayType: .noPeriod
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 16, month: 7, year: 2021)!,
+            dayType: .startInterval
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 17, month: 7, year: 2021)!,
+            dayType: .inInterval
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 18, month: 7, year: 2021)!,
+            dayType: .inInterval
+        ),
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 19, month: 7, year: 2021)!,
+            dayType: .inInterval
+        ),
+        
+        DayEntry(
+            DayEntry.generateDateFromComponents(day: 20, month: 7, year: 2021)!,
+            dayType: .endInterval
         )
     ]
     

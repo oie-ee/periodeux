@@ -108,9 +108,9 @@ struct CalenderDayView: View {
             return .clear
         }
         
-        guard !isSelected else {
-            return .primary
-        }
+//        guard !isSelected else {
+//            return .primary
+//        }
         
         switch self.dayEntry!.dayType {
         case .ovulation:
@@ -119,12 +119,11 @@ struct CalenderDayView: View {
             return .white
         case .inInterval, .endInterval:
             return ColorManager.highlightOrange
-            
         case .currentDay:
             return .primary
         
         default:
-            return .secondary
+            return .primary
         }
     }
     
