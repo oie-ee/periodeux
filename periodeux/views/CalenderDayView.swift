@@ -39,19 +39,20 @@ struct DayEntry: Identifiable {
     }
     
     //Generate Date From Day/Month/Year Int
-    static func generateDateFromComponents(day: Int, month: Int, year: Int) -> Date? {
+    static func generateDateFromComponents(day: Int, month: Int, year: Int, hour: Int) -> Date? {
         
         var components = DateComponents()
         components.day = day
         components.month = month
         components.year = year
+        components.hour = hour
         
         return Calendar.current.date(from: components)
     }
     
     // strips away time component
     static func generateDayDateFromDate(_ date: Date) -> Date {
-        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date) ?? date
+        return Calendar.current.date(bySettingHour: 2, minute: 0, second: 0, of: date) ?? date
     }
     
 }
@@ -202,6 +203,12 @@ struct CalenderDayView: View {
                     action: {
                     
                         appStore.selectDate(self.date!)
+                        
+                        let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
+                                                       if(reportID != 0) {
+                                                           let report = reportStore.findByID(id: reportID)
+                                                           appStore.currentReport = report!
+                                                       }
                     
                     },
                     label: {

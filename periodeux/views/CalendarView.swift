@@ -19,23 +19,23 @@ struct CalendarView: View {
     
     let dummyData = [
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 2, month: 6, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 2, month: 6, year: 2021, hour: 2)!,
             dayType: .ovulation
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 5, month: 6, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 5, month: 6, year: 2021, hour: 2)!,
             dayType: .noPeriod
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 6, month: 6, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 6, month: 6, year: 2021, hour: 2)!,
             dayType: .startInterval
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 7, month: 6, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 7, month: 6, year: 2021, hour: 2)!,
             dayType: .inInterval
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 8, month: 6, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 8, month: 6, year: 2021, hour: 2)!,
             dayType: .endInterval
         ),
         DayEntry(
@@ -43,32 +43,32 @@ struct CalendarView: View {
             dayType: .currentDay
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 12, month: 7, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 12, month: 7, year: 2021, hour: 2)!,
             dayType: .ovulation
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 15, month: 7, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 15, month: 7, year: 2021, hour: 2)!,
             dayType: .noPeriod
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 16, month: 7, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 16, month: 7, year: 2021, hour: 2)!,
             dayType: .startInterval
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 17, month: 7, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 17, month: 7, year: 2021, hour: 2)!,
             dayType: .inInterval
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 18, month: 7, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 18, month: 7, year: 2021, hour: 2)!,
             dayType: .inInterval
         ),
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 19, month: 7, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 19, month: 7, year: 2021, hour: 2)!,
             dayType: .inInterval
         ),
         
         DayEntry(
-            DayEntry.generateDateFromComponents(day: 20, month: 7, year: 2021)!,
+            DayEntry.generateDateFromComponents(day: 20, month: 7, year: 2021, hour: 2)!,
             dayType: .endInterval
         )
     ]
@@ -82,10 +82,23 @@ struct CalendarView: View {
         )
     }
     
-    //Calculate days til next period start
+    //Calculate days til next period start – not dynamic anymore
     var daysBetweenDates: Int {
         return 1
     }
+    
+//    var daysBetweenDates: Int {
+//           let startDate = currentDate
+//           let endDate = firstDayOfPeriodDate6
+//
+//           //Escape
+//           if(currentDate >= endDate) {
+//               return 20
+//           }
+//
+//           let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
+//           return components.day! + 1
+//       }
         
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
@@ -104,7 +117,7 @@ struct CalendarView: View {
         let day = cellNumber - firstCellPositionOfMonth
         
         return day > 0 && day <= self.numberOfDays.count ?
-            DayEntry.generateDateFromComponents(day: day, month: self.selectedMonth, year: self.selectedYear) : nil
+            DayEntry.generateDateFromComponents(day: day, month: self.selectedMonth, year: self.selectedYear, hour: 2) : nil
     }
    
     var firstWeekdayOfMonth: Int {
@@ -178,12 +191,20 @@ struct CalendarView: View {
                             let cellNumber = column + ((row - 1) * 7)
                             let currentDate = dateFromCellNumber(cellNumber)
                             
-                            if currentDate != nil {
-                                CalenderDayView(dayEntry: self.getEntryOfDate(currentDate!))
-                            } else  {
-                                CalenderDayView(dayEntry: nil)
-                            }
                             
+                           
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(.white)
+                                    
+                                    if currentDate != nil {
+                                        CalenderDayView(dayEntry: self.getEntryOfDate(currentDate!))
+                                    } else  {
+                                        CalenderDayView(dayEntry: nil)
+                                    }
+                                    
+                                }
+      
+
                             
 
                             
