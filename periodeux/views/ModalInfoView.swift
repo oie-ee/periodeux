@@ -142,6 +142,15 @@ struct Mood : View {
             
             
         }.padding([.leading, .trailing])
+        .onDisappear() {
+            
+            let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
+            
+            if(reportID != 0) {
+                let report = reportStore.findByID(id: reportID)
+                appStore.currentReport = report!
+            }
+        }
         
         Spacer()
     }
@@ -191,6 +200,15 @@ struct Symptom : View {
                 }
             }
         }.padding([.leading, .trailing])
+        .onDisappear() {
+            
+            let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
+            
+            if(reportID != 0) {
+                let report = reportStore.findByID(id: reportID)
+                appStore.currentReport = report!
+            }
+        }
         
         Spacer()
     }
@@ -230,6 +248,15 @@ struct Bleeding : View {
                 let report = reportStore.findByID(id: reportID)!
                 
                 self.isActive = self.generateIsActiveArrayFromReport(report: report)
+            }
+        }
+        .onDisappear() {
+            
+            let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
+            
+            if(reportID != 0) {
+                let report = reportStore.findByID(id: reportID)
+                appStore.currentReport = report!
             }
         }
         
