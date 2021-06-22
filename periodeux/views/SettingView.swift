@@ -14,21 +14,35 @@ struct SettingView: View {
         NavigationView {
             VStack (alignment: .leading){
                 List {
-                    PeriodDuration()
-                    CycleDuration()
-                    // FirstPeriod()
                     
-                    Toggle(isOn: $isOnboarding) {
-                        if isOnboarding {
-                            Text("Restarted Onboarding")
-                                .fontWeight(.bold)
-                        } else {
-                            Text("Restart Onboarding")
-                        }
+                    HStack {
+                        Image(systemName: "drop.fill")
+                            .foregroundColor(ColorManager.highlightOrange)
+                        PeriodDuration()
+                    }
+                    HStack {
+                        Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                            .foregroundColor(ColorManager.highlightOrange)
+                        CycleDuration()
+                    }
+                    
+                    // FirstPeriod()
+                    HStack {
+                        Image(systemName: "arrow.counterclockwise.circle.fill")
+                            .foregroundColor(ColorManager.backgroundOrange)
+                        
+                        Toggle(isOn: $isOnboarding) {
+                            if isOnboarding {
+                                Text("Restarted Onboarding")
+                                    .fontWeight(.bold)
+                            } else {
+                                Text("Restart Onboarding")
+                            }
+                        }.toggleStyle(SwitchToggleStyle(tint: ColorManager.highlightOrange))
                     }
                 }
             }.navigationTitle("Settings")
-            .listStyle(GroupedListStyle())
+            .listStyle(InsetGroupedListStyle())
         }
     }
 }

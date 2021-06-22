@@ -49,10 +49,10 @@ struct InfoInputView: View {
                     self.showingModalView.toggle()
                     selectedDiaryTag = 0
                 }) {
-                    Text("Edit")
-                        .font(.caption2)
-                        .foregroundColor(ColorManager.highlightOrange)
-                        .offset(y: -1)
+//                    Text("Edit")
+//                        .font(.caption2)
+//                        .foregroundColor(ColorManager.highlightOrange)
+//                        .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
                     ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
@@ -95,10 +95,10 @@ struct InfoInputView: View {
                     self.showingModalView.toggle()
                     selectedDiaryTag = 1
                 }) {
-                    Text("Edit")
-                        .font(.caption2)
-                        .foregroundColor(ColorManager.highlightOrange)
-                        .offset(y: -1)
+//                    Text("Edit")
+//                        .font(.caption2)
+//                        .foregroundColor(ColorManager.highlightOrange)
+//                        .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
                     ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
@@ -139,10 +139,10 @@ struct InfoInputView: View {
                     self.showingModalView.toggle()
                     selectedDiaryTag = 2
                 }) {
-                    Text("Edit")
-                        .font(.caption2)
-                        .foregroundColor(ColorManager.highlightOrange)
-                        .offset(y: -1)
+//                    Text("Edit")
+//                        .font(.caption2)
+//                        .foregroundColor(ColorManager.highlightOrange)
+//                        .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
                     ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
