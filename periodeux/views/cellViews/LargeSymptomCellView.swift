@@ -53,7 +53,7 @@ struct LargeSymptomCellView: View {
                 
                 Text(symptom.name)
                     .font(.subheadline)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     .frame(width: 80, height: 48, alignment: .top)
                     .multilineTextAlignment(.center)
                     .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)

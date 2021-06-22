@@ -194,7 +194,7 @@ struct CalendarView: View {
                             
                            
                                 ZStack {
-                                    RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(.white)
+                                    RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(ColorManager.lightestElement)
                                     
                                     if currentDate != nil {
                                         CalenderDayView(dayEntry: self.getEntryOfDate(currentDate!))

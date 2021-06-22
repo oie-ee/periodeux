@@ -214,7 +214,7 @@ struct AddIconCellView: View {
                 
                 Text("Add")
                     .font(.caption2)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
                     .frame(width: 50, height: 30, alignment: .top)
                     .multilineTextAlignment(.center)

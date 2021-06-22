@@ -32,7 +32,7 @@ struct InsightsView: View {
                                     .frame(height: 120)
                                 
                                 RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .stroke(Color.white, lineWidth: 12)
+                                    .stroke(ColorManager.lightestElement, lineWidth: 12)
                                     .frame(height: 120)
                                 
                                 RoundedRectangle(cornerRadius: 11, style: .continuous)
@@ -60,7 +60,7 @@ struct InsightsView: View {
                             Text("Cycle Length")
                                 .font(.subheadline)
                                 .fontWeight(.regular)
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                         }
                         
                         VStack {
@@ -93,7 +93,7 @@ struct InsightsView: View {
                             Text("Period Length")
                                 .font(.subheadline)
                                 .fontWeight(.regular)
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                         }
                         
                     }.padding(.bottom, 40)

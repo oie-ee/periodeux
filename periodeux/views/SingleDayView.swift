@@ -39,7 +39,7 @@ struct SingleDayView: View {
                 if numberOfDays.contains(dayOfMonth) {
                     Text("\(dayOfMonth)")
                         .font(.title3)
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                 }
             }
         })

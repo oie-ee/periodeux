@@ -95,7 +95,7 @@ struct CalenderDayView: View {
         case .inInterval, .endInterval:
             return .clear
         case .ovulation:
-            return Color(UIColor.systemTeal).opacity(0.1)
+            return ColorManager.customTeal
             
         case .currentDay:
             return Color(UIColor.systemGray4)

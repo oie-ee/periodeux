@@ -4,6 +4,8 @@ import SwiftUI
 struct ColorManager {
     static let highlightOrange = Color("highlightOrange")
     static let backgroundOrange = Color("backgroundOrange")
+    static let lightestElement = Color("lightestElement")
+    static let customTeal = Color("customTeal")
 }
 
 struct ContentView: View {
