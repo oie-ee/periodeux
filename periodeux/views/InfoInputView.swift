@@ -164,13 +164,18 @@ struct InfoInputView: View {
                 
             }
             
-        }.onAppear {
+        }.onChange(of: appStore.selectedDate, perform: { _ in
             let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
             if(reportID != 0) {
                 let report = reportStore.findByID(id: reportID)
                 appStore.currentReport = report!
+            } else {
+                appStore.currentReport = ReportDB()
             }
-        }
+        })
+            
+            
+        
     }
     
     /// This shortens a date to the string format, e.g. 01 January 2021
