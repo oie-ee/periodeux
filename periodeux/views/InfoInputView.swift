@@ -142,7 +142,7 @@ struct InfoInputView: View {
             HStack {
                 let bleeding = appStore.currentReport.bleeding
                 
-                if(bleeding != Int.min){
+                if(bleeding > 0){
                     let model = bleedingModel[bleeding]
                     SmallBleedingCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag, bleeding: model)
                 }
