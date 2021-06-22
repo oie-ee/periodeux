@@ -25,6 +25,11 @@ struct SettingView: View {
                             .foregroundColor(ColorManager.highlightOrange)
                         CycleDuration()
                     }
+                    HStack {
+                        Image(systemName: "hare.fill")
+                            .foregroundColor(ColorManager.highlightOrange)
+                        FirstPeriod()
+                    }
                     
                     // FirstPeriod()
                     HStack {
@@ -95,11 +100,26 @@ struct CycleDuration: View {
 
 // MARK: - First Day Of Last Period
 struct FirstPeriod: View {
+    @AppStorage("isFirstPeriod") private var isFirstPeriod = Date()
+    
     var body: some View {
-        Text("First Day Of Last Period")
+
+        DatePicker("First Period", selection: $isFirstPeriod, displayedComponents: [.date])
+    
     }
 }
 
+extension Date: RawRepresentable {
+    private static let formatter = ISO8601DateFormatter()
+    
+    public var rawValue: String {
+        Date.formatter.string(from: self)
+    }
+    
+    public init?(rawValue: String) {
+        self = Date.formatter.date(from: rawValue) ?? Date()
+    }
+}
 
 // MARK: - Preview
 struct SettingView_Previews: PreviewProvider {

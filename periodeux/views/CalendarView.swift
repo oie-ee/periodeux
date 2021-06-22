@@ -12,10 +12,12 @@ struct CalendarView: View {
     
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
+    @EnvironmentObject var periodStore : PeriodStore
     
     @State private var currentToday: Int = Calendar.current.component(.day, from: Date())
     @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
     @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
+    
     
     let dummyData = [
         DayEntry(
@@ -198,9 +200,13 @@ struct CalendarView: View {
                                     
                                     if currentDate != nil {
                                         CalenderDayView(dayEntry: self.getEntryOfDate(currentDate!))
+                                        
+                                        
+                                        
                                     } else  {
                                         CalenderDayView(dayEntry: nil)
                                     }
+                                    
                                     
                                 }
       

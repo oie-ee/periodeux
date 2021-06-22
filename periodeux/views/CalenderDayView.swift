@@ -61,9 +61,17 @@ struct DayEntry: Identifiable {
 struct CalenderDayView: View {
     
     @EnvironmentObject var appStore : AppStore
-    @EnvironmentObject var reportStore : ReportStore
+    @EnvironmentObject var periodStore : PeriodStore
     
-    @State var currentReport: ReportDB = ReportDB()
+    
+    var latestPeriod: Period? {
+        guard self.date != nil else {
+            return nil
+        }
+        return periodStore.getLatestPeriodFromDate(date: self.date!)
+    }
+    
+    
     
     var dayEntry: DayEntry?
     
@@ -203,12 +211,7 @@ struct CalenderDayView: View {
                     action: {
                     
                         appStore.selectDate(self.date!)
-                        
-                        let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
-                                                       if(reportID != 0) {
-                                                           let report = reportStore.findByID(id: reportID)
-                                                           appStore.currentReport = report!
-                                                       }
+
                     
                     },
                     label: {

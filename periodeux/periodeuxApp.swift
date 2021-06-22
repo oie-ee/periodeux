@@ -19,6 +19,7 @@ struct periodeuxApp: App {
                 ContentView()
                     .environmentObject(appStore)
                     .environmentObject(ReportStore(realm: RealmPersistent.initializer()))
+                    .environmentObject(PeriodStore(realm: RealmPersistent.initializer()))
             }
         }
     }
