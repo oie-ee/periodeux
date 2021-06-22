@@ -73,7 +73,13 @@ struct InfoInputView: View {
                     SmallMoodCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag, mood: model)
                 }
                 
-                AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+                if(appStore.currentReport.moodList.isEmpty) {
+                   
+                    AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+                   
+                }else {
+                    EditIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+                }
                 
             }
    
@@ -112,7 +118,13 @@ struct InfoInputView: View {
                     SmallSymptomCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag, symptom: model)
                 }
                 
-                AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+                if(appStore.currentReport.symptomList.isEmpty) {
+                   
+                    AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+                   
+                }else {
+                    EditIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+                }
             }
             
         
@@ -211,14 +223,60 @@ struct AddIconCellView: View {
                         .frame(width: 22, height: 22)
                         .foregroundColor(ColorManager.highlightOrange)
                 }
+                    
+                    Text("Add")
+                        .font(.caption2)
+                        .foregroundColor(.primary)
+                        //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
+                        .frame(width: 50, height: 30, alignment: .top)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    
+            }
+            
+        }.sheet(isPresented: $showingModalView) {
+            ModalInfoView(selectedDiaryTag: $parentState)
+        }
+    }
+}
+
+// MARK: - Edit Icon Cells
+struct EditIconCellView: View {
+    
+    @State var showingModalView = false
+    @State var selectedDiaryTag: Int
+    @Binding var parentState: Int
+    
+    var body: some View {
+        
+        Button(action: {
+            self.showingModalView.toggle()
+            parentState = selectedDiaryTag
+            
+        }) {
+            VStack{
                 
-                Text("Add")
-                    .font(.caption2)
-                    .foregroundColor(.primary)
-                    //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
-                    .frame(width: 50, height: 30, alignment: .top)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                ZStack {
+                    
+                    Image(systemName: "app.fill")
+                        .resizable()
+                        .frame(width: 44, height: 44)
+                        .foregroundColor(ColorManager.backgroundOrange)
+                    
+                    Image(systemName: "pencil")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .foregroundColor(ColorManager.highlightOrange)
+                }
+                    
+                    Text("Edit")
+                        .font(.caption2)
+                        .foregroundColor(.primary)
+                        //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
+                        .frame(width: 50, height: 30, alignment: .top)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    
             }
             
         }.sheet(isPresented: $showingModalView) {
