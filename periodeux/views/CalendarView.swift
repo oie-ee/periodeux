@@ -17,90 +17,12 @@ struct CalendarView: View {
     @State private var currentToday: Int = Calendar.current.component(.day, from: Date())
     @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
     @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
-    
-    
-    let dummyData = [
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 2, month: 6, year: 2021, hour: 2)!,
-            dayType: .ovulation
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 5, month: 6, year: 2021, hour: 2)!,
-            dayType: .noPeriod
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 6, month: 6, year: 2021, hour: 2)!,
-            dayType: .startInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 7, month: 6, year: 2021, hour: 2)!,
-            dayType: .inInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 8, month: 6, year: 2021, hour: 2)!,
-            dayType: .endInterval
-        ),
-        DayEntry(
-            DayEntry.generateDayDateFromDate(Date()),
-            dayType: .currentDay
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 12, month: 7, year: 2021, hour: 2)!,
-            dayType: .ovulation
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 15, month: 7, year: 2021, hour: 2)!,
-            dayType: .noPeriod
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 16, month: 7, year: 2021, hour: 2)!,
-            dayType: .startInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 17, month: 7, year: 2021, hour: 2)!,
-            dayType: .inInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 18, month: 7, year: 2021, hour: 2)!,
-            dayType: .inInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 19, month: 7, year: 2021, hour: 2)!,
-            dayType: .inInterval
-        ),
-        
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 20, month: 7, year: 2021, hour: 2)!,
-            dayType: .endInterval
-        )
-    ]
-    
-    func getEntryOfDate(_ date: Date) -> DayEntry {
-        return self.dummyData.first { entry in
-            return entry.date == date
-        } ?? DayEntry(
-            date,
-            dayType: .none
-        )
-    }
+
     
     //Calculate days til next period start – not dynamic anymore
     var daysBetweenDates: Int {
         return 1
     }
-    
-//    var daysBetweenDates: Int {
-//           let startDate = currentDate
-//           let endDate = firstDayOfPeriodDate6
-//
-//           //Escape
-//           if(currentDate >= endDate) {
-//               return 20
-//           }
-//
-//           let components = Calendar.current.dateComponents([.day], from: startDate, to: endDate)
-//           return components.day! + 1
-//       }
         
     var numberOfDays: Range<Int> {
         return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
@@ -119,7 +41,7 @@ struct CalendarView: View {
         let day = cellNumber - firstCellPositionOfMonth
         
         return day > 0 && day <= self.numberOfDays.count ?
-            DayEntry.generateDateFromComponents(day: day, month: self.selectedMonth, year: self.selectedYear, hour: 2) : nil
+            DayEntry.generateDateFromComponents(day: day, month: self.selectedMonth, year: self.selectedYear) : nil
     }
    
     var firstWeekdayOfMonth: Int {
@@ -199,12 +121,9 @@ struct CalendarView: View {
                                     RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(ColorManager.lightestElement)
                                     
                                     if currentDate != nil {
-                                        CalenderDayView(dayEntry: self.getEntryOfDate(currentDate!))
-                                        
-                                        
-                                        
+                                        CalenderDayView(date: currentDate!)
                                     } else  {
-                                        CalenderDayView(dayEntry: nil)
+                                        CalenderDayView()
                                     }
                                     
                                     
@@ -237,44 +156,6 @@ struct CalendarView: View {
                 }
             }))
     }
-    
-    
-    //Generate Date From String
-    func generateDateFromString(string: String) -> Date{
-        
-        let stringFormatter = DateFormatter()
-        stringFormatter.dateFormat = "DD.MM.y HH:mm"
-        
-        return (stringFormatter.date(from: string) ?? Date())
-    }
-    
-    //Add CycleLength (Days) To Date
-    func addCycleLengthDays(date: Date) -> Date {
-        
-        var dateComponent = DateComponents()
-        dateComponent.day = 29
-        
-        let increasedDate = Calendar.current.date(byAdding: dateComponent, to: date) ?? Date()
-        return increasedDate
-    }
-    
-    //Substract CycleLength (Days) From Date
-    func subtractsCycleLengthDays(date: Date) -> Date {
-        
-        var dateComponent = DateComponents()
-        dateComponent.day = -29
-        
-        let decreasedDate = Calendar.current.date(byAdding: dateComponent, to: date) ?? Date()
-        return decreasedDate
-    }
-    
-    //Generate String That Tells Period Yes/No From Dates
-    func generateDateViewType (date: Date) -> DayEntry.DayType {
-        
-        return .startInterval
-    }
-    
-    
     
 }
 

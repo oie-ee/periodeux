@@ -78,21 +78,21 @@ struct PeriodDuration: View {
 
 // MARK: - Cycle Duration
 struct CycleDuration: View {
-    @AppStorage("isCycleDuration") private var isCycleDuration = 7
+    @AppStorage("isCycleDuration") private var isCycleDuration = 21
     
     var body: some View {
         VStack{
             Picker("Cycle Duration", selection: $isCycleDuration) {
-                Text("21 Days").tag(1)
-                Text("22 Days").tag(2)
-                Text("23 Days").tag(3)
-                Text("24 Days").tag(4)
-                Text("25 Days").tag(5)
-                Text("26 Days").tag(6)
-                Text("27 Days").tag(7)
-                Text("28 Days").tag(8)
-                Text("29 Days").tag(9)
-                Text("30 Days").tag(10)
+                Text("21 Days").tag(21)
+                Text("22 Days").tag(22)
+                Text("23 Days").tag(23)
+                Text("24 Days").tag(24)
+                Text("25 Days").tag(25)
+                Text("26 Days").tag(26)
+                Text("27 Days").tag(27)
+                Text("28 Days").tag(28)
+                Text("29 Days").tag(29)
+                Text("30 Days").tag(30)
             }
         }
     }

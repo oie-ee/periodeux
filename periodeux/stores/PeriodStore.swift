@@ -10,7 +10,7 @@ import CoreLocation
 
 final class PeriodStore: ObservableObject {
     @AppStorage("isFirstPeriod") private var isFirstPeriod = Date()
-    @AppStorage("isCycleDuration") private var isCycleDuration = 7
+    @AppStorage("isCycleDuration") private var isCycleDuration = 21
     @AppStorage("isPeriodDuration") private var isPeriodDuration = 7
     
     private var results: Results<PeriodDB>
@@ -22,7 +22,33 @@ final class PeriodStore: ObservableObject {
     func getLatestPeriodFromDate(date: Date) -> Period {
         return periods.first { period in
             return period.date <= date
-        } ?? Period(id: 0, date: isFirstPeriod, duration: Double(isPeriodDuration)*3600.00*24.00)
+        } ?? Period(id: 0, date: Calendar.current.startOfDay(for: isFirstPeriod), duration: averagePeriodDuration)
+    }
+    
+    var averagePeriodDuration: TimeInterval {
+        return Double(isPeriodDuration)*3600.00*24.00
+    }
+    
+    var averageCycleDuration: TimeInterval {
+        return Double(isCycleDuration)*3600.00*24.00
+    }
+    
+    func getLatestOccurenceOfPeriodForDate(period: Period, _ date: Date) -> Period? {
+        
+        let absoluteDistanceToPeriod = period.date.distance(to: date)
+        
+        
+        guard absoluteDistanceToPeriod >= 0 else {
+            return nil
+        }
+        
+        let distanceFromPeriodOccurence = Int(absoluteDistanceToPeriod) % Int(self.averageCycleDuration)
+        
+        print(date, distanceFromPeriodOccurence, period.date)
+        
+        let periodOccurence = Period(id: 0, date: (date - TimeInterval(distanceFromPeriodOccurence)), duration: self.averagePeriodDuration)
+        
+        return periodOccurence
     }
     
     // Load Items from the Realm Database

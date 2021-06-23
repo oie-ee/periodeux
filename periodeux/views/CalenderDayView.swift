@@ -39,20 +39,19 @@ struct DayEntry: Identifiable {
     }
     
     //Generate Date From Day/Month/Year Int
-    static func generateDateFromComponents(day: Int, month: Int, year: Int, hour: Int) -> Date? {
+    static func generateDateFromComponents(day: Int, month: Int, year: Int) -> Date? {
         
         var components = DateComponents()
         components.day = day
         components.month = month
         components.year = year
-        components.hour = hour
         
         return Calendar.current.date(from: components)
     }
     
     // strips away time component
     static func generateDayDateFromDate(_ date: Date) -> Date {
-        return Calendar.current.date(bySettingHour: 2, minute: 0, second: 0, of: date) ?? date
+        return Calendar.current.startOfDay(for: date)
     }
     
 }
@@ -71,13 +70,55 @@ struct CalenderDayView: View {
         return periodStore.getLatestPeriodFromDate(date: self.date!)
     }
     
-    
-    
-    var dayEntry: DayEntry?
-    
-    var date: Date? {
-        return self.dayEntry?.date
+    enum visualType {
+        case none
+        case startInterval
+        case endInterval
+        case noPeriod
+        //        auto check for inInterval!
+        case inInterval
+        case ovulation
+        case currentDay
     }
+    
+    var dayEntry: DayEntry? {
+        guard date != nil && latestPeriod != nil else {
+            return nil
+        }
+        
+        let period = periodStore.getLatestOccurenceOfPeriodForDate(period: latestPeriod!, date!)
+         
+        guard period != nil else {
+            return DayEntry(date!, dayType: .noPeriod)
+        }
+        
+        let isInPeriod = period!.isDateInPeriodInterval(self.date!)
+        let isPeriodStart = period!.isDatePeriodStartDay(self.date!)
+        let isPeriodEnd = period!.isDatePeriodEndDay(Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: self.date!) ?? self.date!)
+        
+        var dayType: DayEntry.DayType
+        
+        switch (isInPeriod, isPeriodStart, isPeriodEnd) {
+            
+        case (true, false, false):
+            dayType = .inInterval
+            break
+        case (false, true, false), (true, true, false):
+            dayType = .startInterval
+            break
+        case (false, false, true), (true, false, true):
+            dayType = .endInterval
+            break
+        default:
+            dayType = .noPeriod
+        }
+        
+        let dayEntry = DayEntry(date!, dayType: dayType)
+        
+        return dayEntry
+    }
+    
+    var date: Date?
     
     var isSelected: Bool {
         return self.date == appStore.selectedDate
@@ -107,8 +148,6 @@ struct CalenderDayView: View {
             
         case .currentDay:
             return Color(UIColor.systemGray4)
-        default:
-            return .red
         }
     }
     
