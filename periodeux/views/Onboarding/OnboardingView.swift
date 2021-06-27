@@ -53,12 +53,12 @@ struct OnboardingView: View {
                                 PeriodDuration()
                             }
                             HStack {
-                                Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
+                                Image(systemName: "arrow.triangle.2.circlepath")
                                     .foregroundColor(ColorManager.highlightOrange)
                                 CycleDuration()
                             }
                             HStack {
-                                Image(systemName: "hare.fill")
+                                Image(systemName: "sparkles")
                                     .foregroundColor(ColorManager.highlightOrange)
                                 FirstPeriod()
                             }
