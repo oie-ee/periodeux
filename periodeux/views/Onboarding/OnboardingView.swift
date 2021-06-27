@@ -76,6 +76,7 @@ struct OnboardingView: View {
                         .padding(.top, 30)
                         .listStyle(GroupedListStyle())
                         .navigationBarTitle("Welcome")
+                        .accentColor(ColorManager.highlightOrange)
                     }
             }
         }

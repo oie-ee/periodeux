@@ -221,7 +221,7 @@ struct AddIconCellView: View {
                     Image(systemName: "app.fill")
                         .resizable()
                         .frame(width: 44, height: 44)
-                        .foregroundColor(ColorManager.backgroundOrange)
+                        .foregroundColor(Color(UIColor.systemGray6))
                     
                     Image(systemName: "plus")
                         .resizable()
@@ -266,7 +266,7 @@ struct EditIconCellView: View {
                     Image(systemName: "app.fill")
                         .resizable()
                         .frame(width: 44, height: 44)
-                        .foregroundColor(ColorManager.backgroundOrange)
+                        .foregroundColor(Color(UIColor.systemGray6))
                     
                     Image(systemName: "pencil")
                         .resizable()

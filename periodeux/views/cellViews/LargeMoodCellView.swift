@@ -56,13 +56,13 @@ struct LargeMoodCellView: View {
                 if(isSelected){
                     Image("\(mood.imageIcon):68x68")
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 14)
                                 .stroke(ColorManager.highlightOrange, lineWidth: 3)
                         )
                 }else {
                     Image("\(mood.imageIcon):68x68")
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 14)
                                 .stroke(Color.clear, lineWidth: 3)
                         )
                 }
