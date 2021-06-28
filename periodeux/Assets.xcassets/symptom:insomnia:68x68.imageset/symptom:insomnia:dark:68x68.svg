@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="68px" viewBox="0 0 68 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>symptom/insomnia/68x68</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="symptom/insomnia/68x68">
+            <path d="M12.819426,-2.33158843e-15 L55.180574,5.17920154e-16 C59.6381677,-3.00926524e-16 61.2545989,0.464128056 62.8842285,1.33566352 C64.5138581,2.20719898 65.792801,3.48614185 66.6643365,5.11577148 C67.5358719,6.74540111 68,8.3618323 68,12.819426 L68,55.180574 C68,59.6381677 67.5358719,61.2545989 66.6643365,62.8842285 C65.792801,64.5138581 64.5138581,65.792801 62.8842285,66.6643365 C61.2545989,67.5358719 59.6381677,68 55.180574,68 L12.819426,68 C8.3618323,68 6.74540111,67.5358719 5.11577148,66.6643365 C3.48614185,65.792801 2.20719898,64.5138581 1.33566352,62.8842285 C0.464128056,61.2545989 1.25441118e-15,59.6381677 -2.15894838e-15,55.180574 L3.45280103e-16,12.819426 C-2.00617683e-16,8.3618323 0.464128056,6.74540111 1.33566352,5.11577148 C2.20719898,3.48614185 3.48614185,2.20719898 5.11577148,1.33566352 C6.74540111,0.464128056 8.3618323,1.35472002e-15 12.819426,-2.33158843e-15 Z" id="Rectangle" fill="#FDD5B4"></path>
+            <path d="M34,55 C44.6775052,55 52,44.924725 52,34.1551724 C52,23.3856198 44.6775052,16 34,16 C23.3224948,16 16,23.3856198 16,34.1551724 C16,44.924725 23.3224948,55 34,55 Z" id="Oval" stroke="#FF7F0F" fill="#FDD5B4"></path>
+            <g id="Group-3" transform="translate(23.000000, 29.000000)">
+                <circle id="Oval" fill="#FF7F0F" cx="4" cy="4" r="4"></circle>
+                <rect id="Rectangle-Copy" stroke="#FFFFFF" fill="#FFFFFF" x="3" y="3" width="2" height="2"></rect>
+            </g>
+            <g id="Group-2" transform="translate(37.000000, 29.000000)">
+                <g id="Group" fill="#FF7F0F">
+                    <ellipse id="Oval" transform="translate(4.000000, 4.041171) scale(-1, 1) translate(-4.000000, -4.041171) " cx="4" cy="4.04117143" rx="4" ry="3.75"></ellipse>
+                </g>
+                <rect id="Rectangle-Copy-2" stroke="#FFFFFF" fill="#FFFFFF" x="3" y="3" width="2" height="2"></rect>
+            </g>
+            <path d="M23,38 C27,38 29,37.3333333 29,36" id="Line" stroke="#FF7F0F" stroke-linecap="round"></path>
+            <path d="M40,38 C44,38 46,37.3333333 46,36" id="Line-Copy" stroke="#FF7F0F" stroke-linecap="round" transform="translate(43.000000, 37.000000) scale(-1, 1) translate(-43.000000, -37.000000) "></path>
+        </g>
+    </g>
+</svg>
