@@ -29,12 +29,19 @@ struct SettingView: View {
                             .frame(width: 24)
                         CycleDuration()
                     }
-                    HStack {
-                        Image(systemName: "sparkles")
-                            .foregroundColor(ColorManager.highlightOrange)
-                            .frame(width: 24)
-                        FirstPeriod()
+                    VStack {
+                        HStack {
+                            Image(systemName: "sparkles")
+                                .foregroundColor(ColorManager.highlightOrange)
+                                .frame(width: 24)
+                            FirstPeriod()
+                        }
+                        
+                        Text("Please enter the first day of your last period here.")
+                            .foregroundColor(.gray)
+                            .font(.system(size: 14))
                     }
+                    
                     
                     HStack {
                         Image(systemName: "arrow.counterclockwise.circle.fill")

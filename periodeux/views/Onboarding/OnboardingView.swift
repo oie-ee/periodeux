@@ -59,11 +59,17 @@ struct OnboardingView: View {
                                     .frame(width: 12)
                                 CycleDuration()
                             }
-                            HStack {
-                                Image(systemName: "sparkles")
-                                    .foregroundColor(ColorManager.highlightOrange)
-                                    .frame(width: 12)
-                                FirstPeriod()
+                            VStack {
+                                HStack {
+                                    Image(systemName: "sparkles")
+                                        .foregroundColor(ColorManager.highlightOrange)
+                                        .frame(width: 12)
+                                    FirstPeriod()
+                                }
+                                
+                                Text("Please enter the first day of your last period here.")
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 13))
                             }
                                 }
                                 .onAppear {
