@@ -119,6 +119,7 @@ struct CalenderDayView: View {
     }
     
     var date: Date?
+
     
     var isSelected: Bool {
         return self.date == appStore.selectedDate
@@ -130,7 +131,7 @@ struct CalenderDayView: View {
             return .clear
         }
         guard !isSelected else {
-            return Color(UIColor.systemGray6)
+            return Color(UIColor(ColorManager.addEditCellBackgound))
         }
         
         
