@@ -13,28 +13,33 @@ struct SettingView: View {
     var body: some View {
         NavigationView {
             VStack (alignment: .leading){
+                
                 List {
                     
                     HStack {
                         Image(systemName: "drop.fill")
                             .foregroundColor(ColorManager.highlightOrange)
+                            .frame(width: 24)
                         PeriodDuration()
                     }
+                    
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
                             .foregroundColor(ColorManager.highlightOrange)
+                            .frame(width: 24)
                         CycleDuration()
                     }
                     HStack {
                         Image(systemName: "sparkles")
                             .foregroundColor(ColorManager.highlightOrange)
+                            .frame(width: 24)
                         FirstPeriod()
                     }
                     
-                    // FirstPeriod()
                     HStack {
                         Image(systemName: "arrow.counterclockwise.circle.fill")
                             .foregroundColor(ColorManager.backgroundOrange)
+                            .frame(width: 24)
                         
                         Toggle(isOn: $isOnboarding) {
                             if isOnboarding {
@@ -104,7 +109,7 @@ struct FirstPeriod: View {
     
     var body: some View {
 
-        DatePicker("First Period", selection: $isFirstPeriod, displayedComponents: [.date])
+        DatePicker("Start Of Period", selection: $isFirstPeriod, displayedComponents: [.date])
     
     }
 }

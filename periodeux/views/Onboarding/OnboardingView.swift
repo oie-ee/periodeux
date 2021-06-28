@@ -30,7 +30,7 @@ struct OnboardingView: View {
 
                         .padding(.top, 30)
                         
-                        Text("Customize your Data")
+                        Text("Customize your data")
                                 //.foregroundColor(Color.white)
                                 .font(.title)
                             .fontWeight(.bold)
@@ -38,7 +38,7 @@ struct OnboardingView: View {
                             
                         Spacer()
                             
-                        Text("Customize you personal information. It can be readjusted anytime.")
+                        Text("Please enter your period information.\nIt can be readjusted anytime.")
                                // .foregroundColor(Color.white)
                                // .fontWeight(.semibold)
                                 .multilineTextAlignment(.center)
@@ -50,16 +50,19 @@ struct OnboardingView: View {
                             HStack {
                                 Image(systemName: "drop.fill")
                                     .foregroundColor(ColorManager.highlightOrange)
+                                    .frame(width: 12)
                                 PeriodDuration()
                             }
                             HStack {
                                 Image(systemName: "arrow.triangle.2.circlepath")
                                     .foregroundColor(ColorManager.highlightOrange)
+                                    .frame(width: 12)
                                 CycleDuration()
                             }
                             HStack {
                                 Image(systemName: "sparkles")
                                     .foregroundColor(ColorManager.highlightOrange)
+                                    .frame(width: 12)
                                 FirstPeriod()
                             }
                                 }
