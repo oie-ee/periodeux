@@ -6,6 +6,7 @@ struct ColorManager {
     static let backgroundOrange = Color("backgroundOrange")
     static let lightestElement = Color("lightestElement")
     static let customTeal = Color("customTeal")
+    static let addEditCellBackgound = Color("addEditCellBackground")
 }
 
 struct ContentView: View {
