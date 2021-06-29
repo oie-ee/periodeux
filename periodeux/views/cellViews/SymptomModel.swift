@@ -22,7 +22,7 @@ extension SymptomModel {
     static var symptom11 = SymptomModel(name: "Insomnia", imageIcon: "symptom:insomnia")
     static var symptom12 = SymptomModel(name: "Constipa-\ntion", imageIcon: "symptom:constipa-tion")
     static var symptom13 = SymptomModel(name: "Diarrhea", imageIcon: "symptom:diarrhea")
-    
+    static var symptom14 = SymptomModel(name: "Lower Back Pain", imageIcon: "symptom:lowerbackpain")
 }
 
-let symptomModel = [SymptomModel.symptom5, SymptomModel.symptom1, SymptomModel.symptom12, SymptomModel.symptom2, SymptomModel.symptom13, SymptomModel.symptom9, SymptomModel.symptom4, SymptomModel.symptom11, SymptomModel.symptom7, SymptomModel.symptom10, SymptomModel.symptom3, SymptomModel.symptom8]
+let symptomModel = [SymptomModel.symptom5, SymptomModel.symptom1, SymptomModel.symptom12, SymptomModel.symptom2, SymptomModel.symptom13, SymptomModel.symptom9, SymptomModel.symptom4, SymptomModel.symptom11, SymptomModel.symptom14, SymptomModel.symptom7, SymptomModel.symptom10, SymptomModel.symptom3, SymptomModel.symptom8]
