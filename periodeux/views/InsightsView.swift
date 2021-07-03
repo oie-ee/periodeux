@@ -5,6 +5,9 @@ import SwiftUI
 
 struct InsightsView: View {
     
+    @AppStorage("isCycleDuration") private var isCycleDuration = 21
+    @AppStorage("isPeriodDuration") private var isPeriodDuration = 7
+    
     @State var showComposeMessageView: Bool = false
     
     // MARK: - Body
@@ -29,7 +32,7 @@ struct InsightsView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         
                         HStack{
-                            Text("29").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
+                            Text("\(isCycleDuration)").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .frame(height: 120)
                             
@@ -51,7 +54,7 @@ struct InsightsView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         
                         HStack{
-                            Text("6").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
+                            Text("\(isPeriodDuration)").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .frame(height: 120)
                             
