@@ -17,86 +17,61 @@ struct InsightsView: View {
                 VStack (alignment: .leading){
                     
                     // MARK: - First Section
-                    Text("Your Average Period")
+                    Text("Your Average Cycle Length")
                         .font(Font.title3.weight(.semibold))
-                        .padding(.bottom, 8)
+                        
                     
-                    HStack(alignment: .top){
+                    ZStack {
                         
-                        VStack {
+                        Image("averagelength:cycle")
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        
+                        HStack{
+                            Text("29")
+                                .font(.largeTitle)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(ColorManager.highlightOrange)
+                                .frame(height: 120)
                             
-                            ZStack{
-                                
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(ColorManager.backgroundOrange)
-                                    .frame(height: 120)
-                                
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .stroke(ColorManager.lightestElement, lineWidth: 12)
-                                    .frame(height: 120)
-                                
-                                RoundedRectangle(cornerRadius: 11, style: .continuous)
-                                    .stroke(ColorManager.highlightOrange, lineWidth: 2)
-                                    .frame(height: 120)
-                                
-                                VStack{
-                                    
-                                    HStack{
-                                        Text("29")
-                                            .font(.largeTitle)
-                                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                            .foregroundColor(ColorManager.highlightOrange)
-                                            .frame(height: 120)
-                                        
-                                        Text("days")
-                                            .font(.subheadline)
-                                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                            .foregroundColor(ColorManager.highlightOrange)
-                                            .offset(x: -6, y: 6.5)
-                                    }
-                                }
-                            }
-                            
-                            Text("Cycle Length")
+                            Text("days")
                                 .font(.subheadline)
-                                .fontWeight(.regular)
-                                .foregroundColor(.primary)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(ColorManager.highlightOrange)
+                                .offset(x: -6, y: 6.5)
                         }
                         
-                        VStack {
+                    }.padding(.bottom, 16)
+                    
+                    Text("Your Average Period Length")
+                        .font(Font.title3.weight(.semibold))
+                    
+                    ZStack {
+                        
+                        Image("averagelength:period")
+                            .resizable()
+                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        
+                        HStack{
+                            Text("6")
+                                .font(.largeTitle)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(ColorManager.highlightOrange)
+                                .frame(height: 120)
                             
-                            ZStack{
-                                
-                                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                    .fill(ColorManager.highlightOrange.opacity(0.9))
-                                    .frame(height: 120)
-                                
-                                
-                                VStack{
-                                    HStack{
-                                        Text("6")
-                                            .font(.largeTitle)
-                                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                            .foregroundColor(ColorManager.backgroundOrange)
-                                            .frame(height: 120)
-                                        
-                                        Text("days")
-                                            .font(.subheadline)
-                                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                            .foregroundColor(ColorManager.backgroundOrange)
-                                            .offset(x: -4, y: 6.5)
-                                    }
-                                }
-                            }
-                            
-                            
-                            Text("Period Length")
+                            Text("days")
                                 .font(.subheadline)
-                                .fontWeight(.regular)
-                                .foregroundColor(.primary)
+                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(ColorManager.highlightOrange)
+                                .offset(x: -6, y: 6.5)
                         }
                         
-                    }.padding(.bottom, 40)
+                    }.padding(.bottom, 16)
+                    
+                   
+                        
                     
                     // MARK: - Second Section
                     Group{
