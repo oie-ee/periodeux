@@ -67,8 +67,11 @@ struct CalenderDayView: View {
         guard self.date != nil else {
             return nil
         }
+        print("das hier\(periodStore.getLatestPeriodFromDate(date: self.date!))")
         return periodStore.getLatestPeriodFromDate(date: self.date!)
+        
     }
+    
     
     enum visualType {
         case none

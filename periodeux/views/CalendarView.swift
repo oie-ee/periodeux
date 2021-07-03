@@ -14,14 +14,17 @@ struct CalendarView: View {
     @EnvironmentObject var reportStore : ReportStore
     @EnvironmentObject var periodStore : PeriodStore
     
+    @AppStorage("isFirstPeriod") private var isFirstPeriod = Date()
+    
     @State private var currentToday: Int = Calendar.current.component(.day, from: Date())
     @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
     @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
 
+
     
-    //Calculate days til next period start – not dynamic anymore
-    var daysBetweenDates: Int {
-        return 1
+    var computedDaysTilPeriod: Int? {
+        let numberOfDays = Calendar.current.dateComponents([.day], from: Date(), to: Calendar.current.startOfDay(for: isFirstPeriod))
+        return numberOfDays.day! + 1
     }
         
     var numberOfDays: Range<Int> {
@@ -136,7 +139,7 @@ struct CalendarView: View {
             
         }
         .onAppear {
-            appStore.daysTilPeriod = daysBetweenDates
+            appStore.daysTilPeriod = computedDaysTilPeriod!
         }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
