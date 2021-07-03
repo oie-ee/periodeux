@@ -29,15 +29,11 @@ struct InsightsView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         
                         HStack{
-                            Text("29")
-                                .font(.largeTitle)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            Text("29").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .frame(height: 120)
                             
-                            Text("days")
-                                .font(.subheadline)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            Text("days").font(.system(.subheadline, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .offset(x: -6, y: 6.5)
                         }
@@ -55,15 +51,11 @@ struct InsightsView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         
                         HStack{
-                            Text("6")
-                                .font(.largeTitle)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            Text("6").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .frame(height: 120)
                             
-                            Text("days")
-                                .font(.subheadline)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            Text("days").font(.system(.subheadline, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .offset(x: -6, y: 6.5)
                         }
