@@ -16,7 +16,7 @@ class AppStore: ObservableObject {
     init() {
         self.selectedDate = Date()
         
-        self.daysTilPeriod = 0
+        self.daysTilPeriod = 1
         
         self.currentReport = ReportDB()
     }

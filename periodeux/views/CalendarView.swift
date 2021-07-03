@@ -8,95 +8,20 @@ struct CalendarView: View {
     
     private let dateFormatter = DateFormatter()
     
-    @State private var selectedDate: Date = Date()
-    
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
-    
-    @State private var currentToday: Int = Calendar.current.component(.day, from: Date())
-    @State private var currentMonth: Int = Calendar.current.component(.month, from: Date())
-    @State private var currentYear: Int = Calendar.current.component(.year, from: Date())
-    
-    let dummyData = [
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 2, month: 6, year: 2021)!,
-            dayType: .ovulation
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 5, month: 6, year: 2021)!,
-            dayType: .noPeriod
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 6, month: 6, year: 2021)!,
-            dayType: .startInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 7, month: 6, year: 2021)!,
-            dayType: .inInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 8, month: 6, year: 2021)!,
-            dayType: .endInterval
-        ),
-        DayEntry(
-            DayEntry.generateDayDateFromDate(Date()),
-            dayType: .currentDay
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 12, month: 7, year: 2021)!,
-            dayType: .ovulation
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 15, month: 7, year: 2021)!,
-            dayType: .noPeriod
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 16, month: 7, year: 2021)!,
-            dayType: .startInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 17, month: 7, year: 2021)!,
-            dayType: .inInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 18, month: 7, year: 2021)!,
-            dayType: .inInterval
-        ),
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 19, month: 7, year: 2021)!,
-            dayType: .inInterval
-        ),
-        
-        DayEntry(
-            DayEntry.generateDateFromComponents(day: 20, month: 7, year: 2021)!,
-            dayType: .endInterval
-        )
-    ]
-    
-    func getEntryOfDate(_ date: Date) -> DayEntry {
-        return self.dummyData.first { entry in
-            return entry.date == date
-        } ?? DayEntry(
-            date,
-            dayType: .none
-        )
-    }
-    
-    //Calculate days til next period start
-    var daysBetweenDates: Int {
-        return 1
-    }
+    @EnvironmentObject var periodStore : PeriodStore
         
     var numberOfDays: Range<Int> {
-        return self.calendar.range(of: .day, in: .month, for: self.selectedDate)!
+        return self.calendar.range(of: .day, in: .month, for: self.appStore.selectedDate)!
     }
     
     var selectedYear: Int {
-        return Calendar.current.component(.year, from: self.selectedDate)
+        return Calendar.current.component(.year, from: self.appStore.selectedDate)
     }
     
     var selectedMonth: Int {
-        return Calendar.current.component(.month, from: self.selectedDate)
+        return Calendar.current.component(.month, from: self.appStore.selectedDate)
     }
     
     func dateFromCellNumber(_ cellNumber: Int) -> Date? {
@@ -109,7 +34,7 @@ struct CalendarView: View {
    
     var firstWeekdayOfMonth: Int {
         
-        let firstDayOfMonth = self.calendar.dateComponents([.calendar, .year,.month], from: self.selectedDate).date!
+        let firstDayOfMonth = self.calendar.dateComponents([.calendar, .year,.month], from: self.appStore.selectedDate).date!
         let weekday = self.calendar.component(.weekday, from: firstDayOfMonth)
         
         return weekday
@@ -121,7 +46,14 @@ struct CalendarView: View {
         
         dateFormatter.dateFormat = "MMMM Y"
         
-        return dateFormatter.string(from: selectedDate)
+        return dateFormatter.string(from: self.appStore.selectedDate)
+    }
+    
+    var periodEventsOfSelectedMonth: Int {
+        
+        let collection = periodStore.getPeriodsForMonthOfDate(self.appStore.selectedDate)
+//        print("month periods:", collection)
+        return collection.count
     }
     
     // MARK: - Body
@@ -135,11 +67,12 @@ struct CalendarView: View {
                 Text(self.monthName)
                     .font(Font.title2.weight(.semibold))
                 
+                Text("\(self.periodEventsOfSelectedMonth)")
                 Spacer()
                 
                 //Left Chevron
                 Button(action: {
-                    self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
+                    self.appStore.selectDate(calendar.date(byAdding: .month, value: -1, to: self.appStore.selectedDate) ?? Date())
                 }) {
                     Image(systemName: "chevron.left")
                         .resizable()
@@ -151,7 +84,7 @@ struct CalendarView: View {
                 
                 //Right Chevron
                 Button(action: {
-                    self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
+                    self.appStore.selectDate(calendar.date(byAdding: .month, value: 1, to: self.appStore.selectedDate) ?? Date())
                     
                 }) {
                     Image(systemName: "chevron.right")
@@ -178,35 +111,33 @@ struct CalendarView: View {
                             let cellNumber = column + ((row - 1) * 7)
                             let currentDate = dateFromCellNumber(cellNumber)
                             
-                            if currentDate != nil {
-                                CalenderDayView(dayEntry: self.getEntryOfDate(currentDate!))
-                            } else  {
-                                CalenderDayView(dayEntry: nil)
-                            }
-                            
-                            
 
-                            
+                                
+                            if currentDate != nil {
+                                CalenderDayView(date: currentDate!, selectedDate: self.$appStore.selectedDate, type: .noPeriod)
+                            } else  {
+                                CalenderDayView(selectedDate: self.$appStore.selectedDate, type: .none)
+                            }
+                                    
+                                    
+                                
                         }
                     }
                 }
             }.padding([.leading, .trailing], 8)
             
         }
-        .onAppear {
-            appStore.daysTilPeriod = daysBetweenDates
-        }
         .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
             .onEnded({ value in
                 if value.translation.width < 0 {
                     // left
-                    self.selectedDate = calendar.date(byAdding: .month, value: 1, to: self.selectedDate) ?? Date()
+                    self.appStore.selectDate(calendar.date(byAdding: .month, value: 1, to: self.appStore.selectedDate) ?? Date())
                 }
                 
                 if value.translation.width > 0 {
                     // right
-                    self.selectedDate = calendar.date(byAdding: .month, value: -1, to: self.selectedDate) ?? Date()
+                    self.appStore.selectDate(calendar.date(byAdding: .month, value: -1, to: self.appStore.selectedDate) ?? Date())
                 }
             }))
     }

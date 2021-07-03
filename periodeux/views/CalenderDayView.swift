@@ -59,24 +59,74 @@ struct DayEntry: Identifiable {
 
 struct CalenderDayView: View {
     
+
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var reportStore : ReportStore
     
     @State var currentReport: ReportDB = ReportDB()
     
     var dayEntry: DayEntry?
+
+    var date: Date?
     
-    var date: Date? {
-        return self.dayEntry?.date
+    enum visualType {
+        case none
+        case startInterval
+        case endInterval
+        case noPeriod
+        case inInterval
+        case ovulation
+        case currentDay
     }
     
+    @Binding var selectedDate: Date
+    
+    var type: visualType
+
+        
+//        let period = periodStore.getLatestOccurenceOfPeriodForDate(period: latestPeriod!, date!)
+//
+//        guard period != nil else {
+//            return DayEntry(date!, dayType: .noPeriod)
+//        }
+//
+//        let isInPeriod = period!.isDateInPeriodInterval(self.date!)
+//        let isPeriodStart = period!.isDatePeriodStartDay(self.date!)
+//        let isPeriodEnd = period!.isDatePeriodEndDay(Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: self.date!) ?? self.date!)
+//
+//        var dayType: DayEntry.DayType
+//
+//        switch (isInPeriod, isPeriodStart, isPeriodEnd) {
+//
+//        case (true, false, false):
+//            dayType = .inInterval
+//            break
+//        case (false, true, false), (true, true, false):
+//            dayType = .startInterval
+//            break
+//        case (false, false, true), (true, false, true):
+//            dayType = .endInterval
+//            break
+//        default:
+//            dayType = .noPeriod
+//        }
+//
+//        let dayEntry = DayEntry(date!, dayType: dayType)
+//
+//        return dayEntry
+    
+
     var isSelected: Bool {
-        return self.date == appStore.selectedDate
+        guard self.date != nil else {
+            return false
+        }
+        
+        return Calendar.current.isDate(self.date!, inSameDayAs: self.selectedDate)
     }
     
     var circleColor: Color {
         
-        guard self.dayEntry != nil else {
+        guard self.date != nil else {
             return .clear
         }
         guard !isSelected else {
@@ -84,7 +134,7 @@ struct CalenderDayView: View {
         }
         
         
-        switch self.dayEntry!.dayType {
+        switch self.type {
         case .noPeriod:
             return .clear
         case .none:
@@ -98,13 +148,11 @@ struct CalenderDayView: View {
             
         case .currentDay:
             return Color(UIColor.systemGray4)
-        default:
-            return .red
         }
     }
     
     var textColor: Color {
-        guard self.dayEntry != nil else {
+        guard self.date != nil else {
             return .clear
         }
         
@@ -112,7 +160,7 @@ struct CalenderDayView: View {
 //            return .primary
 //        }
         
-        switch self.dayEntry!.dayType {
+        switch self.type {
         case .ovulation:
             return Color(UIColor.systemTeal)
         case .startInterval:
@@ -128,11 +176,11 @@ struct CalenderDayView: View {
     }
     
     var textFont: Font {
-        guard self.dayEntry != nil else {
+        guard self.date != nil else {
             return .body
         }
         
-        switch self.dayEntry!.dayType {
+        switch self.type {
         case .ovulation:
             return Font.title3.weight(.semibold)
         case .currentDay:
@@ -143,19 +191,19 @@ struct CalenderDayView: View {
     }
     
     var dayNumber: Int {
-        guard self.dayEntry != nil else {
+        guard self.date != nil else {
             return 0
         }
         
-        return Calendar.current.component(.day, from: self.dayEntry!.date)
+        return Calendar.current.component(.day, from: self.date!)
     }
     
     var intervalBackground: RoundedCorners? {
-        guard self.dayEntry != nil else {
+        guard self.date != nil else {
             return nil
         }
         
-        switch self.dayEntry!.dayType {
+        switch self.type {
         case .startInterval:
             return RoundedCorners(tl: 40, tr: 0, bl: 40, br: 0)
                 
@@ -171,11 +219,11 @@ struct CalenderDayView: View {
     }
     
     var intervalBackgroundPadding: EdgeInsets {
-        guard self.dayEntry != nil else {
+        guard self.date != nil else {
             return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         }
         
-        switch self.dayEntry!.dayType {
+        switch self.type {
         case .startInterval:
             return EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0)
             
@@ -191,7 +239,7 @@ struct CalenderDayView: View {
     
     var body: some View {
         
-        guard dayEntry != nil else  {
+        guard self.date != nil else  {
             return AnyView(
                 Circle().foregroundColor(circleColor)
                 .frame(height: 40)
@@ -200,9 +248,10 @@ struct CalenderDayView: View {
         return AnyView(
                 Button(
                     action: {
+
                     
                         appStore.selectDate(self.date!)
-                    
+
                     },
                     label: {
                         ZStack {
@@ -211,7 +260,7 @@ struct CalenderDayView: View {
                                 .frame(height: 40)
                             
                             
-                            if dayEntry != nil {
+                            if date != nil {
                                 Text("\(dayNumber)")
                                     .foregroundColor(self.textColor)
                                     .font(textFont)
