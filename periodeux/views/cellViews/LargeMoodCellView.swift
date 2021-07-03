@@ -56,20 +56,20 @@ struct LargeMoodCellView: View {
                 if(isSelected){
                     Image("\(mood.imageIcon):68x68")
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 14)
                                 .stroke(ColorManager.highlightOrange, lineWidth: 3)
                         )
                 }else {
                     Image("\(mood.imageIcon):68x68")
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
+                            RoundedRectangle(cornerRadius: 14)
                                 .stroke(Color.clear, lineWidth: 3)
                         )
                 }
                 
                 Text(mood.name)
                     .font(.subheadline)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     .frame(width: 80, height: 48, alignment: .top)
                     .multilineTextAlignment(.center)
                     .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)

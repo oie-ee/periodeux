@@ -49,10 +49,10 @@ struct InfoInputView: View {
                     self.showingModalView.toggle()
                     selectedDiaryTag = 0
                 }) {
-                    Text("Edit")
-                        .font(.caption2)
-                        .foregroundColor(ColorManager.highlightOrange)
-                        .offset(y: -1)
+//                    Text("Edit")
+//                        .font(.caption2)
+//                        .foregroundColor(ColorManager.highlightOrange)
+//                        .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
                     ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
@@ -73,7 +73,13 @@ struct InfoInputView: View {
                     SmallMoodCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag, mood: model)
                 }
                 
-                AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+                if(appStore.currentReport.moodList.isEmpty) {
+                   
+                    AddIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+                   
+                }else {
+                    EditIconCellView(selectedDiaryTag: 0, parentState: $selectedDiaryTag)
+                }
                 
             }
    
@@ -89,10 +95,10 @@ struct InfoInputView: View {
                     self.showingModalView.toggle()
                     selectedDiaryTag = 1
                 }) {
-                    Text("Edit")
-                        .font(.caption2)
-                        .foregroundColor(ColorManager.highlightOrange)
-                        .offset(y: -1)
+//                    Text("Edit")
+//                        .font(.caption2)
+//                        .foregroundColor(ColorManager.highlightOrange)
+//                        .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
                     ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
@@ -112,7 +118,13 @@ struct InfoInputView: View {
                     SmallSymptomCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag, symptom: model)
                 }
                 
-                AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+                if(appStore.currentReport.symptomList.isEmpty) {
+                   
+                    AddIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+                   
+                }else {
+                    EditIconCellView(selectedDiaryTag: 1, parentState: $selectedDiaryTag)
+                }
             }
             
         
@@ -127,10 +139,10 @@ struct InfoInputView: View {
                     self.showingModalView.toggle()
                     selectedDiaryTag = 2
                 }) {
-                    Text("Edit")
-                        .font(.caption2)
-                        .foregroundColor(ColorManager.highlightOrange)
-                        .offset(y: -1)
+//                    Text("Edit")
+//                        .font(.caption2)
+//                        .foregroundColor(ColorManager.highlightOrange)
+//                        .offset(y: -1)
                 }.sheet(isPresented: $showingModalView) {
                     ModalInfoView(selectedDiaryTag: $selectedDiaryTag)
                 }
@@ -142,7 +154,7 @@ struct InfoInputView: View {
             HStack {
                 let bleeding = appStore.currentReport.bleeding
                 
-                if(bleeding != Int.min){
+                if(bleeding > 0){
                     let model = bleedingModel[bleeding]
                     SmallBleedingCellView(selectedDiaryTag: 2, parentState: $selectedDiaryTag, bleeding: model)
                 }
@@ -152,13 +164,18 @@ struct InfoInputView: View {
                 
             }
             
-        }.onAppear {
+        }.onChange(of: appStore.selectedDate, perform: { _ in
             let reportID = reportStore.getExistingReportID(date: appStore.selectedDate)
             if(reportID != 0) {
                 let report = reportStore.findByID(id: reportID)
                 appStore.currentReport = report!
+            } else {
+                appStore.currentReport = ReportDB()
             }
-        }
+        })
+            
+            
+        
     }
     
     /// This shortens a date to the string format, e.g. 01 January 2021
@@ -204,21 +221,67 @@ struct AddIconCellView: View {
                     Image(systemName: "app.fill")
                         .resizable()
                         .frame(width: 44, height: 44)
-                        .foregroundColor(ColorManager.backgroundOrange)
+                        .foregroundColor(ColorManager.addEditCellBackgound)
                     
                     Image(systemName: "plus")
                         .resizable()
                         .frame(width: 22, height: 22)
                         .foregroundColor(ColorManager.highlightOrange)
                 }
+                    
+                    Text("Add")
+                        .font(.caption2)
+                        .foregroundColor(.primary)
+                        //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
+                        .frame(width: 50, height: 30, alignment: .top)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    
+            }
+            
+        }.sheet(isPresented: $showingModalView) {
+            ModalInfoView(selectedDiaryTag: $parentState)
+        }
+    }
+}
+
+// MARK: - Edit Icon Cells
+struct EditIconCellView: View {
+    
+    @State var showingModalView = false
+    @State var selectedDiaryTag: Int
+    @Binding var parentState: Int
+    
+    var body: some View {
+        
+        Button(action: {
+            self.showingModalView.toggle()
+            parentState = selectedDiaryTag
+            
+        }) {
+            VStack{
                 
-                Text("Add")
-                    .font(.caption2)
-                    .foregroundColor(.black)
-                    //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
-                    .frame(width: 50, height: 30, alignment: .top)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                ZStack {
+                    
+                    Image(systemName: "app.fill")
+                        .resizable()
+                        .frame(width: 44, height: 44)
+                        .foregroundColor(ColorManager.addEditCellBackgound)
+                    
+                    Image(systemName: "pencil")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .foregroundColor(ColorManager.highlightOrange)
+                }
+                    
+                    Text("Edit")
+                        .font(.caption2)
+                        .foregroundColor(.primary)
+                        //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
+                        .frame(width: 50, height: 30, alignment: .top)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    
             }
             
         }.sheet(isPresented: $showingModalView) {

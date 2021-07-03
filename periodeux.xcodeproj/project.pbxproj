@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F6BBD1D2682762600773BB1 /* PeriodDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD1A2682762600773BB1 /* PeriodDB.swift */; };
+		6F6BBD1E2682762600773BB1 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD1B2682762600773BB1 /* Period.swift */; };
+		6F6BBD1F2682762600773BB1 /* PeriodDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD1C2682762600773BB1 /* PeriodDBKeys.swift */; };
+		6F6BBD2126827C4C00773BB1 /* PeriodStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD2026827C4C00773BB1 /* PeriodStore.swift */; };
 		6FAA67992668C44D00C59462 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FAA679B2668C44D00C59462 /* Localizable.strings */; };
 		6FD721CB26683A4C004D7664 /* CalenderDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD721CA26683A4C004D7664 /* CalenderDayView.swift */; };
-		6FDE23B6268F4444000AF57A /* PeriodStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE23B5268F4444000AF57A /* PeriodStore.swift */; };
-		6FDE23BB268F4488000AF57A /* PeriodDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE23B8268F4488000AF57A /* PeriodDB.swift */; };
-		6FDE23BC268F4488000AF57A /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE23B9268F4488000AF57A /* Period.swift */; };
-		6FDE23BD268F4488000AF57A /* PeriodDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE23BA268F4488000AF57A /* PeriodDBKeys.swift */; };
 		999B14C326502CE7004E4221 /* RealmPersistentInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B14C226502CE7004E4221 /* RealmPersistentInitializer.swift */; };
 		999B14CC26502DCE004E4221 /* ReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B14CB26502DCE004E4221 /* ReportStore.swift */; };
 		99E6905725B3246600E07559 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E6905625B3246600E07559 /* AppStore.swift */; };
@@ -72,13 +72,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F6BBD1A2682762600773BB1 /* PeriodDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDB.swift; sourceTree = "<group>"; };
+		6F6BBD1B2682762600773BB1 /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
+		6F6BBD1C2682762600773BB1 /* PeriodDBKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDBKeys.swift; sourceTree = "<group>"; };
+		6F6BBD2026827C4C00773BB1 /* PeriodStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodStore.swift; sourceTree = "<group>"; };
 		6FAA679A2668C44D00C59462 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6FAA679C2668C45000C59462 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6FD721CA26683A4C004D7664 /* CalenderDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDayView.swift; sourceTree = "<group>"; };
-		6FDE23B5268F4444000AF57A /* PeriodStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodStore.swift; sourceTree = "<group>"; };
-		6FDE23B8268F4488000AF57A /* PeriodDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDB.swift; sourceTree = "<group>"; };
-		6FDE23B9268F4488000AF57A /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
-		6FDE23BA268F4488000AF57A /* PeriodDBKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDBKeys.swift; sourceTree = "<group>"; };
 		999B14C226502CE7004E4221 /* RealmPersistentInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPersistentInitializer.swift; sourceTree = "<group>"; };
 		999B14CB26502DCE004E4221 /* ReportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStore.swift; sourceTree = "<group>"; };
 		99E6905625B3246600E07559 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
@@ -151,12 +151,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6FDE23B7268F4488000AF57A /* Period */ = {
+		6F6BBD192682762600773BB1 /* Period */ = {
 			isa = PBXGroup;
 			children = (
-				6FDE23B8268F4488000AF57A /* PeriodDB.swift */,
-				6FDE23B9268F4488000AF57A /* Period.swift */,
-				6FDE23BA268F4488000AF57A /* PeriodDBKeys.swift */,
+				6F6BBD1A2682762600773BB1 /* PeriodDB.swift */,
+				6F6BBD1B2682762600773BB1 /* Period.swift */,
+				6F6BBD1C2682762600773BB1 /* PeriodDBKeys.swift */,
 			);
 			path = Period;
 			sourceTree = "<group>";
@@ -172,8 +172,8 @@
 		999B14CA26502DAA004E4221 /* stores */ = {
 			isa = PBXGroup;
 			children = (
+				6F6BBD2026827C4C00773BB1 /* PeriodStore.swift */,
 				999B14CB26502DCE004E4221 /* ReportStore.swift */,
-				6FDE23B5268F4444000AF57A /* PeriodStore.swift */,
 			);
 			path = stores;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 		F3150C0925878389003129DE /* models */ = {
 			isa = PBXGroup;
 			children = (
-				6FDE23B7268F4488000AF57A /* Period */,
+				6F6BBD192682762600773BB1 /* Period */,
 				F34EA87025B387AA007EA188 /* Report */,
 			);
 			path = models;
@@ -385,7 +385,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					F31BCAA7257BB57D005343D6 = {
 						CreatedOnToolsVersion = 12.2;
@@ -457,7 +457,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FDE23B6268F4444000AF57A /* PeriodStore.swift in Sources */,
 				F348311025B73B2600F3FBD5 /* OnboardingView.swift in Sources */,
 				6FD721CB26683A4C004D7664 /* CalenderDayView.swift in Sources */,
 				F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */,
@@ -471,7 +470,6 @@
 				F348310F25B73B2600F3FBD5 /* BoardModel.swift in Sources */,
 				F31BCB13257BD075005343D6 /* SmallBleedingCellView.swift in Sources */,
 				F3B0365F258906A9003A6771 /* LargeBleedingCellView.swift in Sources */,
-				6FDE23BD268F4488000AF57A /* PeriodDBKeys.swift in Sources */,
 				F3B0365525890687003A6771 /* LargeMoodCellView.swift in Sources */,
 				F31BCAF4257BBDBB005343D6 /* RectangleWrapperView.swift in Sources */,
 				999B14C326502CE7004E4221 /* RealmPersistentInitializer.swift in Sources */,
@@ -479,21 +477,23 @@
 				F348311125B73B2600F3FBD5 /* OnboardingCardView.swift in Sources */,
 				F31BCB06257BC866005343D6 /* SmallMoodCellView.swift in Sources */,
 				99E6905725B3246600E07559 /* AppStore.swift in Sources */,
+				6F6BBD1E2682762600773BB1 /* Period.swift in Sources */,
 				F3F45A2325B4917100086059 /* WeekdaysView.swift in Sources */,
-				6FDE23BC268F4488000AF57A /* Period.swift in Sources */,
 				F34EA87525B389F9007EA188 /* ReportDB.swift in Sources */,
 				999B14CC26502DCE004E4221 /* ReportStore.swift in Sources */,
+				6F6BBD2126827C4C00773BB1 /* PeriodStore.swift in Sources */,
 				F31BCAAC257BB57D005343D6 /* periodeuxApp.swift in Sources */,
 				F34EA87A25B38B5F007EA188 /* ReportDBKeys.swift in Sources */,
 				F34556A72580106E00523956 /* ModalInfoView.swift in Sources */,
+				6F6BBD1D2682762600773BB1 /* PeriodDB.swift in Sources */,
 				F348310E25B73B2600F3FBD5 /* OnboardingHeaderView.swift in Sources */,
 				F3150C0B258783A7003129DE /* MoodModel.swift in Sources */,
+				6F6BBD1F2682762600773BB1 /* PeriodDBKeys.swift in Sources */,
 				F3150C1825878441003129DE /* BleedingModel.swift in Sources */,
 				F97F3D6E25AE67FB00622CBE /* InsightsView.swift in Sources */,
 				F31BCAF9257BC562005343D6 /* InfoInputView.swift in Sources */,
 				F304E6C525B1E04D001EB66E /* SingleDayView.swift in Sources */,
 				F3150C1325878419003129DE /* SymptomModel.swift in Sources */,
-				6FDE23BB268F4488000AF57A /* PeriodDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

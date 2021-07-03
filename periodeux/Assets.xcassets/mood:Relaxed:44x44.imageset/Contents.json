@@ -6,12 +6,41 @@
       "scale" : "1x"
     },
     {
-      "filename" : "mood:relaxed:44x44.svg",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "mood:relaxed:dark:44x44.svg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "mood:relaxed:44x44-2.svg",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -83,6 +83,7 @@ final class PeriodStore: ObservableObject {
         
         let distanceFromPeriodOccurence = Int(absoluteDistanceToPeriod) % Int(self.averageCycleDuration)
         
+        print(date, distanceFromPeriodOccurence, period.date)
         
         let periodOccurence = Period(id: 0, date: (date - TimeInterval(distanceFromPeriodOccurence)), durationDays: self.averagePeriodDuration)
         
