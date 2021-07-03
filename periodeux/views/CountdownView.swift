@@ -35,9 +35,7 @@ struct CountdownView: View {
                     .frame(width: 46, height: 46)
                     .offset(y: -4.0)
                 
-                Text("\(appStore.daysTilPeriod)")
-                    .font(.title)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Text("\(appStore.daysTilPeriod)").font(.system(.title, design: .rounded)).fontWeight(.bold)
                     .foregroundColor(ColorManager.highlightOrange)
                     .offset(y: -4.0)
             }
