@@ -107,38 +107,55 @@ struct InsightsView: View {
                             .font(Font.title3.weight(.semibold))
                             .padding(.bottom, 2)
                         
-                        Text("These are your most frequently reported symptoms:")
-                            .font(Font.body.weight(.regular))
-                            .foregroundColor(.secondary)
-                            .padding(.bottom, 15)
-                        
-                        ScrollView(.horizontal) {
+                        if self.calculateFrequentSymptoms().isEmpty {
                             
-                            HStack(spacing: 5){
-                                ForEach(self.calculateFrequentSymptoms(), id: \.0) { symptom, count in
-                                    
-                                    let iconName = String(symptom.lowercased().filter { !" \n\t\r".contains($0) })
-                                    
-                                    let model = SymptomModel(name: symptom, imageIcon: "symptom:\(iconName)")
-                                    
-                                    ZStack (alignment: .topLeading) {
-                                        LargeSymptomCellView(symptom: model, isSelected: false).disabled(true)
-                                        
-                                        ZStack {
-                                            
-                                            Circle()
-                                                .fill(ColorManager.highlightOrange)
-                                                .frame(width: 22, height: 22)
-                                            
-                                            Text("\(count)").font(.system(.caption, design: .rounded)).fontWeight(.bold)
-                                                .foregroundColor(ColorManager.backgroundOrange)
-                                        }
-                                        
-                                    }
-                                }
+                            ZStack {
                                 
+                                Capsule()
+                                    .fill(ColorManager.backgroundOrange)
+                                    .frame(height: 40)
+                                
+                                Text("Please add more symptoms first").font(.system(.caption)).fontWeight(.medium)
+                                    .foregroundColor(ColorManager.highlightOrange)
+                                
+                            }.padding(.bottom, 20)
+                            
+                        } else {
+                            
+                            Text("These are your most frequently reported symptoms:")
+                                .font(Font.body.weight(.regular))
+                                .foregroundColor(.secondary)
+                                .padding(.bottom, 15)
+                            
+                            ScrollView(.horizontal) {
+                                
+                                HStack(spacing: 5){
+                                    ForEach(self.calculateFrequentSymptoms(), id: \.0) { symptom, count in
+                                        
+                                        let iconName = String(symptom.lowercased().filter { !" \n\t\r".contains($0) })
+                                        
+                                        let model = SymptomModel(name: symptom, imageIcon: "symptom:\(iconName)")
+                                        
+                                        ZStack (alignment: .topLeading) {
+                                            LargeSymptomCellView(symptom: model, isSelected: false).disabled(true)
+                                            
+                                            ZStack {
+                                                
+                                                Circle()
+                                                    .fill(ColorManager.highlightOrange)
+                                                    .frame(width: 22, height: 22)
+                                                
+                                                Text("\(count)").font(.system(.caption, design: .rounded)).fontWeight(.bold)
+                                                    .foregroundColor(ColorManager.backgroundOrange)
+                                            }
+                                            
+                                        }
+                                    }
+                                    
+                                }
                             }
                         }
+                        
                     }
                     
                     // MARK: - Fourth Section
@@ -147,37 +164,57 @@ struct InsightsView: View {
                             .font(Font.title3.weight(.semibold))
                             .padding(.bottom, 2)
                         
-                        Text("These are your most frequently reported moods:")
-                            .font(Font.body.weight(.regular))
-                            .foregroundColor(.secondary)
-                            .padding(.bottom, 15)
                         
-                        ScrollView(.horizontal) {
+                        if self.calculateFrequentMoods().isEmpty {
                             
-                            HStack(spacing: 5){
-                                ForEach(self.calculateFrequentMoods(), id: \.0) { mood, count in
-                                    
-                                    let iconName = String(mood.lowercased().filter { !" \n\t\r".contains($0) })
-                                    
-                                    let model = MoodModel(name: mood, imageIcon: "mood:\(iconName)")
-                                    
-                                    ZStack (alignment: .topLeading) {
-                                        LargeMoodCellView(mood: model, isSelected: false).disabled(true)
-                                        
-                                        ZStack {
-                                            
-                                            Circle()
-                                                .fill(ColorManager.highlightOrange)
-                                                .frame(width: 22, height: 22)
-                                            
-                                            Text("\(count)").font(.system(.caption, design: .rounded)).fontWeight(.bold)
-                                                .foregroundColor(ColorManager.backgroundOrange)
-                                        }
-                                        
-                                    }
-                                }
+                            
+                            ZStack {
                                 
-                            }.padding(.bottom, 16)
+                                Capsule()
+                                    .fill(ColorManager.backgroundOrange)
+                                    .frame(height: 40)
+                                
+                                Text("Please add more moods first").font(.system(.caption)).fontWeight(.medium)
+                                    .foregroundColor(ColorManager.highlightOrange)
+                                
+                            }.padding(.bottom, 10)
+                            
+                            
+                        } else {
+                            
+                            Text("These are your most frequently reported moods:")
+                                .font(Font.body.weight(.regular))
+                                .foregroundColor(.secondary)
+                                .padding(.bottom, 15)
+                            
+                            ScrollView(.horizontal) {
+                                
+                                HStack(spacing: 5){
+                                    ForEach(self.calculateFrequentMoods(), id: \.0) { mood, count in
+                                        
+                                        let iconName = String(mood.lowercased().filter { !" \n\t\r".contains($0) })
+                                        
+                                        let model = MoodModel(name: mood, imageIcon: "mood:\(iconName)")
+                                        
+                                        ZStack (alignment: .topLeading) {
+                                            LargeMoodCellView(mood: model, isSelected: false).disabled(true)
+                                            
+                                            ZStack {
+                                                
+                                                Circle()
+                                                    .fill(ColorManager.highlightOrange)
+                                                    .frame(width: 22, height: 22)
+                                                
+                                                Text("\(count)").font(.system(.caption, design: .rounded)).fontWeight(.bold)
+                                                    .foregroundColor(ColorManager.backgroundOrange)
+                                            }
+                                            
+                                        }
+                                    }
+                                    
+                                }.padding(.bottom, 16)
+                            }
+                            
                         }
                     }
                     
