@@ -26,7 +26,6 @@ final class PeriodStore: ObservableObject {
     }
     
     var averagePeriodDuration: TimeInterval {
-        print(Double(isPeriodDuration))
         return Double(isPeriodDuration)*3600.00*24.00
     }
     
