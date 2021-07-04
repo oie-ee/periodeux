@@ -13,9 +13,7 @@ final class ReportStore: ObservableObject {
     
     var reports: [Report] {
         results.map(Report.init)
-    }
-    
-    
+    }    
     
     // Load Items from the Realm Database
     init(realm: Realm) {

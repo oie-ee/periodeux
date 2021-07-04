@@ -117,19 +117,12 @@ struct CalendarView: View {
                             
                             let cellNumber = column + ((row - 1) * 7)
                             let currentDate = dateFromCellNumber(cellNumber)
-                            
-                            
                            
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 0, style: .continuous).foregroundColor(ColorManager.lightestElement)
                                     
-                                    if currentDate != nil {
-                                        CalenderDayView(date: currentDate!)
-                                    } else  {
-                                        CalenderDayView()
-                                    }
                                     
-                                    
+                                    CalendarDayView(date: currentDate ?? nil)
                                 }
                             
                         }

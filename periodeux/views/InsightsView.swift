@@ -10,6 +10,8 @@ struct InsightsView: View {
     
     @State var showComposeMessageView: Bool = false
     
+    @EnvironmentObject var reportStore : ReportStore
+    
     // MARK: - Body
     var body: some View {
         
@@ -113,16 +115,18 @@ struct InsightsView: View {
                         ScrollView(.horizontal) {
                             
                             HStack(spacing: 5){
-                                LargeSymptomCellView(symptom: SymptomModel.symptom4, isSelected: false)
-                                    .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom3, isSelected: false)
-                                    .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom5, isSelected: false)
-                                    .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom10, isSelected: false)
-                                    .disabled(true)
-                                LargeSymptomCellView(symptom: SymptomModel.symptom1, isSelected: false)
-                                    .disabled(true)
+                                ForEach(self.calculateFrequentSymptoms(), id: \.0) { symptom, count in
+                                    
+                                    let iconName = String(symptom.lowercased().filter { _ in !" \n\t\r".contains(symptom) })
+                                    
+                                    let model = SymptomModel(name: symptom, imageIcon: "symptom:\(iconName)")
+                                    
+                                    VStack {
+                                        LargeSymptomCellView(symptom: model, isSelected: false)
+                                        Text("\(count)")
+                                    }
+                                }
+                            
                             }.padding(.bottom, 32)
                         }
                     }
@@ -163,6 +167,39 @@ struct InsightsView: View {
             }
         }
     }
+    
+    func calculateFrequentSymptoms () -> [(String, Int)] {
+        var allSymptomsFromDatabase = [String]()
+        
+        // Get all reports from database and store every symptom in one array
+        reportStore.reports.forEach { (report) in
+            report.symptomList.forEach { (symptom) in
+                allSymptomsFromDatabase.append(symptom)
+            }
+        }
+        
+        // Use the array with Symptoms and count them,
+        // sort them descending and put them in a dictionary
+        let sortedSymptoms = allSymptomsFromDatabase
+            .reduce(into: [:]) { counts, word in counts[word, default: 0] += 1 }
+            .sortedByValueDecending
+
+//        print("Sorted Symptom Dictionary: \(counts)")
+        
+        return sortedSymptoms
+    }
+}
+
+
+extension Dictionary where Value: Comparable {
+    var sortedByValueAscending: [(Key, Value)] { return Array(self).sorted { $0.1 < $1.1} }
+    
+    var sortedByValueDecending: [(Key, Value)] { return Array(self).sorted { $0.1 > $1.1} }
+}
+
+
+extension Dictionary where Key: Comparable {
+    var sortedByKey: [(Key, Value)] { return Array(self).sorted { $0.0 < $1.0 } }
 }
 
 

@@ -11,7 +11,7 @@ import SwiftUI
 struct DayEntry: Identifiable {
     var id: Int
     
-    var date: Date
+    var date : Date
     
     enum DayType {
         case none
@@ -56,21 +56,22 @@ struct DayEntry: Identifiable {
     
 }
 
-
-struct CalenderDayView: View {
+    
+struct CalendarDayView: View {
     
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var periodStore : PeriodStore
-    
     
     var latestPeriod: Period? {
         guard self.date != nil else {
             return nil
         }
-        print("das hier\(periodStore.getLatestPeriodFromDate(date: self.date!))")
+//        print("das hier\(periodStore.getLatestPeriodFromDate(date: self.date!))")
         return periodStore.getLatestPeriodFromDate(date: self.date!)
         
     }
+    
+    var date: Date?
     
     
     enum visualType {
@@ -121,9 +122,6 @@ struct CalenderDayView: View {
         return dayEntry
     }
     
-    var date: Date?
-
-    
     var isSelected: Bool {
         return self.date == appStore.selectedDate
     }
@@ -139,20 +137,19 @@ struct CalenderDayView: View {
         
         
         switch self.dayEntry!.dayType {
-        case .noPeriod:
-            return .clear
-        case .none:
-            return .clear
-        case .startInterval:
-            return ColorManager.highlightOrange
-        case .inInterval, .endInterval:
-            return .clear
-        case .ovulation:
-            return ColorManager.customTeal
-            
-        case .currentDay:
-            return Color(UIColor.systemGray4)
-        }
+            case .noPeriod:
+                return .clear
+            case .none:
+                return .clear
+            case .startInterval:
+                return ColorManager.highlightOrange
+            case .inInterval, .endInterval:
+                return .clear
+            case .ovulation:
+                return ColorManager.customTeal
+            case .currentDay:
+                return Color(UIColor.systemGray4)
+            }
     }
     
     var textColor: Color {
@@ -249,20 +246,34 @@ struct CalenderDayView: View {
                 .frame(height: 40)
             )
         }
+    
+        // WENN DAS DATE == HEUTIGES DATE -> Anderes Bobbel zeichnen
+        
+        
+        let isCurrentDate = self.bubbleIsCurrentDay()
+    
         return AnyView(
-                Button(
-                    action: {
+            Button(
+                action: {
+                    appStore.selectDate(self.date!)
+                },
+                label: {
                     
-                        appStore.selectDate(self.date!)
-
-                    
-                    },
-                    label: {
+                    if(isCurrentDate) {
                         ZStack {
-                            
-                            Circle().foregroundColor(circleColor)
+                            Circle().foregroundColor(Color(UIColor.systemGray4))
                                 .frame(height: 40)
                             
+                            if dayEntry != nil {
+                                Text("\(dayNumber)")
+                                    .foregroundColor(self.textColor)
+                                    .font(textFont)
+                            }
+                        }
+                    } else {
+                        ZStack {
+                            Circle().foregroundColor(circleColor)
+                                .frame(height: 40)
                             
                             if dayEntry != nil {
                                 Text("\(dayNumber)")
@@ -271,13 +282,30 @@ struct CalenderDayView: View {
                             }
                         }
                     }
-                ).background(
-                    intervalBackground
-                        .foregroundColor(ColorManager.backgroundOrange)
-                        .padding(intervalBackgroundPadding)
-                )
+                }
+            ).background(
+                intervalBackground
+                    .foregroundColor(ColorManager.backgroundOrange)
+                    .padding(intervalBackgroundPadding)
             )
+        )
         
+    }
+    
+    func bubbleIsCurrentDay() -> Bool {
+        let c = Date() // current date or replace with a specific date
+        let calendar = Calendar.current
+        let currentDate = calendar.startOfDay(for: c)
+        
+        let bubbleDate = calendar.startOfDay(for: self.date!)
+        
+//        print("CURRENT-DATE ** \(currentDate) ** BUBBLE-DATE ** \(bubbleDate)")
+        
+        if(bubbleDate == currentDate) {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
