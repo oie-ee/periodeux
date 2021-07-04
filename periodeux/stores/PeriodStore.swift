@@ -22,11 +22,17 @@ final class PeriodStore: ObservableObject {
     func getLatestPeriodFromDate(date: Date) -> Period {
         return periods.first { period in
             return period.date <= date
-        } ?? Period(id: 0, date: Calendar.current.startOfDay(for: isFirstPeriod), duration: averagePeriodDuration)
+        } ?? Period(id: 0, date: Calendar.current.startOfDay(for: isFirstPeriod), duration: averagePeriodDurationMinusDay)
     }
     
     var averagePeriodDuration: TimeInterval {
+        print(Double(isPeriodDuration))
         return Double(isPeriodDuration)*3600.00*24.00
+    }
+    
+    var averagePeriodDurationMinusDay: TimeInterval {
+        let day = 3600.00*24.00
+        return averagePeriodDuration - day
     }
     
     var averageCycleDuration: TimeInterval {
@@ -46,7 +52,7 @@ final class PeriodStore: ObservableObject {
         
 //        print(date, distanceFromPeriodOccurence, period.date)
         
-        let periodOccurence = Period(id: 0, date: (date - TimeInterval(distanceFromPeriodOccurence)), duration: self.averagePeriodDuration)
+        let periodOccurence = Period(id: 0, date: (date - TimeInterval(distanceFromPeriodOccurence)), duration: self.averagePeriodDurationMinusDay)
         
         return periodOccurence
     }
