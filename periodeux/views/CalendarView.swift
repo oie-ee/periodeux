@@ -139,7 +139,7 @@ struct CalendarView: View {
             WeekDays()
             
             // Day-Grid
-            VStack(spacing: 0){
+            VStack(spacing: 16){
                 ForEach(1..<7) {
                     row in
                     HStack(spacing: 0){
