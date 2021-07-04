@@ -25,12 +25,18 @@ struct CalenderDayView: View {
         case noPeriod
         case inInterval
         case ovulation
-        case currentDay
     }
     
     @Binding var selectedDate: Date
     
     var type: visualType
+    
+    var isToday: Bool {
+        guard self.date != nil else {
+            return false
+        }
+        return Calendar.current.isDateInToday(self.date!)
+    }
     
     var isSelected: Bool {
         guard self.date != nil else {
@@ -45,6 +51,7 @@ struct CalenderDayView: View {
         guard self.date != nil else {
             return .clear
         }
+        
         guard !isSelected else {
             return Color(UIColor.systemGray6)
         }
@@ -61,9 +68,6 @@ struct CalenderDayView: View {
             return .clear
         case .ovulation:
             return Color(UIColor.systemTeal).opacity(0.1)
-            
-        case .currentDay:
-            return Color(UIColor.systemGray4)
         }
     }
     
@@ -72,22 +76,16 @@ struct CalenderDayView: View {
             return .clear
         }
         
-//        guard !isSelected else {
-//            return .primary
-//        }
-        
         switch self.type {
         case .ovulation:
-            return Color(UIColor.systemTeal)
+            return isSelected ? .primary : isToday ? .accentColor : Color(UIColor.systemTeal)
         case .startInterval:
-            return .white
+            return isSelected ? .primary : .white
         case .inInterval, .endInterval:
-            return ColorManager.highlightOrange
-        case .currentDay:
-            return .primary
+            return isSelected ? .primary : ColorManager.highlightOrange
         
         default:
-            return .primary
+            return isToday ? .accentColor : .primary
         }
     }
     
@@ -99,10 +97,8 @@ struct CalenderDayView: View {
         switch self.type {
         case .ovulation:
             return Font.title3.weight(.semibold)
-        case .currentDay:
-            return Font.title3.weight(.bold)
         default:
-            return Font.title3
+            return isToday ? Font.title3.weight(.bold) : Font.title3
         }
     }
     
@@ -175,6 +171,11 @@ struct CalenderDayView: View {
                             Circle().foregroundColor(circleColor)
                                 .frame(height: 40)
                             
+//                            if isToday {
+//                                Circle()
+//                                    .stroke(Color.accentColor)
+//                                    .frame(height: 44)
+//                            }
                             
                             if date != nil {
                                 Text("\(dayNumber)")

@@ -24,6 +24,87 @@ final class PeriodStore: ObservableObject {
         
     }
     
+    var daysTilPeriod: Int {
+        
+        let today = Date().startOfDay() ?? Date()
+        
+        let currentOrNextPeriod = self.getNextOrCurrentPeriodFromDate(today)
+        
+        guard currentOrNextPeriod != nil else {
+            return 0
+        }
+        
+        let tilCount = Calendar.current.dateComponents(
+            [.day],
+            from: today,
+            to: currentOrNextPeriod!.date
+        ).day  ?? 0
+        
+        return tilCount
+    }
+    
+    func getNextPeriodFromDate(_ date: Date) -> Period? {
+        
+        let relativeDate = date.startOfDay()
+        
+        guard relativeDate != nil else {
+            return nil
+        }
+        
+        var nextPeriod = self.getNextPeriodFromDate(date: relativeDate!)
+        
+        if nextPeriod == nil {
+            let latestPeriod = self.getLatestPeriodFromDate(date: relativeDate!)
+            
+            guard latestPeriod != nil else {
+                return nil
+            }
+            
+            let latestPeriodLatestOccurence = self.getLatestOccurenceOfPeriodForDate(period: latestPeriod, relativeDate!)
+            
+            nextPeriod = self.getNextOccurenceOfPeriod(latestPeriodLatestOccurence)
+            
+        }
+        
+        return nextPeriod
+        
+    }
+    
+    
+    func getNextOrCurrentPeriodFromDate(_ date: Date) -> Period? {
+        
+        let relativeDate = date.startOfDay()
+        
+        guard relativeDate != nil else {
+            return nil
+        }
+        
+        var nextPeriod = self.getNextPeriodFromDate(date: relativeDate!)
+        
+        if nextPeriod == nil {
+            let latestPeriod = self.getLatestPeriodFromDate(date: relativeDate!)
+            
+            guard latestPeriod != nil else {
+                return nil
+            }
+            
+            let latestPeriodLatestOccurence = self.getLatestOccurenceOfPeriodForDate(period: latestPeriod, relativeDate!)
+            
+            if latestPeriodLatestOccurence?.isDateInPeriodInterval(relativeDate!) ?? false {
+                
+                nextPeriod = latestPeriodLatestOccurence
+                
+            } else {
+                nextPeriod = self.getNextOccurenceOfPeriod(latestPeriodLatestOccurence)
+                
+            }
+            
+        }
+        
+        return nextPeriod
+        
+    }
+    
     /// Gets the last period from Store relative to the given date
     /// - Parameter date: a date
     /// - Returns: a period
@@ -62,10 +143,14 @@ final class PeriodStore: ObservableObject {
     /// Calculates the next occurance of a given period, calculated with the average cycle duration
     /// - Parameter period: given period
     /// - Returns: a new period instance with id: 0 and a average duration
-    func getNextOccurenceOfPeriod(_ period: Period) -> Period {
+    func getNextOccurenceOfPeriod(_ period: Period?) -> Period? {
+        guard period != nil else {
+            return nil
+        }
+        
         return Period(
             id: 0,
-            date: Calendar.current.date(byAdding: .day, value: self.averageCycleDuration, to: period.date) ?? period.date,
+            date: Calendar.current.date(byAdding: .day, value: self.averageCycleDuration, to: period!.date) ?? period!.date,
             durationDays: self.averagePeriodDuration
         )
     }
@@ -103,12 +188,16 @@ final class PeriodStore: ObservableObject {
 //            get the next period after the last ended or calculate the next occurenc fo the last period
             let nextPeriod = self.getNextPeriodFromDate(date: lastPeriod!.date) ?? self.getNextOccurenceOfPeriod(lastPeriod!)
             
-//            if the next period is not within dates month, cancel loop
-            if !Calendar.current.isDate(startOfMonth!, equalTo: nextPeriod.date, toGranularity: .month) {
+            guard nextPeriod != nil else {
                 break
             }
             
-            periodArray.append(nextPeriod)
+//            if the next period is not within dates month, cancel loop
+            if !Calendar.current.isDate(startOfMonth!, equalTo: nextPeriod!.date, toGranularity: .month) {
+                break
+            }
+            
+            periodArray.append(nextPeriod!)
             lastPeriod = nextPeriod
         }
 
@@ -150,11 +239,12 @@ final class PeriodStore: ObservableObject {
 
         let periodOccurence = Period(id: 0, date: Calendar.current.date(byAdding: .day, value: -distanceFromPeriodOccurence, to: date)!, durationDays: self.averagePeriodDuration)
         
-       
 
         return periodOccurence
 
     }
+    
+    
     
     // Load Items from the Realm Database
     init(realm: Realm) {
