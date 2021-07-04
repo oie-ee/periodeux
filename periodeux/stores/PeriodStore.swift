@@ -63,7 +63,11 @@ final class PeriodStore: ObservableObject {
     /// - Parameter period: given period
     /// - Returns: a new period instance with id: 0 and a average duration
     func getNextOccurenceOfPeriod(_ period: Period) -> Period {
-        return Period(id: 0, date: period.endDate + self.averageCycleDuration, durationDays: self.averagePeriodDuration)
+        return Period(
+            id: 0,
+            date: Calendar.current.date(byAdding: .day, value: self.averageCycleDuration, to: period.date) ?? period.date,
+            durationDays: self.averagePeriodDuration
+        )
     }
     
     /// Gets all periods for the given month
@@ -121,8 +125,8 @@ final class PeriodStore: ObservableObject {
     
     
     /// Calculates the average cycle duration of a period, according to the past periods from the store
-    var averageCycleDuration: TimeInterval {
-        return Double(isCycleDuration)*3600.00*24.00
+    var averageCycleDuration: Int {
+        return isCycleDuration
     }
     
     
@@ -139,19 +143,17 @@ final class PeriodStore: ObservableObject {
         }
         
         
-        let absoluteDistanceToPeriod = period!.date.distance(to: date)
+//        let absoluteDayDistanceToPeriod = period!.date.distance(to: date)
+        let absoluteDayDistanceToPeriod = Calendar.current.dateComponents([.day], from: period!.date, to: date).day
+
+        let distanceFromPeriodOccurence = Int(absoluteDayDistanceToPeriod!) % Int(self.averageCycleDuration)
+
+        let periodOccurence = Period(id: 0, date: Calendar.current.date(byAdding: .day, value: -distanceFromPeriodOccurence, to: date)!, durationDays: self.averagePeriodDuration)
         
-//        in case the period is after the given date
-        guard absoluteDistanceToPeriod >= 0 else {
-            return nil
-        }
-        
-        
-        let distanceFromPeriodOccurence = Int(absoluteDistanceToPeriod) % Int(self.averageCycleDuration)
-        
-        let periodOccurence = Period(id: 0, date: (date - TimeInterval(distanceFromPeriodOccurence)), durationDays: self.averagePeriodDuration)
-        
+       
+
         return periodOccurence
+
     }
     
     // Load Items from the Realm Database

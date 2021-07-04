@@ -107,7 +107,6 @@ struct CalendarView: View {
                 Text(self.monthName)
                     .font(Font.title2.weight(.semibold))
                 
-                Text("\(self.periodEventsOfSelectedMonth.count)")
                 Spacer()
                 
                 //Left Chevron
