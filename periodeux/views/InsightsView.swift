@@ -70,36 +70,36 @@ struct InsightsView: View {
                    
                         
                     
-                    // MARK: - Second Section
-                    Group{
-                        Text("Mood Prognosis")
-                            .font(Font.title3.weight(.semibold))
-                            .padding(.bottom, 2)
-                        
-                        Text("This is how you are most likely going to feel in the days leading up to your period:")
-                            .font(Font.body.weight(.regular))
-                            .foregroundColor(.secondary)
-                            .padding(.bottom, 15)
-                        
-                        ScrollView(.horizontal) {
-                            
-                            HStack(spacing: 5){
-                                LargeMoodCellView(mood: MoodModel.mood5, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood7, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood1, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood2, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood11, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood8, isSelected: false)
-                                    .disabled(true)
-                            }.padding(.bottom, 32)
-                            
-                        }
-                    }
+                    // MARK: - Second Section - Mood Prognosis (currently off)
+//                    Group{
+//                        Text("Mood Prognosis")
+//                            .font(Font.title3.weight(.semibold))
+//                            .padding(.bottom, 2)
+//
+//                        Text("This is how you are most likely going to feel in the days leading up to your period:")
+//                            .font(Font.body.weight(.regular))
+//                            .foregroundColor(.secondary)
+//                            .padding(.bottom, 15)
+//
+//                        ScrollView(.horizontal) {
+//
+//                            HStack(spacing: 5){
+//                                LargeMoodCellView(mood: MoodModel.mood5, isSelected: false)
+//                                    .disabled(true)
+//                                LargeMoodCellView(mood: MoodModel.mood7, isSelected: false)
+//                                    .disabled(true)
+//                                LargeMoodCellView(mood: MoodModel.mood1, isSelected: false)
+//                                    .disabled(true)
+//                                LargeMoodCellView(mood: MoodModel.mood2, isSelected: false)
+//                                    .disabled(true)
+//                                LargeMoodCellView(mood: MoodModel.mood11, isSelected: false)
+//                                    .disabled(true)
+//                                LargeMoodCellView(mood: MoodModel.mood8, isSelected: false)
+//                                    .disabled(true)
+//                            }.padding(.bottom, 32)
+//
+//                        }
+//                    }
                     
                     // MARK: - Third Section
                     Group{
@@ -117,13 +117,14 @@ struct InsightsView: View {
                             HStack(spacing: 5){
                                 ForEach(self.calculateFrequentSymptoms(), id: \.0) { symptom, count in
                                     
-                                    let iconName = String(symptom.lowercased().filter { _ in !" \n\t\r".contains(symptom) })
+                                    let iconName = String(symptom.lowercased().filter { !" \n\t\r".contains($0) })
                                     
                                     let model = SymptomModel(name: symptom, imageIcon: "symptom:\(iconName)")
                                     
                                     VStack {
-                                        LargeSymptomCellView(symptom: model, isSelected: false)
+                                        LargeSymptomCellView(symptom: model, isSelected: false).disabled(true)
                                         Text("\(count)")
+
                                     }
                                 }
                             
@@ -145,17 +146,20 @@ struct InsightsView: View {
                         ScrollView(.horizontal) {
                             
                             HStack(spacing: 5){
-                                LargeMoodCellView(mood: MoodModel.mood1, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood13, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood6, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood4, isSelected: false)
-                                    .disabled(true)
-                                LargeMoodCellView(mood: MoodModel.mood10, isSelected: false)
-                                    .disabled(true)
-                            }
+                                ForEach(self.calculateFrequentMoods(), id: \.0) { mood, count in
+                                    
+                                    let iconName = String(mood.lowercased().filter { !" \n\t\r".contains($0) })
+                                    
+                                    let model = MoodModel(name: mood, imageIcon: "mood:\(iconName)")
+                                    
+                                    VStack {
+                                        LargeMoodCellView(mood: model, isSelected: false).disabled(true)
+                                        Text("\(count)")
+                                        
+                                    }
+                                }
+                            
+                            }.padding(.bottom, 32)
                         }
                     }
                     
@@ -182,19 +186,39 @@ struct InsightsView: View {
         // sort them descending and put them in a dictionary
         let sortedSymptoms = allSymptomsFromDatabase
             .reduce(into: [:]) { counts, word in counts[word, default: 0] += 1 }
-            .sortedByValueDecending
-
-//        print("Sorted Symptom Dictionary: \(counts)")
+            .sortedByValueDescending
         
         return sortedSymptoms
     }
+    
+    func calculateFrequentMoods () -> [(String, Int)] {
+        var allMoodsFromDatabase = [String]()
+        
+        // Get all reports from database and store every mood in one array
+        reportStore.reports.forEach { (report) in
+            report.moodList.forEach { (mood) in
+                allMoodsFromDatabase.append(mood)
+            }
+        }
+        
+        // Use the array with Moods and count them,
+        // sort them descending and put them in a dictionary
+        let sortedMoods = allMoodsFromDatabase
+            .reduce(into: [:]) { counts, word in counts[word, default: 0] += 1 }
+            .sortedByValueDescending
+
+    //        print("Sorted Mood Dictionary: \(counts)")
+        
+        return sortedMoods
+    }
 }
+
 
 
 extension Dictionary where Value: Comparable {
     var sortedByValueAscending: [(Key, Value)] { return Array(self).sorted { $0.1 < $1.1} }
     
-    var sortedByValueDecending: [(Key, Value)] { return Array(self).sorted { $0.1 > $1.1} }
+    var sortedByValueDescending: [(Key, Value)] { return Array(self).sorted { $0.1 > $1.1} }
 }
 
 
