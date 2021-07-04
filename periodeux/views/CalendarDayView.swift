@@ -61,6 +61,7 @@ struct CalendarDayView: View {
     
     @EnvironmentObject var appStore : AppStore
     @EnvironmentObject var periodStore : PeriodStore
+    @AppStorage("isFirstPeriod") private var isFirstPeriod = Date()
     
     var latestPeriod: Period? {
         guard self.date != nil else {
@@ -251,6 +252,7 @@ struct CalendarDayView: View {
         
         
         let isCurrentDate = self.bubbleIsCurrentDay()
+        let isOvulationDate = self.ovulationOnThisDay()
     
         return AnyView(
             Button(
@@ -261,13 +263,24 @@ struct CalendarDayView: View {
                     
                     if(isCurrentDate) {
                         ZStack {
-                            Circle().foregroundColor(Color(UIColor.systemGray4))
+                            Circle().foregroundColor(Color(UIColor.systemGray5))
                                 .frame(height: 40)
                             
                             if dayEntry != nil {
                                 Text("\(dayNumber)")
-                                    .foregroundColor(self.textColor)
-                                    .font(textFont)
+                                    .foregroundColor(Color.primary)
+                                    .font(Font.title3.weight(.bold))
+                            }
+                        }
+                    } else if(isOvulationDate) {
+                        ZStack {
+                            Circle().foregroundColor(ColorManager.customTeal)
+                                .frame(height: 40)
+                            
+                            if dayEntry != nil {
+                                Text("\(dayNumber)")
+                                    .foregroundColor(Color(UIColor.systemTeal))
+                                    .font(Font.title3.weight(.semibold))
                             }
                         }
                     } else {
@@ -296,6 +309,27 @@ struct CalendarDayView: View {
         let c = Date() // current date or replace with a specific date
         let calendar = Calendar.current
         let currentDate = calendar.startOfDay(for: c)
+        
+        let bubbleDate = calendar.startOfDay(for: self.date!)
+        
+//        print("CURRENT-DATE ** \(currentDate) ** BUBBLE-DATE ** \(bubbleDate)")
+        
+        if(bubbleDate == currentDate) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func ovulationOnThisDay() -> Bool {
+        let c = isFirstPeriod
+        let calendar = Calendar.current
+        var dateComponent = DateComponents()
+        dateComponent.day = -14
+        
+        let ovulationDate = Calendar.current.date(byAdding: dateComponent, to: c)
+        
+        let currentDate = calendar.startOfDay(for: ovulationDate!)
         
         let bubbleDate = calendar.startOfDay(for: self.date!)
         
