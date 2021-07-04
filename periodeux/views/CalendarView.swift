@@ -28,8 +28,7 @@ struct CalendarView: View {
         let firstCellPositionOfMonth = (self.firstWeekdayOfMonth - self.calendar.firstWeekday + 7) % 7
         let day = cellNumber - firstCellPositionOfMonth
         
-        return day > 0 && day <= self.numberOfDays.count ?
-            DayEntry.generateDateFromComponents(day: day, month: self.selectedMonth, year: self.selectedYear) : nil
+        return day > 0 && day <= self.numberOfDays.count ? Date.dateFromComponents(day: day, month: self.selectedMonth, year: self.selectedYear) : nil
     }
    
     var firstWeekdayOfMonth: Int {
@@ -186,44 +185,6 @@ struct CalendarView: View {
                 }
             }))
     }
-    
-    
-    //Generate Date From String
-    func generateDateFromString(string: String) -> Date{
-        
-        let stringFormatter = DateFormatter()
-        stringFormatter.dateFormat = "DD.MM.y HH:mm"
-        
-        return (stringFormatter.date(from: string) ?? Date())
-    }
-    
-    //Add CycleLength (Days) To Date
-    func addCycleLengthDays(date: Date) -> Date {
-        
-        var dateComponent = DateComponents()
-        dateComponent.day = 29
-        
-        let increasedDate = Calendar.current.date(byAdding: dateComponent, to: date) ?? Date()
-        return increasedDate
-    }
-    
-    //Substract CycleLength (Days) From Date
-    func subtractsCycleLengthDays(date: Date) -> Date {
-        
-        var dateComponent = DateComponents()
-        dateComponent.day = -29
-        
-        let decreasedDate = Calendar.current.date(byAdding: dateComponent, to: date) ?? Date()
-        return decreasedDate
-    }
-    
-    //Generate String That Tells Period Yes/No From Dates
-    func generateDateViewType (date: Date) -> DayEntry.DayType {
-        
-        return .startInterval
-    }
-    
-    
     
 }
 

@@ -8,55 +8,6 @@
 import SwiftUI
 
 
-struct DayEntry: Identifiable {
-    var id: Int
-    
-    var date: Date
-    
-    enum DayType {
-        case none
-        case startInterval
-        case endInterval
-        case noPeriod
-//        auto check for inInterval!
-        case inInterval
-        case ovulation
-        case currentDay
-    }
-    
-    let dayType: DayType
-    
-    init(_ date: Date, dayType: DayType) {
-        let day = Calendar.current.component(.day, from: date)
-        let month = Calendar.current.component(.month, from: date)
-        let year = Calendar.current.component(.year, from: date)
-        
-        self.id = day + month + year
-            
-        self.date = Self.generateDayDateFromDate(date)
-        
-        self.dayType = dayType
-    }
-    
-    //Generate Date From Day/Month/Year Int
-    static func generateDateFromComponents(day: Int, month: Int, year: Int) -> Date? {
-        
-        var components = DateComponents()
-        components.day = day
-        components.month = month
-        components.year = year
-        
-        return Calendar.current.date(from: components)
-    }
-    
-    // strips away time component
-    static func generateDayDateFromDate(_ date: Date) -> Date {
-        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date) ?? date
-    }
-    
-}
-
-
 struct CalenderDayView: View {
     
 

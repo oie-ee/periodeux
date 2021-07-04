@@ -28,4 +28,14 @@ extension Date {
         comp.day = -1
         return Calendar.current.date(byAdding: comp, to: self.startOfMonth()!)
     }
+    
+    static func dateFromComponents(day: Int, month: Int, year: Int) -> Date? {
+        
+        var components = DateComponents()
+        components.day = day
+        components.month = month
+        components.year = year
+        
+        return Calendar.current.date(from: components)
+    }
 }
