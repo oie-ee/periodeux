@@ -24,7 +24,7 @@ struct InsightsView: View {
                     // MARK: - First Section
                     Text("Your Average Cycle Length")
                         .font(Font.title3.weight(.semibold))
-                        
+                    
                     
                     ZStack {
                         
@@ -67,39 +67,39 @@ struct InsightsView: View {
                         
                     }.padding(.bottom, 16)
                     
-                   
-                        
+                    
+                    
                     
                     // MARK: - Second Section - Mood Prognosis (currently off)
-//                    Group{
-//                        Text("Mood Prognosis")
-//                            .font(Font.title3.weight(.semibold))
-//                            .padding(.bottom, 2)
-//
-//                        Text("This is how you are most likely going to feel in the days leading up to your period:")
-//                            .font(Font.body.weight(.regular))
-//                            .foregroundColor(.secondary)
-//                            .padding(.bottom, 15)
-//
-//                        ScrollView(.horizontal) {
-//
-//                            HStack(spacing: 5){
-//                                LargeMoodCellView(mood: MoodModel.mood5, isSelected: false)
-//                                    .disabled(true)
-//                                LargeMoodCellView(mood: MoodModel.mood7, isSelected: false)
-//                                    .disabled(true)
-//                                LargeMoodCellView(mood: MoodModel.mood1, isSelected: false)
-//                                    .disabled(true)
-//                                LargeMoodCellView(mood: MoodModel.mood2, isSelected: false)
-//                                    .disabled(true)
-//                                LargeMoodCellView(mood: MoodModel.mood11, isSelected: false)
-//                                    .disabled(true)
-//                                LargeMoodCellView(mood: MoodModel.mood8, isSelected: false)
-//                                    .disabled(true)
-//                            }.padding(.bottom, 32)
-//
-//                        }
-//                    }
+                    //                    Group{
+                    //                        Text("Mood Prognosis")
+                    //                            .font(Font.title3.weight(.semibold))
+                    //                            .padding(.bottom, 2)
+                    //
+                    //                        Text("This is how you are most likely going to feel in the days leading up to your period:")
+                    //                            .font(Font.body.weight(.regular))
+                    //                            .foregroundColor(.secondary)
+                    //                            .padding(.bottom, 15)
+                    //
+                    //                        ScrollView(.horizontal) {
+                    //
+                    //                            HStack(spacing: 5){
+                    //                                LargeMoodCellView(mood: MoodModel.mood5, isSelected: false)
+                    //                                    .disabled(true)
+                    //                                LargeMoodCellView(mood: MoodModel.mood7, isSelected: false)
+                    //                                    .disabled(true)
+                    //                                LargeMoodCellView(mood: MoodModel.mood1, isSelected: false)
+                    //                                    .disabled(true)
+                    //                                LargeMoodCellView(mood: MoodModel.mood2, isSelected: false)
+                    //                                    .disabled(true)
+                    //                                LargeMoodCellView(mood: MoodModel.mood11, isSelected: false)
+                    //                                    .disabled(true)
+                    //                                LargeMoodCellView(mood: MoodModel.mood8, isSelected: false)
+                    //                                    .disabled(true)
+                    //                            }.padding(.bottom, 32)
+                    //
+                    //                        }
+                    //                    }
                     
                     // MARK: - Third Section
                     Group{
@@ -121,14 +121,23 @@ struct InsightsView: View {
                                     
                                     let model = SymptomModel(name: symptom, imageIcon: "symptom:\(iconName)")
                                     
-                                    VStack {
+                                    ZStack (alignment: .topLeading) {
                                         LargeSymptomCellView(symptom: model, isSelected: false).disabled(true)
-                                        Text("\(count)")
-
+                                        
+                                        ZStack {
+                                            
+                                            Circle()
+                                                .fill(ColorManager.highlightOrange)
+                                                .frame(width: 22, height: 22)
+                                            
+                                            Text("\(count)").font(.system(.caption, design: .rounded)).fontWeight(.bold)
+                                                .foregroundColor(ColorManager.backgroundOrange)
+                                        }
+                                        
                                     }
                                 }
-                            
-                            }.padding(.bottom, 32)
+                                
+                            }
                         }
                     }
                     
@@ -152,14 +161,23 @@ struct InsightsView: View {
                                     
                                     let model = MoodModel(name: mood, imageIcon: "mood:\(iconName)")
                                     
-                                    VStack {
+                                    ZStack (alignment: .topLeading) {
                                         LargeMoodCellView(mood: model, isSelected: false).disabled(true)
-                                        Text("\(count)")
+                                        
+                                        ZStack {
+                                            
+                                            Circle()
+                                                .fill(ColorManager.highlightOrange)
+                                                .frame(width: 22, height: 22)
+                                            
+                                            Text("\(count)").font(.system(.caption, design: .rounded)).fontWeight(.bold)
+                                                .foregroundColor(ColorManager.backgroundOrange)
+                                        }
                                         
                                     }
                                 }
-                            
-                            }.padding(.bottom, 32)
+                                
+                            }.padding(.bottom, 16)
                         }
                     }
                     
@@ -206,8 +224,8 @@ struct InsightsView: View {
         let sortedMoods = allMoodsFromDatabase
             .reduce(into: [:]) { counts, word in counts[word, default: 0] += 1 }
             .sortedByValueDescending
-
-    //        print("Sorted Mood Dictionary: \(counts)")
+        
+        //        print("Sorted Mood Dictionary: \(counts)")
         
         return sortedMoods
     }
