@@ -31,40 +31,7 @@ struct CalenderDayView: View {
     @Binding var selectedDate: Date
     
     var type: visualType
-
-        
-//        let period = periodStore.getLatestOccurenceOfPeriodForDate(period: latestPeriod!, date!)
-//
-//        guard period != nil else {
-//            return DayEntry(date!, dayType: .noPeriod)
-//        }
-//
-//        let isInPeriod = period!.isDateInPeriodInterval(self.date!)
-//        let isPeriodStart = period!.isDatePeriodStartDay(self.date!)
-//        let isPeriodEnd = period!.isDatePeriodEndDay(Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: self.date!) ?? self.date!)
-//
-//        var dayType: DayEntry.DayType
-//
-//        switch (isInPeriod, isPeriodStart, isPeriodEnd) {
-//
-//        case (true, false, false):
-//            dayType = .inInterval
-//            break
-//        case (false, true, false), (true, true, false):
-//            dayType = .startInterval
-//            break
-//        case (false, false, true), (true, false, true):
-//            dayType = .endInterval
-//            break
-//        default:
-//            dayType = .noPeriod
-//        }
-//
-//        let dayEntry = DayEntry(date!, dayType: dayType)
-//
-//        return dayEntry
     
-
     var isSelected: Bool {
         guard self.date != nil else {
             return false
