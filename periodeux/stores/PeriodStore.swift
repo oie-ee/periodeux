@@ -97,7 +97,7 @@ final class PeriodStore: ObservableObject {
         
 //        create a array for all month periods
 //        if the last period is not within the month of the given date -> empty array, if not, add the last period to the array
-        var periodArray: [Period] = Calendar.current.isDate(lastPeriod!.date, equalTo: startOfMonth!, toGranularity: .month) ? [lastPeriod!] : []
+        var periodArray: [Period] = Calendar.current.isDate(lastPeriod!.endDate, equalTo: startOfMonth!, toGranularity: .month) ? [lastPeriod!] : []
         
         while true {
 //            get the next period after the last ended or calculate the next occurenc fo the last period
