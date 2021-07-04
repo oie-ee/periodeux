@@ -171,7 +171,6 @@ struct CalendarView: View {
             }.padding([.leading, .trailing], 8)
             
         }
-        .frame(height: 400)
         .gesture(DragGesture(minimumDistance: 150, coordinateSpace: .local)
             .onEnded({ value in
                 if value.translation.width < 0 {
