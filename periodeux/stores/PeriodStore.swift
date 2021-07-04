@@ -8,82 +8,146 @@ import RealmSwift
 import SwiftUI
 import CoreLocation
 
-extension Date {
-    func startOfMonth() -> Date? {
-        let comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: self)
-        return Calendar.current.date(from: comp)!
-    }
-    func endOfMonth() -> Date? {
-        guard self.startOfMonth() != nil else {
-            return nil
-        }
-        
-        var comp = DateComponents()
-        comp.month = 1
-        return Calendar.current.date(byAdding: comp, to: self.startOfMonth()!)
-    }
-}
-
 
 final class PeriodStore: ObservableObject {
     
     @AppStorage("isCycleDuration") private var isCycleDuration = 21
     @AppStorage("isFirstPeriod") private var isFirstPeriod: Date = Date()
-//    var isFirstPeriod: Date = Date()
-    
     @AppStorage("isPeriodDuration") private var isPeriodDuration = 7
     
     private var results: Results<PeriodDB>
     
     var periods: [Period] {
-        results.map(Period.init)
+        let array = results.map(Period.init)
+        
+        return [Period(id: 0, date: isFirstPeriod.startOfDay() ?? isFirstPeriod, durationDays: isPeriodDuration)] + array
+        
     }
     
-    func getLatestPeriodFromDate(date: Date) -> Period {
-        return periods.first { period in
-            return period.date <= date
-        } ?? Period(id: 0, date: Calendar.current.startOfDay(for: isFirstPeriod), durationDays: averagePeriodDuration)
-    }
-    
-    func getPeriodsForMonthOfDate(_ date: Date) -> [Period] {
-        let startOfMonth = Calendar.current.date(bySetting: .day, value: 1, of: date) ?? date
-        
-//        print(date.startOfMonth(), date.endOfMonth())
-        
-//        let latestPeriodFromDate = self.getLatestPeriodFromDate(date: startOfMonth)
-        
-//        let latestOccurenceOfLatestPeriod = self.getLatestOccurenceOfPeriodForDate(period: latestPeriodFromDate, startOfMonth)
-        
-        let periodsCollection = periods.filter { period in
-            Calendar.current.isDate(period.date, equalTo: startOfMonth, toGranularity: .month)
+    /// Gets the last period from Store relative to the given date
+    /// - Parameter date: a date
+    /// - Returns: a period
+    func getLatestPeriodFromDate(date: Date?) -> Period? {
+        guard date != nil else {
+            return nil
         }
         
-//        print("getPeriodsForMonthOfDate:", latestOccurenceOfLatestPeriod)
+        let periodsOrderedByDate = self.periods.sorted { periodA, periodB in
+            periodA.date > periodB.date
+        }
         
-        return periodsCollection
+        return periodsOrderedByDate.first { period in
+            return period.date <= date!
+        }
+    }
+    
+    /// Gets the next period from Store relative to the given date
+    /// - Parameter date: a date
+    /// - Returns: a period
+    func getNextPeriodFromDate(date: Date?) -> Period? {
+        
+        guard date != nil else {
+            return nil
+        }
+        
+        let periodsOrderedByDate = self.periods.sorted { periodA, periodB in
+            periodA.date < periodB.date
+        }
+        
+        return periodsOrderedByDate.first { period in
+            return period.date > date!
+        }
+    }
+    
+    /// Calculates the next occurance of a given period, calculated with the average cycle duration
+    /// - Parameter period: given period
+    /// - Returns: a new period instance with id: 0 and a average duration
+    func getNextOccurenceOfPeriod(_ period: Period) -> Period {
+        return Period(id: 0, date: period.endDate + self.averageCycleDuration, durationDays: self.averagePeriodDuration)
+    }
+    
+    /// Gets all periods for the given month
+    /// - Parameter date: date within a month
+    /// - Returns: array of periods
+    func getPeriodsForMonthOfDate(_ date: Date) -> [Period] {
+        let startOfMonth = date.startOfMonth()
+        
+        guard startOfMonth != nil else {
+            return []
+        }
+        
+//        Gets the last period and calculates the nearest occurence, relative to the start of the month
+        var lastPeriod = self.getLatestOccurenceOfPeriodForDate(
+            period: self.getLatestPeriodFromDate(
+                date: startOfMonth
+            ),
+            startOfMonth!
+        )
+        
+//        if there was no period before the start of the month, find a period after the start of the month
+        lastPeriod = lastPeriod ?? self.getNextPeriodFromDate(date: startOfMonth)
+        
+        guard lastPeriod != nil else {
+            return []
+        }
+        
+//        create a array for all month periods
+//        if the last period is not within the month of the given date -> empty array, if not, add the last period to the array
+        var periodArray: [Period] = Calendar.current.isDate(lastPeriod!.date, equalTo: startOfMonth!, toGranularity: .month) ? [lastPeriod!] : []
+        
+        while true {
+//            get the next period after the last ended or calculate the next occurenc fo the last period
+            let nextPeriod = self.getNextPeriodFromDate(date: lastPeriod!.date) ?? self.getNextOccurenceOfPeriod(lastPeriod!)
+            
+//            if the next period is not within dates month, cancel loop
+            if !Calendar.current.isDate(startOfMonth!, equalTo: nextPeriod.date, toGranularity: .month) {
+                break
+            }
+            
+            periodArray.append(nextPeriod)
+            lastPeriod = nextPeriod
+        }
+
+        return periodArray
        
     }
     
+
+    
+    /// Calculates the average duration of a period, according to the past periods from the store
     var averagePeriodDuration: Int {
         return isPeriodDuration
     }
     
+    
+    /// Calculates the average cycle duration of a period, according to the past periods from the store
     var averageCycleDuration: TimeInterval {
         return Double(isCycleDuration)*3600.00*24.00
     }
     
-    func getLatestOccurenceOfPeriodForDate(period: Period, _ date: Date) -> Period? {
+    
+    /// Gets the latest reappearence (occurence) of a period in the past, relativ to the given date
+    /// calculates with the average cycle duration
+    /// - Parameters:
+    ///   - period: the given period
+    ///   - date: the date
+    /// - Returns: the periods latest occurence
+    func getLatestOccurenceOfPeriodForDate(period: Period?, _ date: Date) -> Period? {
         
-        let absoluteDistanceToPeriod = period.date.distance(to: date)
+        guard period != nil else {
+            return nil
+        }
         
         
+        let absoluteDistanceToPeriod = period!.date.distance(to: date)
+        
+//        in case the period is after the given date
         guard absoluteDistanceToPeriod >= 0 else {
             return nil
         }
         
-        let distanceFromPeriodOccurence = Int(absoluteDistanceToPeriod) % Int(self.averageCycleDuration)
         
-        print(date, distanceFromPeriodOccurence, period.date)
+        let distanceFromPeriodOccurence = Int(absoluteDistanceToPeriod) % Int(self.averageCycleDuration)
         
         let periodOccurence = Period(id: 0, date: (date - TimeInterval(distanceFromPeriodOccurence)), durationDays: self.averagePeriodDuration)
         

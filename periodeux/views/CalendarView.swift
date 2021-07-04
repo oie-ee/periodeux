@@ -49,11 +49,51 @@ struct CalendarView: View {
         return dateFormatter.string(from: self.appStore.selectedDate)
     }
     
-    var periodEventsOfSelectedMonth: Int {
+    func getDayType(date: Date) -> CalenderDayView.visualType {
+        var filteredPeriods = self.periodEventsOfSelectedMonth.filter { period in
+            period.isDateInPeriodInterval(date) || period.isOvulationDate(date)
+        }
         
-        let collection = periodStore.getPeriodsForMonthOfDate(self.appStore.selectedDate)
-//        print("month periods:", collection)
-        return collection.count
+        filteredPeriods.sort { periodA, periodB in
+            periodB.date > periodA.date
+        }
+        
+        let period = filteredPeriods.first
+        
+        guard period != nil else {
+            return .noPeriod
+        }
+        
+        let isInPeriod = period!.isDateInPeriodInterval(date)
+        let isPeriodStart = period!.isDatePeriodStartDay(date)
+        let isPeriodEnd = period!.isDatePeriodEndDay(date)
+        let isOvulation = period!.isOvulationDate(date)
+        
+        var dayType: CalenderDayView.visualType
+        
+        switch (isInPeriod, isPeriodStart, isPeriodEnd, isOvulation) {
+            
+        case (true, false, false, false):
+            dayType = .inInterval
+            break
+        case (false, true, false, false), (true, true, false, false):
+            dayType = .startInterval
+            break
+        case (false, false, true, false), (true, false, true, false):
+            dayType = .endInterval
+            break
+        case (false, false, false, true):
+            
+            dayType = .ovulation
+            break
+        default:
+            dayType = .noPeriod
+        }
+        return dayType
+    }
+    
+    var periodEventsOfSelectedMonth: [Period] {
+        return periodStore.getPeriodsForMonthOfDate(self.appStore.selectedDate)
     }
     
     // MARK: - Body
@@ -67,7 +107,7 @@ struct CalendarView: View {
                 Text(self.monthName)
                     .font(Font.title2.weight(.semibold))
                 
-                Text("\(self.periodEventsOfSelectedMonth)")
+                Text("\(self.periodEventsOfSelectedMonth.count)")
                 Spacer()
                 
                 //Left Chevron
@@ -111,12 +151,18 @@ struct CalendarView: View {
                             let cellNumber = column + ((row - 1) * 7)
                             let currentDate = dateFromCellNumber(cellNumber)
                             
-
-                                
+                            
                             if currentDate != nil {
-                                CalenderDayView(date: currentDate!, selectedDate: self.$appStore.selectedDate, type: .noPeriod)
+                                CalenderDayView(
+                                    date: currentDate!,
+                                    selectedDate: self.$appStore.selectedDate,
+                                    type: self.getDayType(date: currentDate!)
+                                )
                             } else  {
-                                CalenderDayView(selectedDate: self.$appStore.selectedDate, type: .none)
+                                CalenderDayView(
+                                    selectedDate: self.$appStore.selectedDate,
+                                    type: .none
+                                )
                             }
                                     
                                     

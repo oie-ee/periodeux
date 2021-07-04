@@ -16,6 +16,10 @@ struct Period: Identifiable, Hashable {
         return DateInterval(start: self.date, end: self.endDate)
     }
     
+    var ovulationDate: Date {
+        return Calendar.current.date(byAdding: .day, value: 2, to: self.endDate) ?? self.endDate
+    }
+    
     func isDatePeriodStartDay(_ date: Date) -> Bool {
         return Calendar.current.isDate(self.date, inSameDayAs: date)
     }
@@ -27,6 +31,11 @@ struct Period: Identifiable, Hashable {
     func isDatePeriodEndDay(_ date: Date) -> Bool {
         return Calendar.current.isDate(self.endDate, inSameDayAs: date)
     }
+    
+    func isOvulationDate(_ date: Date) -> Bool {
+        return Calendar.current.isDate(self.ovulationDate, inSameDayAs: date)
+    }
+    
    
 }
 

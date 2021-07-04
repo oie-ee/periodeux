@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F0515DA2691D32B00D17AC5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0515D92691D32B00D17AC5 /* DateExtension.swift */; };
 		6F6BBD1D2682762600773BB1 /* PeriodDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD1A2682762600773BB1 /* PeriodDB.swift */; };
 		6F6BBD1E2682762600773BB1 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD1B2682762600773BB1 /* Period.swift */; };
 		6F6BBD1F2682762600773BB1 /* PeriodDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD1C2682762600773BB1 /* PeriodDBKeys.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F0515D92691D32B00D17AC5 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		6F6BBD1A2682762600773BB1 /* PeriodDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDB.swift; sourceTree = "<group>"; };
 		6F6BBD1B2682762600773BB1 /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		6F6BBD1C2682762600773BB1 /* PeriodDBKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDBKeys.swift; sourceTree = "<group>"; };
@@ -151,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F0515D82691D32B00D17AC5 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6F0515D92691D32B00D17AC5 /* DateExtension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		6F6BBD192682762600773BB1 /* Period */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +263,7 @@
 		F31BCAAA257BB57D005343D6 /* periodeux */ = {
 			isa = PBXGroup;
 			children = (
+				6F0515D82691D32B00D17AC5 /* extensions */,
 				999B14CA26502DAA004E4221 /* stores */,
 				999B14C126502CD4004E4221 /* realm */,
 				F3150C0925878389003129DE /* models */,
@@ -487,6 +498,7 @@
 				F34556A72580106E00523956 /* ModalInfoView.swift in Sources */,
 				6F6BBD1D2682762600773BB1 /* PeriodDB.swift in Sources */,
 				F348310E25B73B2600F3FBD5 /* OnboardingHeaderView.swift in Sources */,
+				6F0515DA2691D32B00D17AC5 /* DateExtension.swift in Sources */,
 				F3150C0B258783A7003129DE /* MoodModel.swift in Sources */,
 				6F6BBD1F2682762600773BB1 /* PeriodDBKeys.swift in Sources */,
 				F3150C1825878441003129DE /* BleedingModel.swift in Sources */,

@@ -64,8 +64,6 @@ struct CalenderDayView: View {
     @EnvironmentObject var reportStore : ReportStore
     
     @State var currentReport: ReportDB = ReportDB()
-    
-    var dayEntry: DayEntry?
 
     var date: Date?
     

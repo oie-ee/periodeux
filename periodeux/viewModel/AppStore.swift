@@ -7,8 +7,6 @@ class AppStore: ObservableObject {
     
     @Published var selectedDate : Date 
     
-//    @Published var selectedDateString : String
-    
     @Published var daysTilPeriod : Int
     
     @Published var currentReport : ReportDB
@@ -24,6 +22,8 @@ class AppStore: ObservableObject {
     func selectDate(_ date: Date) -> Void {
         self.selectedDate = date
     }
+    
+    
     
     func setDaysTilPeriod(value: Int) {
         self.daysTilPeriod = value
