@@ -13,7 +13,7 @@
 		6F6BBD1F2682762600773BB1 /* PeriodDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD1C2682762600773BB1 /* PeriodDBKeys.swift */; };
 		6F6BBD2126827C4C00773BB1 /* PeriodStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6BBD2026827C4C00773BB1 /* PeriodStore.swift */; };
 		6FAA67992668C44D00C59462 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FAA679B2668C44D00C59462 /* Localizable.strings */; };
-		6FD721CB26683A4C004D7664 /* CalenderDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD721CA26683A4C004D7664 /* CalenderDayView.swift */; };
+		6FD721CB26683A4C004D7664 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD721CA26683A4C004D7664 /* CalendarDayView.swift */; };
 		999B14C326502CE7004E4221 /* RealmPersistentInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B14C226502CE7004E4221 /* RealmPersistentInitializer.swift */; };
 		999B14CC26502DCE004E4221 /* ReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B14CB26502DCE004E4221 /* ReportStore.swift */; };
 		99E6905725B3246600E07559 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E6905625B3246600E07559 /* AppStore.swift */; };
@@ -80,7 +80,7 @@
 		6F6BBD2026827C4C00773BB1 /* PeriodStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodStore.swift; sourceTree = "<group>"; };
 		6FAA679A2668C44D00C59462 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6FAA679C2668C45000C59462 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		6FD721CA26683A4C004D7664 /* CalenderDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDayView.swift; sourceTree = "<group>"; };
+		6FD721CA26683A4C004D7664 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		999B14C226502CE7004E4221 /* RealmPersistentInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPersistentInitializer.swift; sourceTree = "<group>"; };
 		999B14CB26502DCE004E4221 /* ReportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStore.swift; sourceTree = "<group>"; };
 		99E6905625B3246600E07559 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				F31BCAE1257BB92D005343D6 /* CountdownView.swift */,
-				6FD721CA26683A4C004D7664 /* CalenderDayView.swift */,
+				6FD721CA26683A4C004D7664 /* CalendarDayView.swift */,
 				F31BCAF3257BBDBB005343D6 /* RectangleWrapperView.swift */,
 				F31BCAF8257BC562005343D6 /* InfoInputView.swift */,
 				F31BCAEE257BBCA3005343D6 /* CalendarView.swift */,
@@ -469,7 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F348311025B73B2600F3FBD5 /* OnboardingView.swift in Sources */,
-				6FD721CB26683A4C004D7664 /* CalenderDayView.swift in Sources */,
+				6FD721CB26683A4C004D7664 /* CalendarDayView.swift in Sources */,
 				F3B0365A2589069B003A6771 /* LargeSymptomCellView.swift in Sources */,
 				F31BCAE2257BB92D005343D6 /* CountdownView.swift in Sources */,
 				F34EA86825B3878E007EA188 /* Report.swift in Sources */,

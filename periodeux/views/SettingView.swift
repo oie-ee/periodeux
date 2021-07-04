@@ -73,16 +73,16 @@ struct PeriodDuration: View {
     var body: some View {
         VStack{
             Picker("Period Duration", selection: $isPeriodDuration) {
-                Text("1 Day").tag(1)
-                Text("2 Days").tag(2)
-                Text("3 Days").tag(3)
-                Text("4 Days").tag(4)
-                Text("5 Days").tag(5)
-                Text("6 Days").tag(6)
-                Text("7 Days").tag(7)
-                Text("8 Days").tag(8)
-                Text("9 Days").tag(9)
-                Text("10 Days").tag(10)
+                Text("1 day").tag(1)
+                Text("2 days").tag(2)
+                Text("3 days").tag(3)
+                Text("4 days").tag(4)
+                Text("5 days").tag(5)
+                Text("6 days").tag(6)
+                Text("7 days").tag(7)
+                Text("8 days").tag(8)
+                Text("9 days").tag(9)
+                Text("10 days").tag(10)
             }
         }
     }
@@ -95,16 +95,16 @@ struct CycleDuration: View {
     var body: some View {
         VStack{
             Picker("Cycle Duration", selection: $isCycleDuration) {
-                Text("21 Days").tag(21)
-                Text("22 Days").tag(22)
-                Text("23 Days").tag(23)
-                Text("24 Days").tag(24)
-                Text("25 Days").tag(25)
-                Text("26 Days").tag(26)
-                Text("27 Days").tag(27)
-                Text("28 Days").tag(28)
-                Text("29 Days").tag(29)
-                Text("30 Days").tag(30)
+                Text("21 days").tag(21)
+                Text("22 days").tag(22)
+                Text("23 days").tag(23)
+                Text("24 days").tag(24)
+                Text("25 days").tag(25)
+                Text("26 days").tag(26)
+                Text("27 days").tag(27)
+                Text("28 days").tag(28)
+                Text("29 days").tag(29)
+                Text("30 days").tag(30)
             }
         }
     }
