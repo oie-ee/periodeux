@@ -11,6 +11,7 @@ struct InsightsView: View {
     @State var showComposeMessageView: Bool = false
     
     @EnvironmentObject var reportStore : ReportStore
+    @EnvironmentObject var periodStore : PeriodStore
     
     // MARK: - Body
     var body: some View {
@@ -34,7 +35,7 @@ struct InsightsView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         
                         HStack{
-                            Text("\(isCycleDuration)").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
+                            Text("\(periodStore.averageCycleDuration)").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .frame(height: 120)
                             
@@ -56,7 +57,7 @@ struct InsightsView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         
                         HStack{
-                            Text("\(isPeriodDuration)").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
+                            Text("\(periodStore.averagePeriodDuration)").font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
                                 .foregroundColor(ColorManager.highlightOrange)
                                 .frame(height: 120)
                             
