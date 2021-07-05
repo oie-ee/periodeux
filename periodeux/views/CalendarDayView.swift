@@ -25,6 +25,8 @@ struct CalenderDayView: View {
         case noPeriod
         case inInterval
         case ovulation
+        case fertileStart
+        case fertile
     }
     
     @Binding var selectedDate: Date
@@ -58,7 +60,7 @@ struct CalenderDayView: View {
         
         
         switch self.type {
-        case .noPeriod:
+        case .noPeriod, .fertile, .fertileStart:
             return .clear
         case .none:
             return .clear
@@ -116,13 +118,13 @@ struct CalenderDayView: View {
         }
         
         switch self.type {
-        case .startInterval:
+        case .startInterval, .fertileStart:
             return RoundedCorners(tl: 40, tr: 0, bl: 40, br: 0)
                 
-        case .endInterval:
+        case .endInterval, .ovulation:
             return RoundedCorners(tl: 0, tr: 40, bl: 0, br: 40)
                 
-        case .inInterval:
+        case .inInterval, .fertile:
             return RoundedCorners(tl: 0, tr: 0, bl: 0, br: 0)
                 
         default:
@@ -136,14 +138,27 @@ struct CalenderDayView: View {
         }
         
         switch self.type {
-        case .startInterval:
+        case .startInterval, .fertileStart:
             return EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0)
             
-        case .endInterval:
+        case .endInterval, .ovulation:
             return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5)
             
         default:
             return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        }
+    }
+    
+    var intervalBackgroundColor: Color {
+        switch self.type {
+        case .startInterval, .inInterval, .endInterval:
+            return ColorManager.backgroundOrange
+            
+        case .fertile, .fertileStart, .ovulation:
+            return Color(UIColor.systemTeal).opacity(0.1)
+            
+        default:
+            return .clear
         }
     }
 
@@ -186,7 +201,7 @@ struct CalenderDayView: View {
                     }
                 ).background(
                     intervalBackground
-                        .foregroundColor(ColorManager.backgroundOrange)
+                        .foregroundColor(intervalBackgroundColor)
                         .padding(intervalBackgroundPadding)
                 )
             )

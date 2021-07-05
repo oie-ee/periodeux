@@ -206,22 +206,17 @@ final class PeriodStore: ObservableObject {
             return periodArray
         }
         
-        
 //        get first period of next month
         guard let firstPeriodOfNextMonth = self.getNextOrCurrentPeriodFromDate(nextMonth) else {
             return periodArray
         }
         
-        if
-            Calendar.current.isDate(
-                firstPeriodOfNextMonth.ovulationDate,
-                equalTo: startOfMonth,
-                toGranularity: .month
-            ) {
+        let monthInterval = DateInterval(start: startOfMonth, end: nextMonth)
+        
+        if firstPeriodOfNextMonth.fertileInterval.intersects(monthInterval) {
             periodArray.append(firstPeriodOfNextMonth)
         }
-                
-
+            
         return periodArray
        
     }

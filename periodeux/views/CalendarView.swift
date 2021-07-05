@@ -50,41 +50,53 @@ struct CalendarView: View {
     
     func getDayType(date: Date) -> CalenderDayView.visualType {
         var filteredPeriods = self.periodEventsOfSelectedMonth.filter { period in
-            period.isDateInPeriodInterval(date) || period.isOvulationDate(date)
+            period.isDateInPeriodInterval(date) || period.isDateFertile(date)
         }
         
         filteredPeriods.sort { periodA, periodB in
             periodB.date > periodA.date
         }
         
-        let period = filteredPeriods.first
-        
-        guard period != nil else {
+        guard let period = filteredPeriods.first else {
             return .noPeriod
         }
         
-        let isInPeriod = period!.isDateInPeriodInterval(date)
-        let isPeriodStart = period!.isDatePeriodStartDay(date)
-        let isPeriodEnd = period!.isDatePeriodEndDay(date)
-        let isOvulation = period!.isOvulationDate(date)
+        let isInPeriod = period.isDateInPeriodInterval(date)
+        let isPeriodStart = period.isDatePeriodStartDay(date)
+        let isPeriodEnd = period.isDatePeriodEndDay(date)
+        let isOvulation = period.isOvulationDate(date)
+        let isFertile = period.isDateFertile(date)
+        let isFertileStart = period.isDateFertileStart(date)
         
         var dayType: CalenderDayView.visualType
         
-        switch (isInPeriod, isPeriodStart, isPeriodEnd, isOvulation) {
+        switch (isInPeriod, isPeriodStart, isPeriodEnd, isOvulation, isFertile, isFertileStart) {
             
-        case (true, false, false, false):
+        case (true, false, false, false, false, false):
             dayType = .inInterval
             break
-        case (false, true, false, false), (true, true, false, false):
+            
+        case (false, true, false, false, false, false), (true, true, false, false, false, false):
             dayType = .startInterval
             break
-        case (false, false, true, false), (true, false, true, false):
+            
+        case (false, false, true, false, false, false), (true, false, true, false, false, false):
             dayType = .endInterval
             break
-        case (false, false, false, true):
+            
+        case (false, false, false, true, true, false):
             
             dayType = .ovulation
             break
+            
+        case (false, false, false, false, true, false):
+            dayType = .fertile
+            break
+            
+        case (false, false, false, false, true, true):
+            dayType = .fertileStart
+            break
+            
         default:
             dayType = .noPeriod
         }

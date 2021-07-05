@@ -20,6 +20,22 @@ struct Period: Identifiable, Hashable {
         return Calendar.current.date(byAdding: .day, value: -14, to: self.date) ?? self.date
     }
     
+    var fertileInterval: DateInterval {
+        return DateInterval(start: fertileStartDate, end: self.ovulationDate)
+    }
+    
+    var fertileStartDate: Date {
+        return Calendar.current.date(byAdding: .day, value: -5, to: self.ovulationDate) ?? self.ovulationDate
+    }
+    
+    func isDateFertileStart(_ date: Date) -> Bool {
+        return Calendar.current.isDate(date, inSameDayAs: fertileStartDate)
+    }
+    
+    func isDateFertile(_ date: Date) -> Bool {
+        return self.fertileInterval.contains(date)
+    }
+    
     func isDatePeriodStartDay(_ date: Date) -> Bool {
         return Calendar.current.isDate(self.date, inSameDayAs: date)
     }
@@ -35,6 +51,7 @@ struct Period: Identifiable, Hashable {
     func isOvulationDate(_ date: Date) -> Bool {
         return Calendar.current.isDate(self.ovulationDate, inSameDayAs: date)
     }
+    
     
    
 }
