@@ -38,7 +38,7 @@ struct OnboardingView: View {
                             
                         Spacer()
                             
-                        Text("Please enter your period information.\nIt can be readjusted anytime.")
+                        Text("Please enter your period information.\nIt can be adjusted anytime.")
                                // .foregroundColor(Color.white)
                                // .fontWeight(.semibold)
                                 .multilineTextAlignment(.center)
@@ -77,6 +77,7 @@ struct OnboardingView: View {
                                 }
                             
                         }
+                        
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                            .background(Color(.secondarySystemBackground))
                         .cornerRadius(20)
@@ -84,8 +85,8 @@ struct OnboardingView: View {
                         .padding(.bottom, 10)
                         .padding(.top, 30)
                         .listStyle(GroupedListStyle())
-                        .navigationBarTitle("Welcome")
                         .accentColor(ColorManager.highlightOrange)
+//                        .background(ColorManager.backgroundOrange.edgesIgnoringSafeArea(.all))
                     }
             }
         }
