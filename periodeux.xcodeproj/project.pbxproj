@@ -18,6 +18,11 @@
 		999B14CC26502DCE004E4221 /* ReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B14CB26502DCE004E4221 /* ReportStore.swift */; };
 		99E6905725B3246600E07559 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E6905625B3246600E07559 /* AppStore.swift */; };
 		F304E6C525B1E04D001EB66E /* SingleDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F304E6C425B1E04D001EB66E /* SingleDayView.swift */; };
+		F307BA8526935C9700F80599 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F307BA8426935C9700F80599 /* WidgetKit.framework */; };
+		F307BA8726935C9700F80599 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F307BA8626935C9700F80599 /* SwiftUI.framework */; };
+		F307BA8A26935C9700F80599 /* PeriodeuxWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F307BA8926935C9700F80599 /* PeriodeuxWidget.swift */; };
+		F307BA8C26935C9900F80599 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F307BA8B26935C9900F80599 /* Assets.xcassets */; };
+		F307BA9026935C9900F80599 /* PeriodeuxWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F307BA8226935C9700F80599 /* PeriodeuxWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F30FCB0425AE180C00A9F6AF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31BCAEE257BBCA3005343D6 /* CalendarView.swift */; };
 		F3150C0B258783A7003129DE /* MoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C0A258783A7003129DE /* MoodModel.swift */; };
 		F3150C1325878419003129DE /* SymptomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3150C1225878419003129DE /* SymptomModel.swift */; };
@@ -56,6 +61,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F307BA8E26935C9900F80599 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F31BCAA0257BB57D005343D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F307BA8126935C9700F80599;
+			remoteInfo = PeriodeuxWidgetExtension;
+		};
 		F31BCABA257BB57F005343D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F31BCAA0257BB57D005343D6 /* Project object */;
@@ -72,6 +84,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F307BA9126935C9900F80599 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F307BA9026935C9900F80599 /* PeriodeuxWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6F0515D92691D32B00D17AC5 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		6F6BBD1A2682762600773BB1 /* PeriodDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDB.swift; sourceTree = "<group>"; };
@@ -85,6 +111,12 @@
 		999B14CB26502DCE004E4221 /* ReportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStore.swift; sourceTree = "<group>"; };
 		99E6905625B3246600E07559 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		F304E6C425B1E04D001EB66E /* SingleDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleDayView.swift; sourceTree = "<group>"; };
+		F307BA8226935C9700F80599 /* PeriodeuxWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PeriodeuxWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F307BA8426935C9700F80599 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F307BA8626935C9700F80599 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F307BA8926935C9700F80599 /* PeriodeuxWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodeuxWidget.swift; sourceTree = "<group>"; };
+		F307BA8B26935C9900F80599 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F307BA8D26935C9900F80599 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3150C0A258783A7003129DE /* MoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodModel.swift; sourceTree = "<group>"; };
 		F3150C1225878419003129DE /* SymptomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomModel.swift; sourceTree = "<group>"; };
 		F3150C1725878441003129DE /* BleedingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BleedingModel.swift; sourceTree = "<group>"; };
@@ -127,6 +159,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F307BA7F26935C9700F80599 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F307BA8726935C9700F80599 /* SwiftUI.framework in Frameworks */,
+				F307BA8526935C9700F80599 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F31BCAA5257BB57D005343D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,6 +237,25 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		F307BA8326935C9700F80599 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F307BA8426935C9700F80599 /* WidgetKit.framework */,
+				F307BA8626935C9700F80599 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F307BA8826935C9700F80599 /* PeriodeuxWidget */ = {
+			isa = PBXGroup;
+			children = (
+				F307BA8926935C9700F80599 /* PeriodeuxWidget.swift */,
+				F307BA8B26935C9900F80599 /* Assets.xcassets */,
+				F307BA8D26935C9900F80599 /* Info.plist */,
+			);
+			path = PeriodeuxWidget;
+			sourceTree = "<group>";
+		};
 		F3150C0925878389003129DE /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +306,8 @@
 				F31BCAAA257BB57D005343D6 /* periodeux */,
 				F31BCABC257BB57F005343D6 /* periodeuxTests */,
 				F31BCAC7257BB57F005343D6 /* periodeuxUITests */,
+				F307BA8826935C9700F80599 /* PeriodeuxWidget */,
+				F307BA8326935C9700F80599 /* Frameworks */,
 				F31BCAA9257BB57D005343D6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -256,6 +318,7 @@
 				F31BCAA8257BB57D005343D6 /* periodeux.app */,
 				F31BCAB9257BB57F005343D6 /* periodeuxTests.xctest */,
 				F31BCAC4257BB57F005343D6 /* periodeuxUITests.xctest */,
+				F307BA8226935C9700F80599 /* PeriodeuxWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,6 +395,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F307BA8126935C9700F80599 /* PeriodeuxWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F307BA9426935C9900F80599 /* Build configuration list for PBXNativeTarget "PeriodeuxWidgetExtension" */;
+			buildPhases = (
+				F307BA7E26935C9700F80599 /* Sources */,
+				F307BA7F26935C9700F80599 /* Frameworks */,
+				F307BA8026935C9700F80599 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PeriodeuxWidgetExtension;
+			productName = PeriodeuxWidgetExtension;
+			productReference = F307BA8226935C9700F80599 /* PeriodeuxWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F31BCAA7257BB57D005343D6 /* periodeux */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F31BCACD257BB57F005343D6 /* Build configuration list for PBXNativeTarget "periodeux" */;
@@ -339,10 +419,12 @@
 				F31BCAA4257BB57D005343D6 /* Sources */,
 				F31BCAA5257BB57D005343D6 /* Frameworks */,
 				F31BCAA6257BB57D005343D6 /* Resources */,
+				F307BA9126935C9900F80599 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F307BA8F26935C9900F80599 /* PBXTargetDependency */,
 			);
 			name = periodeux;
 			packageProductDependencies = (
@@ -395,9 +477,12 @@
 		F31BCAA0257BB57D005343D6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					F307BA8126935C9700F80599 = {
+						CreatedOnToolsVersion = 13.0;
+					};
 					F31BCAA7257BB57D005343D6 = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -431,11 +516,20 @@
 				F31BCAA7257BB57D005343D6 /* periodeux */,
 				F31BCAB8257BB57F005343D6 /* periodeuxTests */,
 				F31BCAC3257BB57F005343D6 /* periodeuxUITests */,
+				F307BA8126935C9700F80599 /* PeriodeuxWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F307BA8026935C9700F80599 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F307BA8C26935C9900F80599 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F31BCAA6257BB57D005343D6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,6 +558,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F307BA7E26935C9700F80599 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F307BA8A26935C9700F80599 /* PeriodeuxWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F31BCAA4257BB57D005343D6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -528,6 +630,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F307BA8F26935C9900F80599 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F307BA8126935C9700F80599 /* PeriodeuxWidgetExtension */;
+			targetProxy = F307BA8E26935C9900F80599 /* PBXContainerItemProxy */;
+		};
 		F31BCABB257BB57F005343D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F31BCAA7257BB57D005343D6 /* periodeux */;
@@ -553,6 +660,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F307BA9226935C9900F80599 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A74777946;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PeriodeuxWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PeriodeuxWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.periodeux.PeriodeuxWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F307BA9326935C9900F80599 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A74777946;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PeriodeuxWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PeriodeuxWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = test.periodeux.PeriodeuxWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F31BCACB257BB57F005343D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -672,6 +835,7 @@
 		F31BCACE257BB57F005343D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -694,6 +858,7 @@
 		F31BCACF257BB57F005343D6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -796,6 +961,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F307BA9426935C9900F80599 /* Build configuration list for PBXNativeTarget "PeriodeuxWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F307BA9226935C9900F80599 /* Debug */,
+				F307BA9326935C9900F80599 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F31BCAA3257BB57D005343D6 /* Build configuration list for PBXProject "periodeux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
