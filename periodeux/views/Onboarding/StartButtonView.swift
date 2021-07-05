@@ -23,6 +23,7 @@ struct StartButtonView: View {
             )
         } //: Button
         .accentColor(Color.primary)
+        
     }
 }
 
