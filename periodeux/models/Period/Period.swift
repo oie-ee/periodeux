@@ -17,7 +17,7 @@ struct Period: Identifiable, Hashable {
     }
     
     var ovulationDate: Date {
-        return Calendar.current.date(byAdding: .day, value: 2, to: self.endDate) ?? self.endDate
+        return Calendar.current.date(byAdding: .day, value: -14, to: self.date) ?? self.date
     }
     
     func isDatePeriodStartDay(_ date: Date) -> Bool {

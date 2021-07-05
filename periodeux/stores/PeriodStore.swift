@@ -159,18 +159,17 @@ final class PeriodStore: ObservableObject {
     /// - Parameter date: date within a month
     /// - Returns: array of periods
     func getPeriodsForMonthOfDate(_ date: Date) -> [Period] {
-        let startOfMonth = date.startOfMonth()
-        
-        guard startOfMonth != nil else {
+        guard let startOfMonth = date.startOfMonth() else {
             return []
         }
+
         
 //        Gets the last period and calculates the nearest occurence, relative to the start of the month
         var lastPeriod = self.getLatestOccurenceOfPeriodForDate(
             period: self.getLatestPeriodFromDate(
                 date: startOfMonth
             ),
-            startOfMonth!
+            startOfMonth
         )
         
 //        if there was no period before the start of the month, find a period after the start of the month
@@ -185,7 +184,7 @@ final class PeriodStore: ObservableObject {
         var periodArray: [Period] = [lastPeriod!]
         
         while true {
-//            get the next period after the last ended or calculate the next occurenc fo the last period
+//            get the next period after the last ended or calculate the next occurenc for the last period
             let nextPeriod = self.getNextPeriodFromDate(date: lastPeriod!.date) ?? self.getNextOccurenceOfPeriod(lastPeriod!)
             
             guard nextPeriod != nil else {
@@ -193,13 +192,35 @@ final class PeriodStore: ObservableObject {
             }
             
 //            if the next period is not within dates month, cancel loop
-            if !Calendar.current.isDate(startOfMonth!, equalTo: nextPeriod!.date, toGranularity: .month) {
+            if !Calendar.current.isDate(startOfMonth, equalTo: nextPeriod!.date, toGranularity: .month) {
                 break
             }
             
             periodArray.append(nextPeriod!)
             lastPeriod = nextPeriod
         }
+        
+        
+//        get next month
+        guard let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: startOfMonth) else {
+            return periodArray
+        }
+        
+        
+//        get first period of next month
+        guard let firstPeriodOfNextMonth = self.getNextOrCurrentPeriodFromDate(nextMonth) else {
+            return periodArray
+        }
+        
+        if
+            Calendar.current.isDate(
+                firstPeriodOfNextMonth.ovulationDate,
+                equalTo: startOfMonth,
+                toGranularity: .month
+            ) {
+            periodArray.append(firstPeriodOfNextMonth)
+        }
+                
 
         return periodArray
        
