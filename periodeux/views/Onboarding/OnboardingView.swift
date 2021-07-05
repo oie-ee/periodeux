@@ -27,20 +27,17 @@ struct OnboardingView: View {
                         .resizable()
                         .cornerRadius(20)
                         .scaledToFit()
+                        .padding(.horizontal, 20)
 
-                        .padding(.top, 30)
+                        .padding(.top, 20)
+                        .padding(.bottom, 20)
                         
-                        Text("Customize your data")
-                                //.foregroundColor(Color.white)
-                                .font(.title)
-                            .fontWeight(.bold)
+                        Text("Customize your data").font(.system(.title)).fontWeight(.semibold)
                                 //.shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.15), radius: 2, x: 2, y: 2)
                             
                         Spacer()
                             
-                        Text("Please enter your period information.\nIt can be adjusted anytime.")
-                               // .foregroundColor(Color.white)
-                               // .fontWeight(.semibold)
+                        Text("Please enter your period information.\nIt can be adjusted anytime.").font(.system(.body))
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 16)
                                 .frame(maxWidth: 480)
@@ -77,7 +74,6 @@ struct OnboardingView: View {
                                 }
                             
                         }
-                        
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                            .background(Color(.secondarySystemBackground))
                         .cornerRadius(20)
@@ -86,7 +82,6 @@ struct OnboardingView: View {
                         .padding(.top, 30)
                         .listStyle(GroupedListStyle())
                         .accentColor(ColorManager.highlightOrange)
-//                        .background(ColorManager.backgroundOrange.edgesIgnoringSafeArea(.all))
                     }
             }
         }
