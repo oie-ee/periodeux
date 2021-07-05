@@ -95,7 +95,7 @@ struct SmallWidget: View {
                             .frame(height: 30)
                         
                         Text("11").font(.system(.body, design: .rounded)).fontWeight(.bold)
-                            .foregroundColor(Color.teal)
+                            .foregroundColor(Color(UIColor.systemTeal))
                             .padding(.trailing, 10)
                             
                     }
@@ -139,7 +139,7 @@ struct MediumWidget: View {
                             .frame(height: 30)
                         
                         Text("11").font(.system(.body, design: .rounded)).fontWeight(.bold)
-                            .foregroundColor(Color.teal)
+                            .foregroundColor(Color(UIColor.systemTeal))
 
                             
                     }
