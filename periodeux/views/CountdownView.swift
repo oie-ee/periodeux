@@ -15,6 +15,14 @@ struct CountdownView: View {
         }
     }
     
+    var countdownDays: String {
+        if countdown == 1 {
+            return "day."
+        } else {
+            return "days."
+        }
+    }
+    
     var countdown: Int {
         if periodStore.daysTilPeriod < 1 {
             
@@ -72,7 +80,7 @@ struct CountdownView: View {
                     .offset(y: -4.0)
             }
             
-            Text("days.")
+            Text(countdownDays)
                 .font(.body)
             
         }
