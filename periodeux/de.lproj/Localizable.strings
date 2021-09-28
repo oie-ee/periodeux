@@ -1,7 +1,43 @@
-/* 
-  Localizable.strings
-  periodeux
 
-  Created by Gustav on 03.06.21.
-  
-*/
+"Your period ends in" = "Deine Periode endet in";
+"Your period starts in" = "Deine Periode startet in";
+"day." = "Tag.";
+"days." = "Tagen.";
+"Hey, you 👋" = "Hallo, du 👋";
+"Entries for" = "Einträge für";
+"Mood" = "Stimmung";
+"Symptom" = "Symptome";
+"Bleeding" = "Blutung";
+"Add" = "Hinzu-\nfügen";
+"Edit" = "Bear-\nbeiten";
+"Done" = "Fertig";
+"Overview" = "Überblick";
+
+//Settings
+"Settings" = "Einstellungen";
+"Please enter the first day of your last period here." = "Bitte gib den ersten Tag deiner letzten Periode hier ein.";
+"Period Duration" = "Periodenlänge";
+"Cycle Duration" = "Zykluslänge";
+"Start Of Period" = "Anfang der Periode";
+"Restart Onboarding" = "Onboarding neu starten";
+
+//Insights
+"Your Average Cycle Length" = "Deine durchschnittliche Zykluslänge";
+"days" = "Tage";
+"Your Average Period Length" = "Deine durchschnittliche Periodenlänge";
+"Frequent Symptoms" = "Häufige Symtome";
+"Please add more symptoms first" = "Bitte füge zunächst noch weitere Symptome hinzu";
+"These are your most frequently reported symptoms:" = "Dies sind deine am häufigsten gemeldeten Symptome:";
+"Frequent Moods" = "Häufige Stimmungen";
+"Please add more moods first" = "Bitte füge zunächst noch weitere Stimmungen hinzu";
+"These are your most frequently reported symptoms:" = "Dies sind deine am häufigsten gemeldeten Stimmungen:";
+
+//Moods
+
+//Symptoms
+
+//Bleeding
+"No Bleeding" = "Keine Blutung";
+"Light" = "Schwach";
+"Regular" = "Mittel";
+"Heavy" = "Stark";

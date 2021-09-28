@@ -105,7 +105,6 @@
 		6F6BBD1C2682762600773BB1 /* PeriodDBKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodDBKeys.swift; sourceTree = "<group>"; };
 		6F6BBD2026827C4C00773BB1 /* PeriodStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodStore.swift; sourceTree = "<group>"; };
 		6FAA679A2668C44D00C59462 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		6FAA679C2668C45000C59462 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6FD721CA26683A4C004D7664 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		999B14C226502CE7004E4221 /* RealmPersistentInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPersistentInitializer.swift; sourceTree = "<group>"; };
 		999B14CB26502DCE004E4221 /* ReportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportStore.swift; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		F31BCB05257BC866005343D6 /* SmallMoodCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallMoodCellView.swift; sourceTree = "<group>"; };
 		F31BCB0A257BCDEC005343D6 /* SmallSymptomCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallSymptomCellView.swift; sourceTree = "<group>"; };
 		F31BCB12257BD075005343D6 /* SmallBleedingCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallBleedingCellView.swift; sourceTree = "<group>"; };
+		F326791826D7CF2C00A0CE5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F34556A62580106E00523956 /* ModalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalInfoView.swift; sourceTree = "<group>"; };
 		F348310625B73B2600F3FBD5 /* BoardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
 		F348310725B73B2600F3FBD5 /* StartButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
@@ -332,12 +332,12 @@
 				F3150C0925878389003129DE /* models */,
 				99E6905525B3244D00E07559 /* viewModel */,
 				F31BCAAB257BB57D005343D6 /* periodeuxApp.swift */,
-				6FAA679B2668C44D00C59462 /* Localizable.strings */,
 				F31BCAAD257BB57D005343D6 /* ContentView.swift */,
 				F3150C22258786FE003129DE /* views */,
 				F31BCAD9257BB6FD005343D6 /* Colors.xcassets */,
 				F31BCAAF257BB57F005343D6 /* Assets.xcassets */,
 				F31BCAB4257BB57F005343D6 /* Info.plist */,
+				6FAA679B2668C44D00C59462 /* Localizable.strings */,
 				F31BCAB1257BB57F005343D6 /* Preview Content */,
 			);
 			path = periodeux;
@@ -652,7 +652,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6FAA679A2668C44D00C59462 /* de */,
-				6FAA679C2668C45000C59462 /* en */,
+				F326791826D7CF2C00A0CE5D /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -667,7 +667,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A74777946;
+				DEVELOPMENT_TEAM = Y72C44UARM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeriodeuxWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PeriodeuxWidget;
@@ -679,7 +679,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = test.periodeux.PeriodeuxWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mrsk.periodeux.PeriodeuxWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -695,7 +695,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8A74777946;
+				DEVELOPMENT_TEAM = Y72C44UARM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeriodeuxWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PeriodeuxWidget;
@@ -707,7 +707,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = test.periodeux.PeriodeuxWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mrsk.periodeux.PeriodeuxWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -840,7 +840,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"periodeux/Preview Content\"";
-				DEVELOPMENT_TEAM = 8A74777946;
+				DEVELOPMENT_TEAM = Y72C44UARM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = periodeux/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -848,7 +848,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.periodeux;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mrsk.periodeux;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -863,7 +863,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"periodeux/Preview Content\"";
-				DEVELOPMENT_TEAM = 8A74777946;
+				DEVELOPMENT_TEAM = Y72C44UARM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = periodeux/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -871,7 +871,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.periodeux;
+				PRODUCT_BUNDLE_IDENTIFIER = de.mrsk.periodeux;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

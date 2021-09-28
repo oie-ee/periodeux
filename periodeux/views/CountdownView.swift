@@ -7,19 +7,19 @@ struct CountdownView: View {
     
     
     
-    var countdownText: String {
+    var countdownText: Text {
         if periodStore.daysTilPeriod < 1 {
-            return "Your period ends in"
+            return Text("Your period ends in")
         } else {
-            return "Your period starts in"
+            return Text("Your period starts in")
         }
     }
     
-    var countdownDays: String {
+    var countdownDays: Text {
         if countdown == 1 {
-            return "day."
+            return Text("day.")
         } else {
-            return "days."
+            return Text("days.")
         }
     }
     
@@ -59,7 +59,7 @@ struct CountdownView: View {
         //Your period starts in ... days.
         HStack{
             
-            Text(countdownText)
+            countdownText
                 .font(.body)
                 .frame(alignment: .leading)
             
@@ -80,7 +80,7 @@ struct CountdownView: View {
                     .offset(y: -4.0)
             }
             
-            Text(countdownDays)
+            countdownDays
                 .font(.body)
             
         }

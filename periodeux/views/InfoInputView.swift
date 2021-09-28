@@ -34,7 +34,11 @@ struct InfoInputView: View {
         VStack(alignment: .leading){
             
             // Section Headline
-            Text("Entries for \(convertDateToShort(date: appStore.selectedDate))")
+            HStack{
+                Text("Entries for")
+                
+                Text("\(convertDateToShort(date: appStore.selectedDate))")
+            }
                 .font(Font.title3.weight(.semibold))
                 .padding(.bottom, 2)
             
@@ -234,7 +238,7 @@ struct AddIconCellView: View {
                         .foregroundColor(.primary)
                         //the following are added so that the Add Icon Cell takes up th esame space as a Small Icon View
                         .frame(width: 50, height: 30, alignment: .top)
-                        .multilineTextAlignment(.center)
+                        .multilineTextAlignment(.leading)
                         .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                     
             }

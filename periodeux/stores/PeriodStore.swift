@@ -43,6 +43,17 @@ final class PeriodStore: ObservableObject {
         return tilCount
     }
     
+//    
+//    var daysTilOvulation: Int {
+//        let today = Date().startOfDay() ?? Date()
+//        
+//        let tilCount = Calendar.current.dateComponents(
+//            [.day]
+//            from: today,
+//            to: period.isOvulationDate())
+//    
+//    }
+    
     func getNextPeriodFromDate(_ date: Date) -> Period? {
         
         let relativeDate = date.startOfDay()
